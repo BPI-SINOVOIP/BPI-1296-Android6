@@ -1,0 +1,15 @@
+allow recovery block_device:dir { open write read search };
+allow recovery block_device:dir search;
+allow recovery user_device:blk_file { read write open };
+allow recovery rootfs:file { execute execute_no_trans };
+allow recovery realtek_tmpfs:file { getattr read write open unlink };
+allow recovery recovery:capability { dac_override };
+allow recovery recovery:file { entrypoint };
+allow recovery shell_exec:file { execute read open execute_no_trans };
+allow recovery self:capability { fowner chown fsetid };
+allow recovery system_app_tmpfs:file {getattr read write open};
+allow recovery system_server_tmpfs:file {getattr read write open};
+allow recovery tmpfs:dir { create setattr };
+allow recovery tmpfs:dir { write add_name remove_name search };
+allow recovery tmpfs:file setattr;
+allow recovery tmpfs:file { create write open unlink };

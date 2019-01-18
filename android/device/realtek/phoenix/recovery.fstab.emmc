@@ -1,0 +1,7 @@
+/dev/block/mmcblk0p1     /system     ext4      defaults        defaults
+/dev/block/mmcblk0p2     /data       ext4      defaults        defaults
+/dev/block/mmcblk0p3     /cache      ext4      defaults        defaults
+/dev/block/mmcblk0p5     /nasroot    ext4      defaults        defaults
+/dev/block/mmcblk0p6     /nasetc     ext4      defaults        defaults
+/dev/block/mmcblk0p0     /boot       raw       defaults        defaults
+/dev/block/mmcblk0p0     /recovery   raw       defaults        defaults

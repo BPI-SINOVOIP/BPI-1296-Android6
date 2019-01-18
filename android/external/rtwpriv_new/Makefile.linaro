@@ -1,0 +1,44 @@
+ANDROID_SRC_PATH=../..
+GENERIC_LINUX_PATH=$(ANDROID_SRC_PATH)/genericLinux
+include $(GENERIC_LINUX_PATH)/MakeConfig
+
+MYDEFS=-DHAVE_SYS_UIO_H
+rm=/bin/rm -f
+cp=/bin/cp -f
+CC= $(MYCC)
+CXX = $(MYCXX)
+AR= $(MYAR) cq
+RANLIB= $(MYRANLIB)
+
+TOP=$(ANDROID_SRC_PATH)
+LOCAL_PATH=.
+
+LOCAL_C_INCLUDES :=
+
+OBJ_FILES = $(addsuffix .o, $(basename $(LOCAL_SRC_FILES)))
+
+INCLUDES = $(addprefix -I, $(LOCAL_C_INCLUDES))
+
+
+CFLAGS = $(INCLUDES) $(DEFINES) $(LOCAL_CFLAGS) -DSYS_UNIX=1 $(MYDEFS) -fPIC
+
+
+#LDFLAGS += -shared -fPIC $(DYN_LDS_WITH)
+
+CFLAGS  = -g -Wall -static
+
+# the build target executable:
+TARGET = $(GENERIC_LINUX_PATH)/lib/rtwpriv
+
+all: $(TARGET)
+$(TARGET):  rtwpriv.h rtwpriv.o
+	$(CC) $(CFLAGS) -o $(TARGET) rtwpriv.o -lm
+
+rtwpriv.o: rtwpriv.h
+	$(CC) -I$(INCLUDE) $(CFLAGS) -c rtwpriv.cpp
+
+#hwtx.o: rtw_pmact.h
+#       $(CC) -I$(INCLUDE) $(CFLAGS) -c hwtx.c
+
+clean:
+	$(RM) $(TARGET) *.o

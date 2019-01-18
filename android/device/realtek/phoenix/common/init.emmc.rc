@@ -1,0 +1,32 @@
+on early-init
+
+on init
+
+on early-fs
+    mount ext4 /dev/block/mmcblk0p1 /system ro noatime wait 
+    mount ext4 /dev/block/mmcblk0p2 /data rw noatime nosuid nodev wait journal_checksum,journal_async_commit,errors=continue,data_err=ignore,discard
+    mount ext4 /dev/block/mmcblk0p3 /cache rw noatime nosuid nodev wait journal_checksum,journal_async_commit,errors=continue,data_err=ignore,discard
+#    mount ext4 /dev/block/mmcblk0p1 /system rw remount noatime wait 
+
+on fs
+
+on post-fs
+
+on post-fs-data
+
+on early-boot
+
+on boot
+
+#service for resize ext4 parts
+on property:persist.storage.resizefs=0
+    start ext4resize
+    setprop persist.storage.resizefs 1
+
+service ext4resize /sbin/ext4resize.sh
+    class core
+    user root
+    group root
+    disabled
+    oneshot
+

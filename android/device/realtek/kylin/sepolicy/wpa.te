@@ -1,0 +1,2 @@
+
+allow wpa realtek:unix_dgram_socket { sendto };

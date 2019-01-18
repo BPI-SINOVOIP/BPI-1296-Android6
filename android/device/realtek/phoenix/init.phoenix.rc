@@ -1,0 +1,467 @@
+#import /init.${ro.mediatype}.rc
+import init.phoenix.usb.rc
+import init.resize2fs.rc
+import init.e2fsck.rc
+# For Webserver mode
+import /init.lighttpd.rc
+
+on early-init
+    mount debugfs debugfs /sys/kernel/debug
+    # Set up kernel tracing, but disable it by default
+    chmod 0755 /sys/kernel/debug
+    chmod 0222 /sys/kernel/debug/tracing/trace_marker
+    write /sys/kernel/debug/tracing/tracing_on 0
+
+on init
+    #loglevel 3
+    start watchdogd
+
+    #mount rootfs rootfs / rw remount
+
+    mkdir /tmp 0777 root system
+    mount tmpfs tmpfs /tmp mode=0777,uid=0,gid=1000
+
+on fs
+    mkdir /factory 0775 radio radio
+
+    setprop ro.crypto.umount_sd false
+
+    mount_all /fstab.phoenix.emmc
+    setprop persist.storage.resizefs 1
+
+on post-fs-data
+    mkdir /data/media 0770 media_rw media_rw
+
+    # change back to bluetooth from system
+    ##chown bluetooth net_bt_stack /data/misc/bluetooth
+
+    # sensors-config
+    mkdir /data/sensors 751
+    # /data/sensors was owned by system/system earlier.
+    # Force it to root/root if it already exists.
+    chown root root /data/sensors
+    mkdir /data/lightsensor 751
+    # /data/lightsensor was owned by system/system earlier.
+    # Force it to root/root if it already exists.
+    chown root root /data/lightsensor
+    mkdir /data/calibration
+    mkdir /data/amit
+    
+    mkdir /data/radio 0775 radio radio
+    mkdir /data/radio/log 0775 radio radio
+
+    chmod 0660 /data/misc/wifi/wpa_supplicant.conf
+
+    # Set indication (checked by vold) that we have finished this action
+    setprop vold.post_fs_data_done 1
+#    mkdir /data/cache 0770 system cache
+#    mkdir /data/misc/dhcp 0770 dhcp dhcp
+#    chown dhcp dhcp /data/misc/dhcp
+#    chown system system /dev/hdcp
+#    chmod 0660 /dev/hdcp
+#    mkdir /data/misc/wifi/sockets 0770 wifi wifi
+    setprop service.adb.tcp.port 5555
+
+on early-boot
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor interactive
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor interactive
+#    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor interactive
+#    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor interactive
+
+    # insmod mali driver
+    insmod /system/vendor/modules/ump.ko
+    insmod /system/vendor/modules/mali.ko
+
+on boot
+    # insmod paragon driver
+    insmod /system/vendor/modules/jnl.ko
+    insmod /system/vendor/modules/ufsd.ko
+
+    # insmod pppoe driver
+    insmod /system/vendor/modules/slhc.ko
+    insmod /system/vendor/modules/sha1_generic.ko
+    insmod /system/vendor/modules/ppp_generic.ko
+    insmod /system/vendor/modules/bsd_comp.ko
+    insmod /system/vendor/modules/pppox.ko
+    insmod /system/vendor/modules/pppoe.ko
+    insmod /system/vendor/modules/pppopns.ko
+    insmod /system/vendor/modules/pppolac.ko
+    insmod /system/vendor/modules/ppp_deflate.ko
+    insmod /system/vendor/modules/ppp_synctty.ko
+    insmod /system/vendor/modules/usbnet.ko
+    insmod /system/vendor/modules/net1080.ko
+    insmod /system/vendor/modules/crc-ccitt.ko
+    insmod /system/vendor/modules/ppp_async.ko
+    insmod /system/vendor/modules/ppp_mppe.ko
+
+    chown system system /sys/kernel/suspend/mode
+    chmod 0664 /sys/kernel/suspend/mode
+    chown system system /sys/kernel/suspend/context
+    chmod 0664 /sys/kernel/suspend/context
+    chown system system /sys/kernel/suspend/watchdog_timer_sec
+    chmod 0664 /sys/kernel/suspend/watchdog_timer_sec
+    chown system system /sys/kernel/suspend/watchdog_en
+    chmod 0664 /sys/kernel/suspend/watchdog_en
+
+    # bluetooth
+    # change back to bluetooth from system
+    chown bluetooth net_bt_stack /data/misc/bluetooth
+    mkdir /data/misc/bluedroid 0770 bluetooth net_bt_stack
+    # bluetooth LPM
+    chown bluetooth net_bt_stack /proc/bluetooth/sleep/lpm
+    chown bluetooth net_bt_stack /proc/bluetooth/sleep/btwrite
+
+    # USB device
+    insmod /system/vendor/modules/rtk_btusb.ko
+    chmod 0660 /dev/rtk_btusb
+    chown bluetooth net_bt_stack /dev/rtk_btusb
+
+    # UART device
+    chmod 0660 /dev/ttyS1
+    chown bluetooth net_bt_stack /dev/ttyS1
+
+    # rfkill
+    chmod 0660 /sys/class/rfkill/rfkill0/state
+    chmod 0660 /sys/class/rfkill/rfkill0/type
+    chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/state
+    chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/type
+    write /sys/class/rfkill/rfkill0/state 0
+
+    # bluetooth MAC address programming
+    chown bluetooth net_bt_stack ro.bt.bdaddr_path
+    chown bluetooth net_bt_stack /system/etc/bluetooth
+    chown bluetooth net_bt_stack /data/misc/bluetooth
+    setprop ro.bt.bdaddr_path "/data/misc/bluetooth/bdaddr"
+
+    start libchk
+    start start_tee_sup
+
+# the following settings are used to disable ipv6 on cellular networks that cannot
+# support it.
+
+on property:ril.ipv6.rmnet0.enable=1
+    write /proc/sys/net/ipv6/conf/rmnet0/disable_ipv6 0
+
+on property:ril.ipv6.rmnet0.enable=0
+    write /proc/sys/net/ipv6/conf/rmnet0/disable_ipv6 1
+
+on property:ril.ipv6.rmnet1.enable=1
+    write /proc/sys/net/ipv6/conf/rmnet1/disable_ipv6 0
+
+on property:ril.ipv6.rmnet1.enable=0
+    write /proc/sys/net/ipv6/conf/rmnet1/disable_ipv6 1
+
+## Daemon processes to be run by init.
+##
+#rtk begin
+service alsadaemon /system/bin/ALSADaemon
+    class main
+    user root
+    group root
+    oneshot
+
+service vpuinit /system/bin/vpuinit
+    class main
+    user root
+    group root
+    oneshot
+
+service jpuinit /system/bin/jpuinit
+    class main
+    user root
+    group root
+    oneshot
+#rtk end
+
+# add from Realtek_Wi-Fi_SDK_for_Android_L_5_0.pdf
+service rtw_fwloader /system/bin/rtw_fwloader
+	class main
+	disabled
+	oneshot
+        
+
+service p2p_supplicant /system/bin/wpa_supplicant \
+	-ip2p0 -Dnl80211 -c/data/misc/wifi/p2p_supplicant.conf \
+	-e/data/misc/wifi/entropy.bin -N \
+	-iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
+	-O/data/misc/wifi/sockets \
+	-g@android:wpa_wlan0
+	class main
+	socket wpa_wlan0 dgram 660 wifi wifi
+	disabled
+	oneshot
+        seclabel u:r:wpa:s0
+
+service wpa_supplicant /system/bin/wpa_supplicant \
+	-iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
+	-O/data/misc/wifi/sockets \
+	-e/data/misc/wifi/entropy.bin \
+	-g@android:wpa_wlan0
+	class main
+	socket wpa_wlan0 dgram 660 wifi wifi
+	disabled
+	oneshot
+        seclabel u:r:wpa:s0
+
+service dhcpcd_wlan0 /system/bin/dhcpcd -aABDKL
+    class main
+    disabled
+    oneshot
+    seclabel u:r:dhcp:s0
+
+service dhcpcd_p2p /system/bin/dhcpcd -aABKL
+    class main
+    disabled
+    oneshot
+    seclabel u:r:dhcp:s0
+
+service dhcpcd_eth0 /system/bin/dhcpcd -ABDKL -f/system/etc/dhcpcd/dhcpcd.conf
+    class main
+    disabled
+    oneshot
+    seclabel u:r:dhcp:s0
+
+service dhcpcd_bt-pan /system/bin/dhcpcd -ABKL
+    class main
+    disabled
+    oneshot
+    seclabel u:r:dhcp:s0
+
+service iprenew_wlan0 /system/bin/dhcpcd -n
+    class main
+    disabled
+    oneshot
+    seclabel u:r:dhcp:s0
+
+service iprenew_p2p /system/bin/dhcpcd -n
+    class main
+    disabled
+    oneshot
+    seclabel u:r:dhcp:s0
+
+service iprenew_eth0 /system/bin/dhcpcd -n
+    class main
+    disabled
+    oneshot
+    seclabel u:r:dhcp:s0
+
+service iprenew_bt-pan /system/bin/dhcpcd -n
+    class main
+    disabled
+    oneshot
+    seclabel u:r:dhcp:s0
+
+# virtual sdcard daemon running as media_rw (1023)
+#service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
+#    class late_start
+#    seclabel u:r:sdcardd:s0
+
+# bugreport is triggered by holding down volume down, volume up and power
+service bugreport /system/bin/dumpstate -d -p -B \
+        -o /data/data/com.android.shell/files/bugreports/bugreport
+    class main
+    disabled
+    oneshot
+    keycodes 114 115 116
+    seclabel u:r:dumpstate:s0
+
+on property:persist.storage.resizefs=1
+	start verity
+	
+on property:persist.security.dmcheck=0
+    start verity_format
+    setprop persist.security.dmcheck 1
+	
+service verity_format /sbin/verity_format.sh
+    class core
+    user root
+    group root
+    disabled
+    oneshot
+	seclabel u:r:init:s0
+	
+service verity /sbin/verity.sh
+    class core
+    user root
+    group root
+    disabled
+    oneshot
+	seclabel u:r:init:s0
+
+#service macaddr /sbin/busybox ifconfig eth0 hw ether 08:60:6e:3d:40:99
+service macaddr /system/bin/update_mac.sh
+    class core
+    user root
+    group root
+    oneshot
+#    seclabel u:r:realtek:s0
+
+service DvdPlayer /system/bin/DvdPlayer
+    class main
+    user root
+    group audio camera inet net_bt net_bt_admin net_bw_acct drmrpc mediadrm graphics drmrpc
+    ioprio rt 4
+
+#service rvsd /system/bin/rvsd
+#    class main
+#    user media
+#    group audio camera inet net_bt net_bt_admin net_bw_acct drmrpc mediadrm graphics drmrpc
+#    ioprio rt 4
+
+service settingsproxy /system/bin/settingsproxy
+    class core
+    socket airfun stream 0660 system system
+    user system
+    group system
+    #disabled
+
+service gpioproxy /system/bin/gpioproxy
+    class core
+    socket rtk_gpio stream 0660 system system
+    user root
+    group root
+    #disabled
+
+service busybox_link /sbin/busybox --install -s /system/vendor/bin
+    class core
+    user root
+    group root
+    oneshot
+    disabled
+    seclabel u:r:rootfs:s0
+
+service gator /system/bin/gatord
+    class core
+    user root
+    group root
+    disabled
+    
+service gpio /system/bin/gpio 79 192.168.1.254:/tmp/usb tcp,nolock
+    class core
+    user root
+    group root
+    disabled
+
+# for factory
+service factory /system/bin/factory
+    class main
+    user root
+    group root
+    oneshot
+    disabled
+    seclabel u:r:recovery:s0
+
+service chfb /system/bin/chfb
+    class main
+    user root
+    group root
+    oneshot
+    disabled
+
+service dhcpcd_bnep0 /system/bin/dhcpcd -BKLG
+    disabled
+    oneshot
+    seclabel u:r:dhcp:s0
+
+service dhcpcd_bnep1 /system/bin/dhcpcd -BKLG
+    disabled
+    oneshot
+    seclabel u:r:dhcp:s0
+
+service dhcpcd_bnep2 /system/bin/dhcpcd -BKLG
+    disabled
+    oneshot
+    seclabel u:r:dhcp:s0
+
+service dhcpcd_bnep3 /system/bin/dhcpcd -BKLG
+    disabled
+    oneshot
+    seclabel u:r:dhcp:s0
+
+service dhcpcd_bnep4 /system/bin/dhcpcd -BKLG
+    disabled
+    oneshot
+    seclabel u:r:dhcp:s0
+
+service boot_sd_mod /sbin/boot_sd_mod.sh
+    class main
+    oneshot
+    seclabel u:r:init:s0
+
+# Set watchdog timer to 20 seconds and pet it every 10 seconds to get a 10 second margin
+service watchdogd /sbin/watchdogd 10 10
+    class core
+    seclabel u:r:watchdogd:s0
+
+
+on property:ro.debuggable=1
+    # install busybox symbolic links
+    #mkdir /system/vendor/bin
+    #start busybox_link
+
+    # start gatord
+    #insmod /system/vendor/modules/gator.ko
+    #start gator
+
+    # remount rootfs to rw
+    #mount rootfs rootfs / rw remount
+
+# for pppoe script files
+service pppoe-setup /system/bin/pppoe-setup
+    class main
+    oneshot
+    disabled
+    seclabel u:r:system_app:s0
+
+service pppoe-start /system/bin/pppoe-start
+    class main
+    oneshot
+    disabled
+    seclabel u:r:system_app:s0
+
+service pppoe-stop /system/bin/pppoe-stop
+    class main
+    oneshot
+    disabled
+    seclabel u:r:system_app:s0
+
+service RtkHWMBinder /system/bin/RtkHWMBinder
+    class main
+
+service bootdvfs /sbin/dvfs.sh performance 0 ondemand 90
+    class main
+    oneshot
+    #disabled
+    seclabel u:r:init:s0
+
+#service bootphoenix /sbin/bootphoenix.sh
+#    class main
+#    oneshot
+#    #disabled
+
+#service bootphoenix /sbin/usb_suspend.sh
+#    class main
+#    oneshot
+
+# for wfd
+service wfd /system/bin/rtk_wfd
+    class main
+    disabled
+    oneshot
+
+service libchk /sbin/libchk.sh
+    class core
+    user root
+    group root
+    disabled
+    oneshot
+    seclabel u:r:init:s0
+
+service start_tee_sup /sbin/startTEESup.sh
+    class core
+    user root
+    group root
+    disabled
+    oneshot
+    seclabel u:r:init:s0
+
