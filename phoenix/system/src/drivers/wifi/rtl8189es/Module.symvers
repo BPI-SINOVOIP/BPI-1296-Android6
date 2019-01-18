@@ -1,0 +1,5 @@
+0xfab885c2	rtw_disable_gpio_interrupt	/home3/Kay/SDK_release/1295/source_code/QA160627_CustBranch_nuplayer/171205/trunk-6.0.0_r1/QA160627-nuplayer_Kylin_171205_SQA_Dailybuild_P/phoenix/system/src/drivers/wifi/rtl8189es/8189es	EXPORT_SYMBOL
+0x31ecddc2	rtw_register_gpio_interrupt	/home3/Kay/SDK_release/1295/source_code/QA160627_CustBranch_nuplayer/171205/trunk-6.0.0_r1/QA160627-nuplayer_Kylin_171205_SQA_Dailybuild_P/phoenix/system/src/drivers/wifi/rtl8189es/8189es	EXPORT_SYMBOL
+0xb9b14141	rtw_config_gpio	/home3/Kay/SDK_release/1295/source_code/QA160627_CustBranch_nuplayer/171205/trunk-6.0.0_r1/QA160627-nuplayer_Kylin_171205_SQA_Dailybuild_P/phoenix/system/src/drivers/wifi/rtl8189es/8189es	EXPORT_SYMBOL
+0x19e7c6a9	rtw_get_gpio	/home3/Kay/SDK_release/1295/source_code/QA160627_CustBranch_nuplayer/171205/trunk-6.0.0_r1/QA160627-nuplayer_Kylin_171205_SQA_Dailybuild_P/phoenix/system/src/drivers/wifi/rtl8189es/8189es	EXPORT_SYMBOL
+0xd8f32417	rtw_set_gpio_output_value	/home3/Kay/SDK_release/1295/source_code/QA160627_CustBranch_nuplayer/171205/trunk-6.0.0_r1/QA160627-nuplayer_Kylin_171205_SQA_Dailybuild_P/phoenix/system/src/drivers/wifi/rtl8189es/8189es	EXPORT_SYMBOL
