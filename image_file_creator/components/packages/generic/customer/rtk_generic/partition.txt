@@ -1,0 +1,3 @@
+###
+###	  part = (name mount_point filesystem file size)
+part = rootfs / ubifs target_pkg/ubi_rootfs.img 734003200

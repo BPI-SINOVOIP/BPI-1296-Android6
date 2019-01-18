@@ -1,0 +1,9 @@
+###
+###	  part = (name mount_point filesystem file size)
+part = system /system ext4 package5/system.bin 763363328
+part = data /data ext4 package5/data.bin 5716836352
+part = cache /cache ext4 package5/cache.bin 419430400
+part = uboot /uboot ext4 package5/uboot_p.bin 4194304
+part = logo /logo ext4 package5/logo_p.bin 16777216
+part = backup /backup ext4 package5/backup.bin 524288000
+part = verify /verify ext4 package5/verify_p.bin 104857600

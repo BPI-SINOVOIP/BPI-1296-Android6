@@ -1,0 +1,5 @@
+###
+###	  part = (name mount_point filesystem file size)
+part = system /system ubifs package5/ubi_system.img 734003200
+part = data /data ubifs package5/ubi_data.img 6710886400
+part = cache /cache ubifs package5/ubi_cache.img 314572800
