@@ -211,6 +211,11 @@ PRODUCT_PROPERTY_OVERRIDES += ro.config.enablececservice=false
 PRODUCT_COPY_FILES += frameworks/native/data/etc/android.hardware.hdmi.cec.xml:system/etc/permissions/android.hardware.hdmi.cec.xml
 endif
 
+# BPI-W2 bootanimation
+PRODUCT_COPY_FILES += device/realtek/kylin/media/bootanimation.zip:system/media/bootanimation.zip
+	
+	
+
 ifeq ($(USE_RT_MEDIA_PLAYER), true)
 PRODUCT_PROPERTY_OVERRIDES += persist.media.USE_RTMediaPlayer=false
 PRODUCT_PROPERTY_OVERRIDES += persist.media.USE_RtkExtractor=false
