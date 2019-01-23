@@ -1,0 +1,4 @@
+/etc/modules.d/30-dm
+/lib/modules/4.1.17-g9100299-dirty/dm-mirror.ko
+/lib/modules/4.1.17-g9100299-dirty/dm-region-hash.ko
+/lib/modules/4.1.17-g9100299-dirty/dm-log.ko

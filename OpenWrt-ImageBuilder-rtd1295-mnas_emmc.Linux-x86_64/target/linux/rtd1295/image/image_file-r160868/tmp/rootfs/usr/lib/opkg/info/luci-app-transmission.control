@@ -1,0 +1,8 @@
+Package: luci-app-transmission
+Version: git-17.233.32017-dc12a34-1
+Depends: libc, librt, libpthread, transmission-daemon
+Source: realtek/luci/applications/luci-app-transmission
+Section: luci
+Architecture: all
+Installed-Size: 3409
+Description:  LuCI Support for Transmission

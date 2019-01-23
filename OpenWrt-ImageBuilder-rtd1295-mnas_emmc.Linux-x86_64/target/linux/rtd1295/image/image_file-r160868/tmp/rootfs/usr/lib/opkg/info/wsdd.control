@@ -1,0 +1,9 @@
+Package: wsdd
+Version: 1.0-1
+Depends: libc, librt, libpthread, libuuid
+Source: package/network/services/samba4/wsdd
+Section: net
+Maintainer: Tobias Waldvogel <tobias.waldvogel@gmail.com>
+Architecture: rtd1295
+Installed-Size: 8601
+Description:  WS Discovery daemon

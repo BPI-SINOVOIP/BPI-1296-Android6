@@ -1,0 +1,8 @@
+Package: luci-app-easycwmp
+Version: git-17.233.32017-dc12a34-1
+Depends: libc, librt, libpthread, easycwmp
+Source: realtek/luci/applications/luci-app-easycwmp
+Section: luci
+Architecture: all
+Installed-Size: 1367
+Description:  LuCI Support for EasyCWMP

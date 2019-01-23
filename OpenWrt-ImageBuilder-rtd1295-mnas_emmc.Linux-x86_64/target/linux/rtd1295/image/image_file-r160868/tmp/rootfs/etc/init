@@ -1,0 +1,75 @@
+#!/bin/sh
+
+export PATH=/usr/sbin:/usr/bin:/sbin:/bin
+
+get_console_setting()
+{
+set -- $(cat /proc/cmdline)
+for x in "$@"; do
+    case "$x" in
+        console.switch=*)
+        consolemode=`echo $x | awk -F'=' '{print $2}'`
+        ;;
+    esac
+done
+}
+
+mount -t proc proc /proc
+grep -q androidboot.hardware=kylin /proc/cmdline
+RET=$?
+get_console_setting
+umount /proc
+
+if [ $RET -eq 0 ]; then
+    [ ! -f /mnt/android/.ottwifi ] && mode="router"
+
+    /etc/preinit_nas &
+
+    mount -n -t tmpfs tmpfs /android
+    cp -a /mnt/android/* /android/
+
+    if [ "$consolemode" = "openwrt" ]; then
+        sed -i "s/^\(ro.debuggable=\)\(.*\)/\10/" /android/default.prop
+    else
+        sed -i "s/^\(ro.debuggable=\)\(.*\)/\11/" /android/default.prop
+    fi
+
+    cd /android/
+
+    # Block and wait for OpenWRT coldplug up to 10 seconds
+    counter=0 limit=100
+    while [ "$counter" -lt "$limit" ]; do
+        [ -f .coldplug_done ] && break
+        sleep 0.1
+        counter=`expr $counter + 1`
+    done
+    echo "`date` Waiting $counter x 0.1 seconds for OpenWRT coldplug"
+
+    if [ "$mode" = "router" ]; then
+        mount -t proc proc /proc
+        mkdir -p /var/run/netns
+
+        mac_suffix=`cat /sys/class/net/eth0/address | tail -c 6`
+        [ -z "$mac_suffix" ] && mac_suffix=da:05
+
+        # Set up NET namespace
+        ip netns add androidnet
+
+        ip link add veth1 addr 00:e0:4c:0b:${mac_suffix} type veth peer name eth9 addr 00:e0:4c:ab:${mac_suffix}
+        ip link set eth9 netns androidnet
+
+        ip netns exec androidnet ip link set dev lo up
+
+        umount /proc
+
+        echo "`date` Starting Android init"
+        exec nsenter --net=/var/run/netns/androidnet -F unshare -m chroot . /init $*
+    else
+        touch .ottwifi
+        echo "`date` Starting Android init"
+        exec unshare -m chroot . /init $*
+    fi
+
+else
+    exec /etc/preinit $*
+fi

@@ -1,0 +1,16 @@
+/usr/bin/smbcontrol
+/etc/config/samba
+/usr/bin/smbstatus
+/usr/bin/smbtree
+/usr/sbin/nmbd
+/usr/bin/smbcacls
+/usr/bin/testparm
+/etc/samba/smb.conf.template
+/etc/init.d/samba
+/usr/bin/smbcquotas
+/usr/sbin/pdbedit
+/usr/sbin/smbpasswd
+/lib/upgrade/keep.d/samba4-server
+/usr/sbin/smbd
+/usr/bin/nmblookup
+/usr/sbin/samba4_multicall

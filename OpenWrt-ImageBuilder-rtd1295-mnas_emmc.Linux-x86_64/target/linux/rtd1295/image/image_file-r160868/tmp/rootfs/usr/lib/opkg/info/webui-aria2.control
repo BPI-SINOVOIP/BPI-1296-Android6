@@ -1,0 +1,9 @@
+Package: webui-aria2
+Version: 2016-10-14-2
+Depends: libc, librt, libpthread, aria2
+Source: realtek/packages/net/webui-aria2
+Section: net
+Maintainer: nanpuyue <nanpuyue@gmail.com>
+Architecture: all
+Installed-Size: 1060406
+Description:  The aim for this project is to create the worlds best and hottest interface to interact with aria2. Very simple to use.

@@ -1,0 +1,550 @@
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8812ae/os_dep/linux/ioctl_cfg80211.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8812ae/os_dep/linux/ioctl_cfg80211.c
+@@ -882,7 +882,7 @@ void rtw_cfg80211_indicate_disconnect(_a
+ 		#else
+ 
+ 		if (check_fwstate(&padapter->mlmepriv, _FW_LINKED)) {
+-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 			u8 locally_generated = 1;
+ 			DBG_871X(FUNC_ADPT_FMT" call cfg80211_disconnected\n", FUNC_ADPT_ARG(padapter));
+ 			cfg80211_disconnected(padapter->pnetdev, 0, NULL, 0, locally_generated, GFP_ATOMIC);
+@@ -6677,7 +6677,7 @@ void rtw_wdev_unregister(struct wireless
+ 
+ 	rtw_cfg80211_indicate_scan_done(adapter, _TRUE);
+ 
+-	#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++	#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 	if (wdev->current_bss) {
+ 		u8 locally_generated = 1;
+ 		DBG_871X(FUNC_ADPT_FMT" clear current_bss by cfg80211_disconnected\n", FUNC_ADPT_ARG(adapter));
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8812ae/os_dep/linux/os_intfs.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8812ae/os_dep/linux/os_intfs.c
+@@ -4009,7 +4009,7 @@ _func_enter_;
+ 
+ 	if (pwrpriv->wowlan_wake_reason == RX_PNOWakeUp) {
+ #ifdef CONFIG_IOCTL_CFG80211
+-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 			u8 locally_generated = 1;
+ 			cfg80211_disconnected(padapter->pnetdev, 0, NULL, 0, locally_generated, GFP_ATOMIC);
+ #else
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8192ee/os_dep/linux/ioctl_cfg80211.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8192ee/os_dep/linux/ioctl_cfg80211.c
+@@ -920,7 +920,7 @@ void rtw_cfg80211_indicate_disconnect(_a
+ 		#else
+ 
+ 		if(check_fwstate(&padapter->mlmepriv, _FW_LINKED)) {
+-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 			u8 locally_generated = 1;
+ 			DBG_871X(FUNC_ADPT_FMT" call cfg80211_disconnected\n", FUNC_ADPT_ARG(padapter));
+ 			cfg80211_disconnected(padapter->pnetdev, 0, NULL, 0, locally_generated, GFP_ATOMIC);
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8192ee/os_dep/linux/os_intfs.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8192ee/os_dep/linux/os_intfs.c
+@@ -3734,7 +3734,7 @@ _func_enter_;
+ 
+ 	if (pwrpriv->wowlan_wake_reason == RX_PNOWakeUp) {
+ #ifdef CONFIG_IOCTL_CFG80211
+-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 		u8 locally_generated = 1;
+ 		cfg80211_disconnected(padapter->pnetdev, 0, NULL, 0, locally_generated, GFP_ATOMIC);
+ #else
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8188eu/os_dep/linux/ioctl_cfg80211.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8188eu/os_dep/linux/ioctl_cfg80211.c
+@@ -895,7 +895,7 @@ void rtw_cfg80211_indicate_disconnect(_a
+ 		#else
+ 
+ 		if (check_fwstate(&padapter->mlmepriv, _FW_LINKED)) {
+-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 			u8 locally_generated = 1;
+ 			DBG_871X(FUNC_ADPT_FMT" call cfg80211_disconnected\n", FUNC_ADPT_ARG(padapter));
+ 			cfg80211_disconnected(padapter->pnetdev, 0, NULL, 0, locally_generated, GFP_ATOMIC);
+@@ -6781,7 +6781,7 @@ void rtw_wdev_unregister(struct wireless
+ 
+ 	rtw_cfg80211_indicate_scan_done(adapter, _TRUE);
+ 
+-	#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++	#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 	if (wdev->current_bss) {
+ 		u8 locally_generated = 1;
+ 		DBG_871X(FUNC_ADPT_FMT" clear current_bss by cfg80211_disconnected\n", FUNC_ADPT_ARG(adapter));
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8188eu/os_dep/linux/os_intfs.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8188eu/os_dep/linux/os_intfs.c
+@@ -4128,7 +4128,7 @@ _func_enter_;
+ 
+ 	if (pwrpriv->wowlan_wake_reason == RX_PNOWakeUp) {
+ #ifdef CONFIG_IOCTL_CFG80211
+-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 			u8 locally_generated = 1;
+ 
+ 			cfg80211_disconnected(padapter->pnetdev, 0, NULL, 0, locally_generated, GFP_ATOMIC);
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8723bs/os_dep/linux/ioctl_cfg80211.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8723bs/os_dep/linux/ioctl_cfg80211.c
+@@ -892,7 +892,7 @@ void rtw_cfg80211_indicate_disconnect(_a
+ 			cfg80211_connect_result(padapter->pnetdev, NULL, NULL, 0, NULL, 0, 
+ 				WLAN_STATUS_UNSPECIFIED_FAILURE, GFP_ATOMIC/*GFP_KERNEL*/);
+ 		else if (pwdev->sme_state == CFG80211_SME_CONNECTED) {
+-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 			cfg80211_disconnected(padapter->pnetdev, reason, NULL, 0, locally_generated, GFP_ATOMIC);
+ #else
+ 			cfg80211_disconnected(padapter->pnetdev, 0, NULL, 0, GFP_ATOMIC);
+@@ -905,7 +905,7 @@ void rtw_cfg80211_indicate_disconnect(_a
+ 		#else
+ 
+ 		if (check_fwstate(&padapter->mlmepriv, _FW_LINKED)) {
+-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 			DBG_871X(FUNC_ADPT_FMT" call cfg80211_disconnected\n", FUNC_ADPT_ARG(padapter));
+ 			cfg80211_disconnected(padapter->pnetdev, reason, NULL, 0, locally_generated, GFP_ATOMIC);
+ #else
+@@ -6797,7 +6797,7 @@ void rtw_wdev_unregister(struct wireless
+ 
+ 	rtw_cfg80211_indicate_scan_done(adapter, _TRUE);
+ 
+-	#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++	#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 	if (wdev->current_bss) {
+ 		u8 locally_generated = 1;
+ 		DBG_871X(FUNC_ADPT_FMT" clear current_bss by cfg80211_disconnected\n", FUNC_ADPT_ARG(adapter));
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8723bs/os_dep/linux/os_intfs.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8723bs/os_dep/linux/os_intfs.c
+@@ -4138,7 +4138,7 @@ _func_enter_;
+ 
+ 	if (pwrpriv->wowlan_wake_reason == RX_PNOWakeUp) {
+ #ifdef CONFIG_IOCTL_CFG80211
+-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 			u8 locally_generated = 1;
+ 
+ 			cfg80211_disconnected(padapter->pnetdev, 0, NULL, 0, locally_generated, GFP_ATOMIC);
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8822bu/os_dep/linux/ioctl_cfg80211.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8822bu/os_dep/linux/ioctl_cfg80211.c
+@@ -841,7 +841,7 @@ void rtw_cfg80211_indicate_disconnect(_a
+ 			cfg80211_connect_result(padapter->pnetdev, NULL, NULL, 0, NULL, 0,
+ 				WLAN_STATUS_UNSPECIFIED_FAILURE, GFP_ATOMIC/*GFP_KERNEL*/);
+ 		else if (pwdev->sme_state == CFG80211_SME_CONNECTED) {
+-			#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++			#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 			cfg80211_disconnected(padapter->pnetdev, reason, NULL, 0, locally_generated, GFP_ATOMIC);
+ 			#else
+ 			cfg80211_disconnected(padapter->pnetdev, 0, NULL, 0, GFP_ATOMIC);
+@@ -856,7 +856,7 @@ void rtw_cfg80211_indicate_disconnect(_a
+ 		#else
+ 
+ 		if (check_fwstate(&padapter->mlmepriv, _FW_LINKED)) {
+-			#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++			#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 			RTW_INFO(FUNC_ADPT_FMT" call cfg80211_disconnected\n", FUNC_ADPT_ARG(padapter));
+ 			cfg80211_disconnected(padapter->pnetdev, reason, NULL, 0, locally_generated, GFP_ATOMIC);
+ 			#else
+@@ -6535,7 +6535,7 @@ void rtw_wdev_unregister(struct wireless
+ 
+ 	rtw_cfg80211_indicate_scan_done(adapter, _TRUE);
+ 
+-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 	if (wdev->current_bss) {
+ 		u8 locally_generated = 1;
+ 		RTW_INFO(FUNC_ADPT_FMT" clear current_bss by cfg80211_disconnected\n", FUNC_ADPT_ARG(adapter));
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8822bu/os_dep/linux/os_intfs.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8822bu/os_dep/linux/os_intfs.c
+@@ -4025,7 +4025,7 @@ int rtw_resume_process_wow(_adapter *pad
+ 
+ 	if (pwrpriv->wowlan_wake_reason == RX_PNO) {
+ #ifdef CONFIG_IOCTL_CFG80211
+-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 		u8 locally_generated = 1;
+ 
+ 		cfg80211_disconnected(padapter->pnetdev, 0, NULL, 0, locally_generated, GFP_ATOMIC);
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8189fs/os_dep/linux/ioctl_cfg80211.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8189fs/os_dep/linux/ioctl_cfg80211.c
+@@ -895,7 +895,7 @@ void rtw_cfg80211_indicate_disconnect(_a
+ 		#else
+ 
+ 		if (check_fwstate(&padapter->mlmepriv, _FW_LINKED)) {
+-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 			u8 locally_generated = 1;
+ 			DBG_871X(FUNC_ADPT_FMT" call cfg80211_disconnected\n", FUNC_ADPT_ARG(padapter));
+ 			cfg80211_disconnected(padapter->pnetdev, 0, NULL, 0, locally_generated, GFP_ATOMIC);
+@@ -6767,7 +6767,7 @@ void rtw_wdev_unregister(struct wireless
+ 
+ 	rtw_cfg80211_indicate_scan_done(adapter, _TRUE);
+ 
+-	#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++	#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 	if (wdev->current_bss) {
+ 		u8 locally_generated = 1;
+ 		DBG_871X(FUNC_ADPT_FMT" clear current_bss by cfg80211_disconnected\n", FUNC_ADPT_ARG(adapter));
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8189fs/os_dep/linux/os_intfs.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8189fs/os_dep/linux/os_intfs.c
+@@ -4253,7 +4253,7 @@ _func_enter_;
+ 
+ 	if (pwrpriv->wowlan_wake_reason == RX_PNOWakeUp) {
+ #ifdef CONFIG_IOCTL_CFG80211	
+-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 		u8 locally_generated = 1;
+ 		cfg80211_disconnected(padapter->pnetdev, 0, NULL, 0, locally_generated, GFP_ATOMIC);
+ #else
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8192cu/os_dep/linux/ioctl_cfg80211.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8192cu/os_dep/linux/ioctl_cfg80211.c
+@@ -772,7 +772,7 @@ void rtw_cfg80211_indicate_disconnect(_a
+ 				WLAN_STATUS_UNSPECIFIED_FAILURE, GFP_ATOMIC/*GFP_KERNEL*/);
+ 		else if(pwdev->sme_state==CFG80211_SME_CONNECTED)
+ 		{
+-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 			u8 locally_generated = 1;
+ 			cfg80211_disconnected(padapter->pnetdev, 0, NULL, 0, locally_generated, GFP_ATOMIC);
+ #else
+@@ -786,7 +786,7 @@ void rtw_cfg80211_indicate_disconnect(_a
+ 		#else
+                 if (check_fwstate(&padapter->mlmepriv, _FW_LINKED)) {
+                         DBG_871X(FUNC_ADPT_FMT" call cfg80211_disconnected\n", FUNC_ADPT_ARG(padapter));
+-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+                         u8 locally_generated = 1;
+                         cfg80211_disconnected(padapter->pnetdev, 0, NULL, 0, locally_generated, GFP_ATOMIC);
+ #else
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8192eu/os_dep/linux/ioctl_cfg80211.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8192eu/os_dep/linux/ioctl_cfg80211.c
+@@ -884,7 +884,7 @@ void rtw_cfg80211_indicate_disconnect(_a
+ 			cfg80211_connect_result(padapter->pnetdev, NULL, NULL, 0, NULL, 0, 
+ 				WLAN_STATUS_UNSPECIFIED_FAILURE, GFP_ATOMIC/*GFP_KERNEL*/);
+ 		else if (pwdev->sme_state == CFG80211_SME_CONNECTED) {
+-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 			cfg80211_disconnected(padapter->pnetdev, reason, NULL, 0, locally_generated, GFP_ATOMIC);
+ #else
+ 			cfg80211_disconnected(padapter->pnetdev, 0, NULL, 0, GFP_ATOMIC);
+@@ -897,7 +897,7 @@ void rtw_cfg80211_indicate_disconnect(_a
+ 		#else
+ 
+ 		if (check_fwstate(&padapter->mlmepriv, _FW_LINKED)) {
+-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 			DBG_871X(FUNC_ADPT_FMT" call cfg80211_disconnected\n", FUNC_ADPT_ARG(padapter));
+ 			cfg80211_disconnected(padapter->pnetdev, reason, NULL, 0, locally_generated, GFP_ATOMIC);
+ #else
+@@ -6774,7 +6774,7 @@ void rtw_wdev_unregister(struct wireless
+ 
+ 	rtw_cfg80211_indicate_scan_done(adapter, _TRUE);
+ 
+-	#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++	#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 	if (wdev->current_bss) {
+ 		u8 locally_generated = 1;
+ 		DBG_871X(FUNC_ADPT_FMT" clear current_bss by cfg80211_disconnected\n", FUNC_ADPT_ARG(adapter));
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8192eu/os_dep/linux/os_intfs.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8192eu/os_dep/linux/os_intfs.c
+@@ -4178,7 +4178,7 @@ _func_enter_;
+ 
+ 	if (pwrpriv->wowlan_wake_reason == RX_PNOWakeUp) {
+ #ifdef CONFIG_IOCTL_CFG80211
+-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 			u8 locally_generated = 1;
+ 
+ 			cfg80211_disconnected(padapter->pnetdev, 0, NULL, 0, locally_generated, GFP_ATOMIC);
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8723bu/os_dep/linux/ioctl_cfg80211.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8723bu/os_dep/linux/ioctl_cfg80211.c
+@@ -922,7 +922,7 @@ void rtw_cfg80211_indicate_disconnect(_a
+ 				WLAN_STATUS_UNSPECIFIED_FAILURE, GFP_ATOMIC/*GFP_KERNEL*/);
+ 		else if(pwdev->sme_state==CFG80211_SME_CONNECTED)
+ 		{
+-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 			u8 locally_generated = 1;
+ 			cfg80211_disconnected(padapter->pnetdev, 0, NULL, 0, locally_generated, GFP_ATOMIC);
+ #else
+@@ -937,7 +937,7 @@ void rtw_cfg80211_indicate_disconnect(_a
+ 
+ 		if(check_fwstate(&padapter->mlmepriv, _FW_LINKED))		
+ 		{
+-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 			u8 locally_generated = 1;
+ 			cfg80211_disconnected(padapter->pnetdev, 0, NULL, 0, locally_generated, GFP_ATOMIC);
+ #else
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8723bu/os_dep/linux/os_intfs.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8723bu/os_dep/linux/os_intfs.c
+@@ -3781,7 +3781,7 @@ _func_enter_;
+ 
+ 	if (pwrpriv->wowlan_wake_reason == RX_PNOWakeUp) {
+ #ifdef CONFIG_IOCTL_CFG80211	
+-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 		u8 locally_generated = 1;
+ 		cfg80211_disconnected(padapter->pnetdev, 0, NULL, 0, locally_generated, GFP_ATOMIC);
+ #else
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8812au/os_dep/linux/ioctl_cfg80211.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8812au/os_dep/linux/ioctl_cfg80211.c
+@@ -831,7 +831,7 @@ void rtw_cfg80211_indicate_disconnect(_a
+ 			cfg80211_connect_result(padapter->pnetdev, NULL, NULL, 0, NULL, 0,
+ 				WLAN_STATUS_UNSPECIFIED_FAILURE, GFP_ATOMIC/*GFP_KERNEL*/);
+ 		else if (pwdev->sme_state == CFG80211_SME_CONNECTED) {
+-			#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++			#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 			cfg80211_disconnected(padapter->pnetdev, reason, NULL, 0, locally_generated, GFP_ATOMIC);
+ 			#else
+ 			cfg80211_disconnected(padapter->pnetdev, 0, NULL, 0, GFP_ATOMIC);
+@@ -846,7 +846,7 @@ void rtw_cfg80211_indicate_disconnect(_a
+ 		#else
+ 
+ 		if (check_fwstate(&padapter->mlmepriv, _FW_LINKED)) {
+-			#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++			#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 			RTW_INFO(FUNC_ADPT_FMT" call cfg80211_disconnected\n", FUNC_ADPT_ARG(padapter));
+ 			cfg80211_disconnected(padapter->pnetdev, reason, NULL, 0, locally_generated, GFP_ATOMIC);
+ 			#else
+@@ -6440,7 +6440,7 @@ void rtw_wdev_unregister(struct wireless
+ 
+ 	rtw_cfg80211_indicate_scan_done(adapter, _TRUE);
+ 
+-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 	if (wdev->current_bss) {
+ 		u8 locally_generated = 1;
+ 		RTW_INFO(FUNC_ADPT_FMT" clear current_bss by cfg80211_disconnected\n", FUNC_ADPT_ARG(adapter));
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8812au/os_dep/linux/os_intfs.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8812au/os_dep/linux/os_intfs.c
+@@ -3993,7 +3993,7 @@ int rtw_resume_process_wow(_adapter *pad
+ 
+ 	if (pwrpriv->wowlan_wake_reason == RX_PNO) {
+ #ifdef CONFIG_IOCTL_CFG80211
+-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 			u8 locally_generated = 1;
+ 
+ 			cfg80211_disconnected(padapter->pnetdev, 0, NULL, 0, locally_generated, GFP_ATOMIC);
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8814au/os_dep/linux/ioctl_cfg80211.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8814au/os_dep/linux/ioctl_cfg80211.c
+@@ -882,7 +882,7 @@ void rtw_cfg80211_indicate_disconnect(_a
+ 				WLAN_STATUS_UNSPECIFIED_FAILURE, GFP_ATOMIC/*GFP_KERNEL*/);
+ 		else if(pwdev->sme_state==CFG80211_SME_CONNECTED)
+ 		{
+-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 			u8 locally_generated = 1;
+ 			cfg80211_disconnected(padapter->pnetdev, 0, NULL, 0, locally_generated, GFP_ATOMIC);
+ #else
+@@ -897,7 +897,7 @@ void rtw_cfg80211_indicate_disconnect(_a
+ 
+ 		if (check_fwstate(&padapter->mlmepriv, _FW_LINKED)) {
+ 			DBG_871X(FUNC_ADPT_FMT" call cfg80211_disconnected\n", FUNC_ADPT_ARG(padapter));
+-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 			u8 locally_generated = 1;
+ 			cfg80211_disconnected(padapter->pnetdev, 0, NULL, 0, locally_generated, GFP_ATOMIC);
+ #else
+@@ -6695,7 +6695,7 @@ void rtw_wdev_unregister(struct wireless
+ 
+ 	rtw_cfg80211_indicate_scan_done(adapter, _TRUE);
+ 
+-	#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++	#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 	if (wdev->current_bss) {
+ 		u8 locally_generated = 1;
+ 		DBG_871X(FUNC_ADPT_FMT" clear current_bss by cfg80211_disconnected\n", FUNC_ADPT_ARG(adapter));
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8814au/os_dep/linux/os_intfs.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8814au/os_dep/linux/os_intfs.c
+@@ -4105,7 +4105,7 @@ _func_enter_;
+ 
+ 	if (pwrpriv->wowlan_wake_reason == RX_PNOWakeUp) {
+ #ifdef CONFIG_IOCTL_CFG80211	
+-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 		u8 locally_generated = 1;
+ 		cfg80211_disconnected(padapter->pnetdev, 0, NULL, 0, locally_generated, GFP_ATOMIC);
+ #else
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8821as/os_dep/linux/ioctl_cfg80211.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8821as/os_dep/linux/ioctl_cfg80211.c
+@@ -890,7 +890,7 @@ void rtw_cfg80211_indicate_disconnect(_a
+ 		#else
+ 
+ 		if (check_fwstate(&padapter->mlmepriv, _FW_LINKED)) {
+-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 			u8 locally_generated = 1;
+ 			DBG_871X(FUNC_ADPT_FMT" call cfg80211_disconnected\n", FUNC_ADPT_ARG(padapter));
+ 			cfg80211_disconnected(padapter->pnetdev, 0, NULL, 0, locally_generated, GFP_ATOMIC);
+@@ -6679,7 +6679,7 @@ void rtw_wdev_unregister(struct wireless
+ 
+ 	rtw_cfg80211_indicate_scan_done(adapter, _TRUE);
+ 
+-	#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++	#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 	if (wdev->current_bss) {
+ 		u8 locally_generated = 1;
+ 		DBG_871X(FUNC_ADPT_FMT" clear current_bss by cfg80211_disconnected\n", FUNC_ADPT_ARG(adapter));
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8821as/os_dep/linux/os_intfs.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8821as/os_dep/linux/os_intfs.c
+@@ -3957,7 +3957,7 @@ _func_enter_;
+ 
+ 	if (pwrpriv->wowlan_wake_reason == RX_PNOWakeUp) {
+ #ifdef CONFIG_IOCTL_CFG80211	
+-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 		u8 locally_generated = 1;
+ 		cfg80211_disconnected(padapter->pnetdev, 0, NULL, 0, locally_generated, GFP_ATOMIC);
+ #else
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8821au/os_dep/linux/ioctl_cfg80211.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8821au/os_dep/linux/ioctl_cfg80211.c
+@@ -890,7 +890,7 @@ void rtw_cfg80211_indicate_disconnect(_a
+ 		#else
+ 
+ 		if (check_fwstate(&padapter->mlmepriv, _FW_LINKED)) {
+-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 			u8 locally_generated = 1;
+ 			DBG_871X(FUNC_ADPT_FMT" call cfg80211_disconnected\n", FUNC_ADPT_ARG(padapter));
+ 			cfg80211_disconnected(padapter->pnetdev, 0, NULL, 0, locally_generated, GFP_ATOMIC);
+@@ -6662,7 +6662,7 @@ void rtw_wdev_unregister(struct wireless
+ 
+ 	rtw_cfg80211_indicate_scan_done(adapter, _TRUE);
+ 
+-	#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++	#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 	if (wdev->current_bss) {
+ 		u8 locally_generated = 1;
+ 		DBG_871X(FUNC_ADPT_FMT" clear current_bss by cfg80211_disconnected\n", FUNC_ADPT_ARG(adapter));
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8821au/os_dep/linux/os_intfs.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8821au/os_dep/linux/os_intfs.c
+@@ -3973,7 +3973,7 @@ _func_enter_;
+ 
+ 	if (pwrpriv->wowlan_wake_reason == RX_PNOWakeUp) {
+ #ifdef CONFIG_IOCTL_CFG80211	
+-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 		u8 locally_generated = 1;
+ 		cfg80211_disconnected(padapter->pnetdev, 0, NULL, 0, locally_generated, GFP_ATOMIC);
+ #else
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8822be/os_dep/linux/ioctl_cfg80211.h
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8822be/os_dep/linux/ioctl_cfg80211.h
+@@ -330,7 +330,7 @@ bool rtw_cfg80211_pwr_mgmt(_adapter *ada
+ 
+ #define rtw_cfg80211_connect_result(wdev, bssid, req_ie, req_ie_len, resp_ie, resp_ie_len, status, gfp) cfg80211_connect_result(wdev_to_ndev(wdev), bssid, req_ie, req_ie_len, resp_ie, resp_ie_len, status, gfp)
+ 
+-#if (LINUX_VERSION_CODE < KERNEL_VERSION(4, 2, 0))
++#if defined(LINUX_VERSION_CODE < KERNEL_VERSION(4, 2, 0)) && !defined(BUILD_OPENWRT)
+ #define rtw_cfg80211_disconnected(wdev, reason, ie, ie_len, locally_generated, gfp) cfg80211_disconnected(wdev_to_ndev(wdev), reason, ie, ie_len, gfp)
+ #else
+ #define rtw_cfg80211_disconnected(wdev, reason, ie, ie_len, locally_generated, gfp) cfg80211_disconnected(wdev_to_ndev(wdev), reason, ie, ie_len, locally_generated, gfp)
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8821cu/os_dep/linux/ioctl_cfg80211.h
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8821cu/os_dep/linux/ioctl_cfg80211.h
+@@ -330,7 +330,7 @@ bool rtw_cfg80211_pwr_mgmt(_adapter *ada
+ 
+ #define rtw_cfg80211_connect_result(wdev, bssid, req_ie, req_ie_len, resp_ie, resp_ie_len, status, gfp) cfg80211_connect_result(wdev_to_ndev(wdev), bssid, req_ie, req_ie_len, resp_ie, resp_ie_len, status, gfp)
+ 
+-#if (LINUX_VERSION_CODE < KERNEL_VERSION(4, 2, 0))
++#if (LINUX_VERSION_CODE < KERNEL_VERSION(4, 2, 0)) && !defined(BUILD_OPENWRT)
+ #define rtw_cfg80211_disconnected(wdev, reason, ie, ie_len, locally_generated, gfp) cfg80211_disconnected(wdev_to_ndev(wdev), reason, ie, ie_len, gfp)
+ #else
+ #define rtw_cfg80211_disconnected(wdev, reason, ie, ie_len, locally_generated, gfp) cfg80211_disconnected(wdev_to_ndev(wdev), reason, ie, ie_len, locally_generated, gfp)
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8189es/os_dep/linux/ioctl_cfg80211.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8189es/os_dep/linux/ioctl_cfg80211.c
+@@ -891,7 +891,7 @@ void rtw_cfg80211_indicate_disconnect(_a
+ 		#else
+ 
+ 		if (check_fwstate(&padapter->mlmepriv, _FW_LINKED)) {
+-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 			u8 locally_generated = 1;
+ 			DBG_871X(FUNC_ADPT_FMT" call cfg80211_disconnected\n", FUNC_ADPT_ARG(padapter));
+ 			cfg80211_disconnected(padapter->pnetdev, 0, NULL, 0, locally_generated, GFP_ATOMIC);
+@@ -6756,7 +6756,7 @@ void rtw_wdev_unregister(struct wireless
+ 
+ 	rtw_cfg80211_indicate_scan_done(adapter, _TRUE);
+ 
+-	#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++	#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 	if (wdev->current_bss) {
+ 		u8 locally_generated = 1;
+ 		DBG_871X(FUNC_ADPT_FMT" clear current_bss by cfg80211_disconnected\n", FUNC_ADPT_ARG(adapter));
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8189es/os_dep/linux/os_intfs.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8189es/os_dep/linux/os_intfs.c
+@@ -4013,7 +4013,7 @@ _func_enter_;
+ 
+ 	if (pwrpriv->wowlan_wake_reason == RX_PNOWakeUp) {
+ #ifdef CONFIG_IOCTL_CFG80211
+-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 			u8 locally_generated = 1;
+ 
+ 			cfg80211_disconnected(padapter->pnetdev, 0, NULL, 0, locally_generated, GFP_ATOMIC);
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8811au/os_dep/linux/ioctl_cfg80211.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8811au/os_dep/linux/ioctl_cfg80211.c
+@@ -830,7 +830,7 @@ void rtw_cfg80211_indicate_disconnect(_a
+ 			cfg80211_connect_result(padapter->pnetdev, NULL, NULL, 0, NULL, 0,
+ 				WLAN_STATUS_UNSPECIFIED_FAILURE, GFP_ATOMIC/*GFP_KERNEL*/);
+ 		else if (pwdev->sme_state == CFG80211_SME_CONNECTED) {
+-			#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++			#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 			cfg80211_disconnected(padapter->pnetdev, reason, NULL, 0, locally_generated, GFP_ATOMIC);
+ 			#else
+ 			cfg80211_disconnected(padapter->pnetdev, 0, NULL, 0, GFP_ATOMIC);
+@@ -845,7 +845,7 @@ void rtw_cfg80211_indicate_disconnect(_a
+ 		#else
+ 
+ 		if (check_fwstate(&padapter->mlmepriv, _FW_LINKED)) {
+-			#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++			#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 			RTW_INFO(FUNC_ADPT_FMT" call cfg80211_disconnected\n", FUNC_ADPT_ARG(padapter));
+ 			cfg80211_disconnected(padapter->pnetdev, reason, NULL, 0, locally_generated, GFP_ATOMIC);
+ 			#else
+@@ -7042,7 +7042,7 @@ void rtw_wdev_unregister(struct wireless
+ 
+ 	rtw_cfg80211_indicate_scan_done(adapter, _TRUE);
+ 
+-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 	if (wdev->current_bss) {
+ 		u8 locally_generated = 1;
+ 		RTW_INFO(FUNC_ADPT_FMT" clear current_bss by cfg80211_disconnected\n", FUNC_ADPT_ARG(adapter));
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8811au/os_dep/linux/os_intfs.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8811au/os_dep/linux/os_intfs.c
+@@ -4163,7 +4163,7 @@ int rtw_resume_process_wow(_adapter *pad
+ 
+ 	if (pwrpriv->wowlan_wake_reason == RX_PNO) {
+ #ifdef CONFIG_IOCTL_CFG80211
+-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 		u8 locally_generated = 1;
+ 
+ 		cfg80211_disconnected(padapter->pnetdev, 0, NULL, 0, locally_generated, GFP_ATOMIC);
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8723du/os_dep/linux/ioctl_cfg80211.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8723du/os_dep/linux/ioctl_cfg80211.c
+@@ -836,7 +836,7 @@ void rtw_cfg80211_indicate_disconnect(_a
+ 			cfg80211_connect_result(padapter->pnetdev, NULL, NULL, 0, NULL, 0,
+ 				WLAN_STATUS_UNSPECIFIED_FAILURE, GFP_ATOMIC/*GFP_KERNEL*/);
+ 		else if (pwdev->sme_state == CFG80211_SME_CONNECTED) {
+-			#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++			#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 			cfg80211_disconnected(padapter->pnetdev, reason, NULL, 0, locally_generated, GFP_ATOMIC);
+ 			#else
+ 			cfg80211_disconnected(padapter->pnetdev, 0, NULL, 0, GFP_ATOMIC);
+@@ -851,7 +851,7 @@ void rtw_cfg80211_indicate_disconnect(_a
+ 		#else
+ 
+ 		if (check_fwstate(&padapter->mlmepriv, _FW_LINKED)) {
+-			#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++			#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 			RTW_INFO(FUNC_ADPT_FMT" call cfg80211_disconnected\n", FUNC_ADPT_ARG(padapter));
+ 			cfg80211_disconnected(padapter->pnetdev, reason, NULL, 0, locally_generated, GFP_ATOMIC);
+ 			#else
+@@ -6496,7 +6496,7 @@ void rtw_wdev_unregister(struct wireless
+ 
+ 	rtw_cfg80211_indicate_scan_done(adapter, _TRUE);
+ 
+-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0))
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)) || defined(BUILD_OPENWRT)
+ 	if (wdev->current_bss) {
+ 		u8 locally_generated = 1;
+ 		RTW_INFO(FUNC_ADPT_FMT" clear current_bss by cfg80211_disconnected\n", FUNC_ADPT_ARG(adapter));

@@ -1,0 +1,21 @@
+Source-Makefile: package/feeds/oldpackages/mutt/Makefile
+Package: mutt
+Version: 1.5.21-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libopenssl +libncursesw
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: mail
+Category: Mail
+Title: Console mail client
+Maintainer: 
+Source: mutt-1.5.21.tar.gz
+Type: ipkg
+Feed: oldpackages
+Description: 	Mutt is a small but very powerful text-based mail client for Unix
+	operating systems.
+http://www.mutt.org/
+
+@@
+
+

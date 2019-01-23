@@ -1,0 +1,9 @@
+Package: yaaw
+Version: 2016-10-14-1
+Depends: libc, librt, libpthread, aria2
+Source: realtek/packages/net/yaaw
+Section: net
+Maintainer: nanpuyue <nanpuyue@gmail.com>
+Architecture: all
+Installed-Size: 124439
+Description:  Yet Another Aria2 Web Frontend in pure HTML/CSS/Javascirpt.

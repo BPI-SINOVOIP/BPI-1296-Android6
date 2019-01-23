@@ -1,0 +1,9 @@
+Package: transmission-web
+Version: 2.84-3
+Depends: libc, librt, libpthread, transmission-daemon
+Source: realtek/packages/net/transmission
+Section: net
+Maintainer: Cezary Jackiewicz <cezary@eko.one.pl>
+Architecture: rtd1295
+Installed-Size: 204181
+Description:  Webinterface resources for transmission.

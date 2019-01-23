@@ -1,0 +1,22 @@
+Source-Makefile: package/feeds/realtek/pixman/Makefile
+Package: pixman
+Submenu: libraries
+Version: 0.32.4-2
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: libtool libintl libiconv
+Section: xorg-libraries
+Category: Xorg
+Title: pixman
+Maintainer: 
+Source: pixman-0.32.4.tar.gz
+Type: ipkg
+Feed: realtek
+Description: pixman
+http://cairographics.org/
+
+@@
+
+

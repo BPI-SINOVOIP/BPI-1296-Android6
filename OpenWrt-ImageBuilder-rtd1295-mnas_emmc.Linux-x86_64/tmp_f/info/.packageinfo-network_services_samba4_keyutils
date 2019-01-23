@@ -1,0 +1,20 @@
+Source-Makefile: package/network/services/samba4/keyutils/Makefile
+Package: libkeyutils
+Version: 1.5.9-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: libtool libintl libiconv
+Section: libs
+Category: Libraries
+Title: Key utilities library
+Maintainer: 
+Source: keyutils-1.5.9.tar.bz2
+Type: ipkg
+Description: Key utilities library
+http://people.redhat.com/dhowells/keyutils/
+
+@@
+
+

@@ -1,0 +1,380 @@
+Source-Makefile: package/kernel/ottwifi/Makefile
+Package: kmod-ottrtl8188eu
+Submenu: Wireless Drivers
+Version: <LINUX_VERSION>--1
+Depends: 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: kernel
+Category: Kernel modules
+Title: Realtek Wifi for Android
+Maintainer: 
+Source: ottwifi-4.3-HEAD.tar.gz
+Type: ipkg
+Kernel-Config: CONFIG_CFG80211=y CONFIG_CFG80211_DEFAULT_PS=y CONFIG_NL80211_TESTMODE=n CONFIG_CFG80211_DEVELOPER_WARNINGS=n CONFIG_CFG80211_REG_DEBUG=n CONFIG_CFG80211_DEBUGFS=n CONFIG_CFG80211_INTERNAL_REGDB=n CONFIG_CFG80211_WEXT=n TITLE+= (RTL8188 USB)
+Description: Realtek Wifi for Android
+
+@@
+
+Package: kmod-ottrtl8189es
+Submenu: Wireless Drivers
+Version: <LINUX_VERSION>--1
+Depends: 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: kernel
+Category: Kernel modules
+Title: Realtek Wifi for Android
+Maintainer: 
+Source: ottwifi-4.3-HEAD.tar.gz
+Type: ipkg
+Kernel-Config: CONFIG_CFG80211=y CONFIG_CFG80211_DEFAULT_PS=y CONFIG_NL80211_TESTMODE=n CONFIG_CFG80211_DEVELOPER_WARNINGS=n CONFIG_CFG80211_REG_DEBUG=n CONFIG_CFG80211_DEBUGFS=n CONFIG_CFG80211_INTERNAL_REGDB=n CONFIG_CFG80211_WEXT=n TITLE+= (RTL8189E SDIO)
+Description: Realtek Wifi for Android
+
+@@
+
+Package: kmod-ottrtl8189fs
+Submenu: Wireless Drivers
+Version: <LINUX_VERSION>--1
+Depends: 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: kernel
+Category: Kernel modules
+Title: Realtek Wifi for Android
+Maintainer: 
+Source: ottwifi-4.3-HEAD.tar.gz
+Type: ipkg
+Kernel-Config: CONFIG_CFG80211=y CONFIG_CFG80211_DEFAULT_PS=y CONFIG_NL80211_TESTMODE=n CONFIG_CFG80211_DEVELOPER_WARNINGS=n CONFIG_CFG80211_REG_DEBUG=n CONFIG_CFG80211_DEBUGFS=n CONFIG_CFG80211_INTERNAL_REGDB=n CONFIG_CFG80211_WEXT=n TITLE+= (RTL8189F SDIO)
+Description: Realtek Wifi for Android
+
+@@
+
+Package: kmod-ottrtl8192cu
+Submenu: Wireless Drivers
+Version: <LINUX_VERSION>--1
+Depends: 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: kernel
+Category: Kernel modules
+Title: Realtek Wifi for Android
+Maintainer: 
+Source: ottwifi-4.3-HEAD.tar.gz
+Type: ipkg
+Kernel-Config: CONFIG_CFG80211=y CONFIG_CFG80211_DEFAULT_PS=y CONFIG_NL80211_TESTMODE=n CONFIG_CFG80211_DEVELOPER_WARNINGS=n CONFIG_CFG80211_REG_DEBUG=n CONFIG_CFG80211_DEBUGFS=n CONFIG_CFG80211_INTERNAL_REGDB=n CONFIG_CFG80211_WEXT=n TITLE+= (RTL8192C USB)
+Description: Realtek Wifi for Android
+
+@@
+
+Package: kmod-ottrtl8192eu
+Submenu: Wireless Drivers
+Version: <LINUX_VERSION>--1
+Depends: 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: kernel
+Category: Kernel modules
+Title: Realtek Wifi for Android
+Maintainer: 
+Source: ottwifi-4.3-HEAD.tar.gz
+Type: ipkg
+Kernel-Config: CONFIG_CFG80211=y CONFIG_CFG80211_DEFAULT_PS=y CONFIG_NL80211_TESTMODE=n CONFIG_CFG80211_DEVELOPER_WARNINGS=n CONFIG_CFG80211_REG_DEBUG=n CONFIG_CFG80211_DEBUGFS=n CONFIG_CFG80211_INTERNAL_REGDB=n CONFIG_CFG80211_WEXT=n TITLE+= (RTL8192E USB)
+Description: Realtek Wifi for Android
+
+@@
+
+Package: kmod-ottrtl8723bs
+Submenu: Wireless Drivers
+Version: <LINUX_VERSION>--1
+Depends: 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: kernel
+Category: Kernel modules
+Title: Realtek Wifi for Android
+Maintainer: 
+Source: ottwifi-4.3-HEAD.tar.gz
+Type: ipkg
+Kernel-Config: CONFIG_CFG80211=y CONFIG_CFG80211_DEFAULT_PS=y CONFIG_NL80211_TESTMODE=n CONFIG_CFG80211_DEVELOPER_WARNINGS=n CONFIG_CFG80211_REG_DEBUG=n CONFIG_CFG80211_DEBUGFS=n CONFIG_CFG80211_INTERNAL_REGDB=n CONFIG_CFG80211_WEXT=n TITLE+= (RTL8723B SDIO)
+Description: Realtek Wifi for Android
+
+@@
+
+Package: kmod-ottrtl8723ds
+Submenu: Wireless Drivers
+Version: <LINUX_VERSION>--1
+Depends: 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: kernel
+Category: Kernel modules
+Title: Realtek Wifi for Android
+Maintainer: 
+Source: ottwifi-4.3-HEAD.tar.gz
+Type: ipkg
+Kernel-Config: CONFIG_CFG80211=y CONFIG_CFG80211_DEFAULT_PS=y CONFIG_NL80211_TESTMODE=n CONFIG_CFG80211_DEVELOPER_WARNINGS=n CONFIG_CFG80211_REG_DEBUG=n CONFIG_CFG80211_DEBUGFS=n CONFIG_CFG80211_INTERNAL_REGDB=n CONFIG_CFG80211_WEXT=n TITLE+= (RTL8723D SDIO)
+Description: Realtek Wifi for Android
+
+@@
+
+Package: kmod-ottrtl8723bu
+Submenu: Wireless Drivers
+Version: <LINUX_VERSION>--1
+Depends: 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: kernel
+Category: Kernel modules
+Title: Realtek Wifi for Android
+Maintainer: 
+Source: ottwifi-4.3-HEAD.tar.gz
+Type: ipkg
+Kernel-Config: CONFIG_CFG80211=y CONFIG_CFG80211_DEFAULT_PS=y CONFIG_NL80211_TESTMODE=n CONFIG_CFG80211_DEVELOPER_WARNINGS=n CONFIG_CFG80211_REG_DEBUG=n CONFIG_CFG80211_DEBUGFS=n CONFIG_CFG80211_INTERNAL_REGDB=n CONFIG_CFG80211_WEXT=n TITLE+= (RTL8723B USB)
+Description: Realtek Wifi for Android
+
+@@
+
+Package: kmod-ottrtl8723du
+Submenu: Wireless Drivers
+Version: <LINUX_VERSION>--1
+Depends: 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: kernel
+Category: Kernel modules
+Title: Realtek Wifi for Android
+Maintainer: 
+Source: ottwifi-4.3-HEAD.tar.gz
+Type: ipkg
+Kernel-Config: CONFIG_CFG80211=y CONFIG_CFG80211_DEFAULT_PS=y CONFIG_NL80211_TESTMODE=n CONFIG_CFG80211_DEVELOPER_WARNINGS=n CONFIG_CFG80211_REG_DEBUG=n CONFIG_CFG80211_DEBUGFS=n CONFIG_CFG80211_INTERNAL_REGDB=n CONFIG_CFG80211_WEXT=n TITLE+= (RTL8723B USB)
+Description: Realtek Wifi for Android
+
+@@
+
+Package: kmod-ottrtl8811au
+Submenu: Wireless Drivers
+Version: <LINUX_VERSION>--1
+Depends: 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: kernel
+Category: Kernel modules
+Title: Realtek Wifi for Android
+Maintainer: 
+Source: ottwifi-4.3-HEAD.tar.gz
+Type: ipkg
+Kernel-Config: CONFIG_CFG80211=y CONFIG_CFG80211_DEFAULT_PS=y CONFIG_NL80211_TESTMODE=n CONFIG_CFG80211_DEVELOPER_WARNINGS=n CONFIG_CFG80211_REG_DEBUG=n CONFIG_CFG80211_DEBUGFS=n CONFIG_CFG80211_INTERNAL_REGDB=n CONFIG_CFG80211_WEXT=n TITLE+= (RTL8811A USB)
+Description: Realtek Wifi for Android
+
+@@
+
+Package: kmod-ottrtl8812au
+Submenu: Wireless Drivers
+Version: <LINUX_VERSION>--1
+Depends: 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: kernel
+Category: Kernel modules
+Title: Realtek Wifi for Android
+Maintainer: 
+Source: ottwifi-4.3-HEAD.tar.gz
+Type: ipkg
+Kernel-Config: CONFIG_CFG80211=y CONFIG_CFG80211_DEFAULT_PS=y CONFIG_NL80211_TESTMODE=n CONFIG_CFG80211_DEVELOPER_WARNINGS=n CONFIG_CFG80211_REG_DEBUG=n CONFIG_CFG80211_DEBUGFS=n CONFIG_CFG80211_INTERNAL_REGDB=n CONFIG_CFG80211_WEXT=n TITLE+= (RTL8812A USB)
+Description: Realtek Wifi for Android
+
+@@
+
+Package: kmod-ottrtl8812bu
+Submenu: Wireless Drivers
+Version: <LINUX_VERSION>--1
+Depends: 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: kernel
+Category: Kernel modules
+Title: Realtek Wifi for Android
+Maintainer: 
+Source: ottwifi-4.3-HEAD.tar.gz
+Type: ipkg
+Kernel-Config: CONFIG_CFG80211=y CONFIG_CFG80211_DEFAULT_PS=y CONFIG_NL80211_TESTMODE=n CONFIG_CFG80211_DEVELOPER_WARNINGS=n CONFIG_CFG80211_REG_DEBUG=n CONFIG_CFG80211_DEBUGFS=n CONFIG_CFG80211_INTERNAL_REGDB=n CONFIG_CFG80211_WEXT=n TITLE+= (RTL8812B USB)
+Description: Realtek Wifi for Android
+
+@@
+
+Package: kmod-ottrtl8814au
+Submenu: Wireless Drivers
+Version: <LINUX_VERSION>--1
+Depends: 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: kernel
+Category: Kernel modules
+Title: Realtek Wifi for Android
+Maintainer: 
+Source: ottwifi-4.3-HEAD.tar.gz
+Type: ipkg
+Kernel-Config: CONFIG_CFG80211=y CONFIG_CFG80211_DEFAULT_PS=y CONFIG_NL80211_TESTMODE=n CONFIG_CFG80211_DEVELOPER_WARNINGS=n CONFIG_CFG80211_REG_DEBUG=n CONFIG_CFG80211_DEBUGFS=n CONFIG_CFG80211_INTERNAL_REGDB=n CONFIG_CFG80211_WEXT=n TITLE+= (RTL8814A USB)
+Description: Realtek Wifi for Android
+
+@@
+
+Package: kmod-ottrtl8821au
+Submenu: Wireless Drivers
+Version: <LINUX_VERSION>--1
+Depends:  +kmod-ottbtusb
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: kernel
+Category: Kernel modules
+Title: Realtek Wifi for Android
+Maintainer: 
+Source: ottwifi-4.3-HEAD.tar.gz
+Type: ipkg
+Kernel-Config: CONFIG_CFG80211=y CONFIG_CFG80211_DEFAULT_PS=y CONFIG_NL80211_TESTMODE=n CONFIG_CFG80211_DEVELOPER_WARNINGS=n CONFIG_CFG80211_REG_DEBUG=n CONFIG_CFG80211_DEBUGFS=n CONFIG_CFG80211_INTERNAL_REGDB=n CONFIG_CFG80211_WEXT=n TITLE+= (RTL8821A USB)
+Description: Realtek Wifi for Android
+
+@@
+
+Package: kmod-ottrtl8821as
+Submenu: Wireless Drivers
+Version: <LINUX_VERSION>--1
+Depends:  +kmod-ottbtusb
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: kernel
+Category: Kernel modules
+Title: Realtek Wifi for Android
+Maintainer: 
+Source: ottwifi-4.3-HEAD.tar.gz
+Type: ipkg
+Kernel-Config: CONFIG_CFG80211=y CONFIG_CFG80211_DEFAULT_PS=y CONFIG_NL80211_TESTMODE=n CONFIG_CFG80211_DEVELOPER_WARNINGS=n CONFIG_CFG80211_REG_DEBUG=n CONFIG_CFG80211_DEBUGFS=n CONFIG_CFG80211_INTERNAL_REGDB=n CONFIG_CFG80211_WEXT=n TITLE+= (RTL8821A SDIO)
+Description: Realtek Wifi for Android
+
+@@
+
+Package: kmod-ottrtl8821cs
+Submenu: Wireless Drivers
+Version: <LINUX_VERSION>--1
+Depends:  +kmod-ottbtusb
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: kernel
+Category: Kernel modules
+Title: Realtek Wifi for Android
+Maintainer: 
+Source: ottwifi-4.3-HEAD.tar.gz
+Type: ipkg
+Kernel-Config: CONFIG_CFG80211=y CONFIG_CFG80211_DEFAULT_PS=y CONFIG_NL80211_TESTMODE=n CONFIG_CFG80211_DEVELOPER_WARNINGS=n CONFIG_CFG80211_REG_DEBUG=n CONFIG_CFG80211_DEBUGFS=n CONFIG_CFG80211_INTERNAL_REGDB=n CONFIG_CFG80211_WEXT=n TITLE+= (RTL8821C SDIO)
+Description: Realtek Wifi for Android
+
+@@
+
+Package: kmod-ottrtl8822bu
+Submenu: Wireless Drivers
+Version: <LINUX_VERSION>--1
+Depends:  +kmod-ottbtusb
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: kernel
+Category: Kernel modules
+Title: Realtek Wifi for Android
+Maintainer: 
+Source: ottwifi-4.3-HEAD.tar.gz
+Type: ipkg
+Kernel-Config: CONFIG_CFG80211=y CONFIG_CFG80211_DEFAULT_PS=y CONFIG_NL80211_TESTMODE=n CONFIG_CFG80211_DEVELOPER_WARNINGS=n CONFIG_CFG80211_REG_DEBUG=n CONFIG_CFG80211_DEBUGFS=n CONFIG_CFG80211_INTERNAL_REGDB=n CONFIG_CFG80211_WEXT=n TITLE+= (RTL8822B USB)
+Description: Realtek Wifi for Android
+
+@@
+
+Package: kmod-ottrtl8822be
+Submenu: Wireless Drivers
+Version: <LINUX_VERSION>--1
+Depends:  +kmod-ottbtusb
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: kernel
+Category: Kernel modules
+Title: Realtek Wifi for Android
+Maintainer: 
+Source: ottwifi-4.3-HEAD.tar.gz
+Type: ipkg
+Kernel-Config: CONFIG_CFG80211=y CONFIG_CFG80211_DEFAULT_PS=y CONFIG_NL80211_TESTMODE=n CONFIG_CFG80211_DEVELOPER_WARNINGS=n CONFIG_CFG80211_REG_DEBUG=n CONFIG_CFG80211_DEBUGFS=n CONFIG_CFG80211_INTERNAL_REGDB=n CONFIG_CFG80211_WEXT=n TITLE+= (RTL8822B PCIe)
+Description: Realtek Wifi for Android
+
+@@
+
+Package: kmod-ottrtl8822bs
+Submenu: Wireless Drivers
+Version: <LINUX_VERSION>--1
+Depends:  +kmod-ottbtusb
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: kernel
+Category: Kernel modules
+Title: Realtek Wifi for Android
+Maintainer: 
+Source: ottwifi-4.3-HEAD.tar.gz
+Type: ipkg
+Kernel-Config: CONFIG_CFG80211=y CONFIG_CFG80211_DEFAULT_PS=y CONFIG_NL80211_TESTMODE=n CONFIG_CFG80211_DEVELOPER_WARNINGS=n CONFIG_CFG80211_REG_DEBUG=n CONFIG_CFG80211_DEBUGFS=n CONFIG_CFG80211_INTERNAL_REGDB=n CONFIG_CFG80211_WEXT=n TITLE+= (RTL8822B SDIO)
+Description: Realtek Wifi for Android
+
+@@
+
+Package: kmod-ottrtl8812ae
+Submenu: Wireless Drivers
+Version: <LINUX_VERSION>--1
+Depends: 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: kernel
+Category: Kernel modules
+Title: Realtek Wifi for Android
+Maintainer: 
+Source: ottwifi-4.3-HEAD.tar.gz
+Type: ipkg
+Kernel-Config: CONFIG_CFG80211=y CONFIG_CFG80211_DEFAULT_PS=y CONFIG_NL80211_TESTMODE=n CONFIG_CFG80211_DEVELOPER_WARNINGS=n CONFIG_CFG80211_REG_DEBUG=n CONFIG_CFG80211_DEBUGFS=n CONFIG_CFG80211_INTERNAL_REGDB=n CONFIG_CFG80211_WEXT=n TITLE+= (RTL8812A PCIe)
+Description: Realtek Wifi for Android
+
+@@
+
+Package: kmod-ottrtl8192ee
+Submenu: Wireless Drivers
+Version: <LINUX_VERSION>--1
+Depends: 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: kernel
+Category: Kernel modules
+Title: Realtek Wifi for Android
+Maintainer: 
+Source: ottwifi-4.3-HEAD.tar.gz
+Type: ipkg
+Kernel-Config: CONFIG_CFG80211=y CONFIG_CFG80211_DEFAULT_PS=y CONFIG_NL80211_TESTMODE=n CONFIG_CFG80211_DEVELOPER_WARNINGS=n CONFIG_CFG80211_REG_DEBUG=n CONFIG_CFG80211_DEBUGFS=n CONFIG_CFG80211_INTERNAL_REGDB=n CONFIG_CFG80211_WEXT=n TITLE+= (RTL8192E PCIe)
+Description: Realtek Wifi for Android
+
+@@
+
+

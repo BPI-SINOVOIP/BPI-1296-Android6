@@ -1,0 +1,7 @@
+/lib/modules/4.1.17-g9100299-dirty/async_tx.ko
+/lib/modules/4.1.17-g9100299-dirty/async_xor.ko
+/lib/modules/4.1.17-g9100299-dirty/async_raid6_recov.ko
+/lib/modules/4.1.17-g9100299-dirty/async_memcpy.ko
+/lib/modules/4.1.17-g9100299-dirty/raid456.ko
+/lib/modules/4.1.17-g9100299-dirty/async_pq.ko
+/etc/modules.d/28-md-raid456

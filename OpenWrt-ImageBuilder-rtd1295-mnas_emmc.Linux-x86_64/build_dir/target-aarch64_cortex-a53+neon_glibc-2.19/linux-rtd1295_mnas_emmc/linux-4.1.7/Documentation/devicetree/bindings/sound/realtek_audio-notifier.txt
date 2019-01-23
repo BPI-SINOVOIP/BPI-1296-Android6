@@ -1,0 +1,68 @@
+Realtek Audio Notifier DT-bindings
+
+* Common
+
+Required properties:
+
+- compatible : shall contain one of the followings:
+	"alc5279",
+	"wm8782",
+	"realtek,audio-in", for Audio-In devices, and
+
+	"realtek,audio-out", for Audio-out devices.
+
+* AI device
+Optional properties (deprecated):
+
+- reg : shall contain muxpad0 address.
+
+- muxpad0 : shall contain the value of muxpad0.
+
+Example :
+
+	wm8782 {
+		compatible = wm8782";
+		status = "okay";
+	};
+
+* AO device
+
+Sub-node
+
+Required properties:
+
+- compatible : shall contain one of the followings:
+	"dac",
+	"spdif",
+	"i2s",
+	"hdmi",
+	"global".
+
+Example :
+
+	aodev {
+		compatible = "realtek,audio-out";
+		dac {
+			compatible = "dac"
+			status = "okay";
+		};
+		spdif {
+			compatible = "spdif"
+			status = "okay";
+		};
+		i2s {
+			compatible = "i2s"
+			status = "okay";
+		};
+		hdmi {
+			compatible = "hdmi"
+			status = "okay";
+		};
+		global {
+			compatible = "global"
+			status = "okay";
+		};
+	};
+
+
+

@@ -1,0 +1,49 @@
+	config FEED_packages
+		bool "Enable feed packages"
+		depends on PER_FEED_REPO
+		default y
+		help
+		 Enable the \"packages\" feed at /home/stan/externel/60_e/build_scripts/OpenWrt-ImageBuilder-rtd1295-mnas_emmc.Linux-x86_64/realtek/packages.
+
+	config FEED_luci
+		bool "Enable feed luci"
+		depends on PER_FEED_REPO
+		default y
+		help
+		 Enable the \"luci\" feed at /home/stan/externel/60_e/build_scripts/OpenWrt-ImageBuilder-rtd1295-mnas_emmc.Linux-x86_64/realtek/luci.
+
+	config FEED_routing
+		bool "Enable feed routing"
+		depends on PER_FEED_REPO
+		default y
+		help
+		 Enable the \"routing\" feed at /home/stan/externel/60_e/build_scripts/OpenWrt-ImageBuilder-rtd1295-mnas_emmc.Linux-x86_64/realtek/routing.
+
+	config FEED_telephony
+		bool "Enable feed telephony"
+		depends on PER_FEED_REPO
+		default y
+		help
+		 Enable the \"telephony\" feed at /home/stan/externel/60_e/build_scripts/OpenWrt-ImageBuilder-rtd1295-mnas_emmc.Linux-x86_64/realtek/telephony.
+
+	config FEED_management
+		bool "Enable feed management"
+		depends on PER_FEED_REPO
+		default y
+		help
+		 Enable the \"management\" feed at /home/stan/externel/60_e/build_scripts/OpenWrt-ImageBuilder-rtd1295-mnas_emmc.Linux-x86_64/realtek/management.
+
+	config FEED_oldpackages
+		bool "Enable feed oldpackages"
+		depends on PER_FEED_REPO
+		default y
+		help
+		 Enable the \"oldpackages\" feed at /home/stan/externel/60_e/build_scripts/OpenWrt-ImageBuilder-rtd1295-mnas_emmc.Linux-x86_64/realtek/oldpackages.
+
+	config FEED_realtek
+		bool "Enable feed realtek"
+		depends on PER_FEED_REPO
+		default y
+		help
+		 Enable the \"realtek\" feed at /home/stan/externel/60_e/build_scripts/OpenWrt-ImageBuilder-rtd1295-mnas_emmc.Linux-x86_64/realtek/realtek.
+

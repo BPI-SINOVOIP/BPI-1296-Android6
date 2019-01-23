@@ -1,0 +1,16 @@
+prefix=/home1/CustBranch-QA160627-nuplayer-2016-11-17/software_phoenix/openwrt/staging_dir/host
+exec_prefix=/home1/CustBranch-QA160627-nuplayer-2016-11-17/software_phoenix/openwrt/staging_dir/host
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+glib_genmarshal=glib-genmarshal
+gobject_query=gobject-query
+glib_mkenums=glib-mkenums
+
+Name: GLib
+Description: C Utility Library
+Version: 2.43.4
+Requires.private: 
+Libs: -L${libdir} -lglib-2.0 
+Libs.private: -pthread      
+Cflags: -I${includedir}/glib-2.0 -I${libdir}/glib-2.0/include 

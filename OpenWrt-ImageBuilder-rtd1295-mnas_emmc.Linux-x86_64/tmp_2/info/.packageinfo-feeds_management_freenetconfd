@@ -1,0 +1,21 @@
+Source-Makefile: package/feeds/management/freenetconfd/Makefile
+Package: freenetconfd
+Version: 2015-10-25-933edfbb68062f14c0ae20b52fe5ecd372c7569d
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libuci +libubox +libubus +libroxml
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Title: netconf server
+Maintainer: Luka Perkov <luka@openwrt.org>
+Source: freenetconfd-2015-10-25-933edfbb68062f14c0ae20b52fe5ecd372c7569d.tar.gz
+License: GPL-2.0+
+Type: ipkg
+Feed: management
+Description: netconf server
+http://www.freenetconf.org/
+Luka Perkov <luka@openwrt.org>
+@@
+
+

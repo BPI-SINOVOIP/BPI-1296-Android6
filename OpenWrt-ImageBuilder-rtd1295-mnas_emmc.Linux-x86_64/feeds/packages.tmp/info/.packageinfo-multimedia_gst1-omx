@@ -1,0 +1,19 @@
+Source-Makefile: feeds/packages/multimedia/gst1-omx/Makefile
+Package: gst1-omx
+Version: 1.2.0-HEAD
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libgstreamer1 +gstreamer1-plugins-base +libgst1audio +libgst1pbutils +libgst1video
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: libgstreamer1 gstreamer1-plugins-base
+Section: multimedia
+Category: Multimedia
+Title: GStreamer OpenMAX plugin
+Maintainer: 
+Source: gst-omx-1.2.0.tar.gz
+Type: ipkg
+Description:  GStreamer OpenMAX IL wrapper plugin
+
+@@
+
+

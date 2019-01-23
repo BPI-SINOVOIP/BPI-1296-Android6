@@ -1,0 +1,19 @@
+Source-Makefile: package/kernel/mali/Makefile
+Package: kmod-mali
+Submenu: Other modules
+Version: <LINUX_VERSION>--4
+Depends: @(TARGET_rtd1295||TARGET_rtd1195)
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: kernel
+Category: Kernel modules
+Title: ARM's Mali GPU driver
+Maintainer: 
+Source: mali-5.0-3c77626.tar.gz
+Type: ipkg
+Description: ARM's Mali GPU driver
+
+@@
+
+

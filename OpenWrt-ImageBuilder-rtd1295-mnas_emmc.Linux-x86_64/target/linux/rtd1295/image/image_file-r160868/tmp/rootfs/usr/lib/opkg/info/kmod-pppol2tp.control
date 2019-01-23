@@ -1,0 +1,10 @@
+Package: kmod-pppol2tp
+Version: 4.1.7-1
+Depends: kernel (=4.1.7-1-3bcb2c81f93bd74f1df32abaa8430bd6), kmod-ppp, kmod-pppox, kmod-l2tp
+Source: package/kernel/linux
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: rtd1295
+Installed-Size: 11514
+Description:  Kernel modules for PPPoL2TP (PPP over L2TP) support

@@ -1,0 +1,21 @@
+Source-Makefile: package/feeds/luci/luci-app-diskmanager/Makefile
+Package: luci-app-diskmanager
+Submenu: 3. Applications
+Version: x-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +mdadm +parted +udev +mount-utils +swap-utils +e2fsprogs
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: lua/host luci-base/host 
+Section: luci
+Category: LuCI
+Title: Disk/RAID configuration module
+Maintainer: 
+Source: 
+Type: ipkg
+Feed: luci
+Description: Disk/RAID configuration module
+
+@@
+
+

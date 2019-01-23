@@ -1,0 +1,8 @@
+Package: kmod-ufsd
+Version: 4.1.7-rtd1295-2
+Depends: kernel (=4.1.7-1-b69f1ed7cee2f1f3269de64465bd7dab)
+Source: package/kernel/ufsd
+Section: kernel
+Architecture: rtd1295
+Installed-Size: 6440484
+Description:  Paragon's File System

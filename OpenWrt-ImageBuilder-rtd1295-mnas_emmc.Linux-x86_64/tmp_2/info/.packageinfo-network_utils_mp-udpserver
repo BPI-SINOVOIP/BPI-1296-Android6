@@ -1,0 +1,18 @@
+Source-Makefile: package/network/utils/mp-udpserver/Makefile
+Package: mp-udpserver
+Version: 2015-07-08-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Title: Realtek WiFi AP Router MP UDP Server
+Maintainer: 
+Source: 
+Type: ipkg
+Description: 	Realtek WiFi AP Router MP UDP Server
+
+@@
+
+

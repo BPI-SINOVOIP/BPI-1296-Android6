@@ -1,0 +1,127 @@
+--- a/drivers/net/wireless/realtek/rtl8192cd/8192cd_sme.c
++++ b/drivers/net/wireless/realtek/rtl8192cd/8192cd_sme.c
+@@ -5927,7 +5927,9 @@ static void keep_pre_pkts_expire(struct
+ 	struct stat_info	*pstat;
+ 	struct list_head	*phead, *plist;
+ 
++#ifdef CONFIG_RTL8672
+ 	priv->ext_stats.tx_ucast_pkts_cnt_pre = priv->ext_stats.tx_ucast_pkts_cnt;
++#endif
+ 
+ 	phead = &priv->asoc_list;
+ 	plist = phead;
+--- a/drivers/net/wireless/realtek/rtl8192cd/EdcaTurboCheck.c
++++ b/drivers/net/wireless/realtek/rtl8192cd/EdcaTurboCheck.c
+@@ -1143,7 +1143,9 @@ IotEngine(
+ 			unsigned int thd_tp;
+ 			unsigned char under_thd;
+ 			unsigned int curr_tp;
++#ifdef CONFIG_RTL8672
+ 			unsigned long curr_tx_pkts;
++#endif
+ 
+ 			if (priv->pmib->dot11BssType.net_work_type & (WIRELESS_11N| WIRELESS_11G))
+ 			{
+@@ -1160,14 +1162,18 @@ IotEngine(
+ 
+ 				// Determine to close txop.
+ 				curr_tp = (unsigned int)(priv->ext_stats.tx_avarage>>17) + (unsigned int)(priv->ext_stats.rx_avarage>>17);
++#ifdef CONFIG_RTL8672
+ 				curr_tx_pkts = priv->ext_stats.tx_ucast_pkts_cnt - priv->ext_stats.tx_ucast_pkts_cnt_pre;
++#endif
+ #ifdef MBSSID
+ 				if (GET_ROOT(priv)->pmib->miscEntry.vap_enable) {
+ 					for (i=0; i<RTL8192CD_NUM_VWLAN; ++i) {
+ 						tmppriv = GET_ROOT(priv)->pvap_priv[i];
+ 						if (IS_DRV_OPEN(tmppriv))
+ 							curr_tp += (unsigned int)(tmppriv->ext_stats.tx_avarage>>17) + (unsigned int)(tmppriv->ext_stats.rx_avarage>>17);
++#ifdef CONFIG_RTL8672
+ 							curr_tx_pkts += tmppriv->ext_stats.tx_ucast_pkts_cnt - tmppriv->ext_stats.tx_ucast_pkts_cnt_pre;
++#endif
+ 					}
+ 				}
+ #endif
+@@ -1175,7 +1181,9 @@ IotEngine(
+ 				tmppriv = GET_VXD_PRIV(GET_ROOT(priv));
+ 				if (IS_DRV_OPEN(tmppriv)) {
+ 					curr_tp += (unsigned int)(tmppriv->ext_stats.tx_avarage>>17) + (unsigned int)(tmppriv->ext_stats.rx_avarage>>17);
++#ifdef CONFIG_RTL8672
+ 					curr_tx_pkts += (tmppriv->ext_stats.tx_ucast_pkts_cnt - tmppriv->ext_stats.tx_ucast_pkts_cnt_pre);
++#endif
+ 				}
+ #endif
+ 				if (curr_tp <= thd_tp && curr_tp >= priv->pshare->rf_ft_var.low_tp_txop_thd_low)
+@@ -1185,6 +1193,7 @@ IotEngine(
+ 				
+ 				// for USB 2.0 STA detect
+ 				if(pstat && pstat->IOTPeer == HT_IOT_PEER_BROADCOM) {
++#ifdef CONFIG_RTL8672
+ 					if(curr_tx_pkts > 4000) {
+ 						if(priv->pshare->CurrentChannelBW == HT_CHANNEL_WIDTH_80 && priv->pmib->dot11BssType.net_work_type & WIRELESS_11AC) {
+ 							unsigned int sta_curr_tx_pkts = (pstat->tx_pkts2 - pstat->tx_pkts2_pre) - (pstat->tx_fail - pstat->tx_fail_pre);
+@@ -1215,6 +1224,7 @@ IotEngine(
+ 						if(pstat->is_legacy_USB)
+ 							under_thd = 1;
+ 					}
++#endif //#ifdef CONFIG_RTL8672
+ 				}
+ 			}
+ 			else
+--- a/drivers/net/wireless/realtek/rtl8192cd/WlanHAL/HalPrecompInc.h
++++ b/drivers/net/wireless/realtek/rtl8192cd/WlanHAL/HalPrecompInc.h
+@@ -1,7 +1,7 @@
+ #ifndef __INC_PRECOMPINC_H
+ #define __INC_PRECOMPINC_H
+ 
+-#if !defined(__ECOS) && !defined(CPTCFG_CFG80211_MODULE)
++#if (!defined(__ECOS) && !defined(CPTCFG_CFG80211_MODULE)) || defined(RTK_129X_PLATFORM)
+ //HAL Shared with Driver
+ #include "StatusCode.h"
+ #include "HalDbgCmd.h"
+--- a/drivers/net/wireless/realtek/rtl8192cd/8192cd_rx.c
++++ b/drivers/net/wireless/realtek/rtl8192cd/8192cd_rx.c
+@@ -7815,7 +7815,7 @@ void rtl8192cd_rx_isr(struct rtl8192cd_p
+ 				rtl_cache_sync_wback(priv, (unsigned long)bus_to_virt(phw->rx_infoL[tail].paddr-CONFIG_LUNA_SLAVE_PHYMEM_OFFSET), RX_BUF_LEN - sizeof(struct rx_frinfo)-64, PCI_DMA_FROMDEVICE);
+ #endif
+ 				pdesc->Dword0 = set_desc((tail == (NUM_RX_DESC_IF(priv) - 1)? RX_EOR : 0) | RX_OWN | (RX_BUF_LEN - sizeof(struct rx_frinfo)-64));
+-				SMP_UNLOCK_SKB(x);
++				//SMP_UNLOCK_SKB(x);
+ 			}
+ 
+ 	rx_done:
+--- a/drivers/net/wireless/realtek/rtl8192cd/WlanHAL/RTL88XX/Hal88XXRxDesc.c
++++ b/drivers/net/wireless/realtek/rtl8192cd/WlanHAL/RTL88XX/Hal88XXRxDesc.c
+@@ -485,7 +485,11 @@ DumpRxPktContent88XX(
+ #endif
+ }
+ 
++#ifdef RTK_129X_PLATFORM
++#define RXBD_RXTAG_POLLING_CNT  10000
++#else
+ #define RXBD_RXTAG_POLLING_CNT  100
++#endif
+ #define RXBD_RXTAG_MASK         0x1FFF
+ 
+ 
+@@ -537,7 +541,7 @@ QueryRxDesc88XX_V1 (
+ #if RXBD_READY_CHECK_METHOD
+         RXBDDword0 = nonCacheAddr->Dword0;
+ 
+-#if 1 /*eric-8822 ??  dirty fix for RX Throughput*/
++#ifndef RTK_129X_PLATFORM /*eric-8822 ??  dirty fix for RX Throughput*/
+ 			//break;
+ 
+ 		if(GET_DESC_FIELD(RXBDDword0, RXBD_DW0_TOTALRXPKTSIZE_MSK, RXBD_DW0_TOTALRXPKTSIZE_SH) == 0xffff)
+--- a/drivers/net/wireless/realtek/rtl8192cd/8192cd_proc.c
++++ b/drivers/net/wireless/realtek/rtl8192cd/8192cd_proc.c
+@@ -7303,6 +7303,10 @@ void /*__devexit*/MDL_EXIT rtl8192cd_pro
+         remove_proc_entry( "nat25filter", rtl8192cd_proc_root );
+ #endif
+ 
++#ifdef DOT11K
++        remove_proc_entry( "rm_ap_channel_report", rtl8192cd_proc_root );
++        remove_proc_entry( "rm_neighbor_report", rtl8192cd_proc_root );
++#endif
+ 
+ #ifdef DFS
+         remove_proc_entry( "mib_dfs", rtl8192cd_proc_root );

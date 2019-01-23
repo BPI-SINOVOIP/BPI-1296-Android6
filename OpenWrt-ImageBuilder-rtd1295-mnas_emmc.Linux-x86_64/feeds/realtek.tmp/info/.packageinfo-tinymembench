@@ -1,0 +1,18 @@
+Source-Makefile: feeds/realtek/tinymembench/Makefile
+Package: tinymembench
+Version: 0.4.9-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Title: Simple memory benchmark program
+Maintainer: 
+Source: tinymembench-0.4.9-HEAD.tar.gz
+Type: ipkg
+Description:  Simple memory benchmark program
+
+@@
+
+

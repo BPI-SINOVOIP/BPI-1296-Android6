@@ -1,0 +1,2 @@
+/etc/modules.d/29-md-multipath
+/lib/modules/4.1.17-g9100299-dirty/multipath.ko

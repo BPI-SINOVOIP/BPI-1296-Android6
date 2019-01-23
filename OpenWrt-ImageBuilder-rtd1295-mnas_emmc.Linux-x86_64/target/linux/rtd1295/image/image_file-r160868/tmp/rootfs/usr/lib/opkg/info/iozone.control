@@ -1,0 +1,9 @@
+Package: iozone
+Version: 3.434-1
+Depends: libc, librt, libpthread
+Source: realtek/realtek/iozone
+License: IOzone license (NO DERIVED WORKS ALLOWED)
+Section: utils
+Architecture: rtd1295
+Installed-Size: 85082
+Description:  File System Benchmark

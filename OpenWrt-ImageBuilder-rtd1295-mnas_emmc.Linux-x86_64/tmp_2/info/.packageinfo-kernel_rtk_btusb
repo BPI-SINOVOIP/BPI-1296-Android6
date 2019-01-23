@@ -1,0 +1,33 @@
+Source-Makefile: package/kernel/rtk_btusb/Makefile
+Package: kmod-rtk_btusb
+Menu: 1
+Submenu: Other modules
+Version: <LINUX_VERSION>+3.1-1
+Depends: +@USB_SUPPORT +kmod-bluetooth +@BT
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: kernel
+Category: Kernel modules
+Title: Realtek bluetooth USB driver for Linux
+Maintainer: 
+Source: 
+Type: ipkg
+Description: Realtek bluetooth USB driver for Linux
+
+@@
+Config:
+  if PACKAGE_kmod-rtk_btusb
+	config RTL8822BU_BT_FW
+		bool "Realtek RTL8822BU BT Firmware"
+		default n
+	config RTL8821CU_BT_FW
+		bool "Realtek RTL8821CU BT Firmware"
+		default n
+	config RTL8723DU_BT_FW
+		bool "Realtek RTL8723DU BT Firmware"
+		default n
+  endif
+@@
+
+

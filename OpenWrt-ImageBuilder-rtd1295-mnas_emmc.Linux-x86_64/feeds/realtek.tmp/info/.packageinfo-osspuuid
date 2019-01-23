@@ -1,0 +1,20 @@
+Source-Makefile: feeds/realtek/osspuuid/Makefile
+Package: osspuuid
+Version: 1.6.2-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Title: OSSP uuid
+Maintainer: 
+Source: uuid-1.6.2.tar.gz
+Type: ipkg
+Description:     OSSP uuid
+    http://www.ossp.org/pkg/lib/uuid/
+http://www.ossp.org/pkg/lib/uuid/
+
+@@
+
+

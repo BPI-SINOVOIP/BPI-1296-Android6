@@ -1,0 +1,8 @@
+Package: kmod-mali
+Version: 4.1.7-rtd1295-4
+Depends: kernel (=4.1.7-1-3bcb2c81f93bd74f1df32abaa8430bd6)
+Source: package/kernel/mali
+Section: kernel
+Architecture: rtd1295
+Installed-Size: 188757
+Description:  ARM's Mali GPU driver

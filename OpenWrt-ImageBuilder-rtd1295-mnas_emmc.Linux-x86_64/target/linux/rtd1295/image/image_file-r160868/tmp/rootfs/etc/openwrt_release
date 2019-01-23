@@ -1,0 +1,7 @@
+DISTRIB_ID='OpenWrt'
+DISTRIB_RELEASE='Chaos Calmer'
+DISTRIB_REVISION='r48416'
+DISTRIB_CODENAME='chaos_calmer'
+DISTRIB_TARGET='rtd1295/mnas_emmc'
+DISTRIB_DESCRIPTION='OpenWrt Chaos Calmer 15.05.1'
+DISTRIB_TAINTS='no-all glibc busybox override'

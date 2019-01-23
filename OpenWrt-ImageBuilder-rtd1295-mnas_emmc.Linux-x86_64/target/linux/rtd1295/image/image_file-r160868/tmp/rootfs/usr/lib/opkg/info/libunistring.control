@@ -1,0 +1,11 @@
+Package: libunistring
+Version: 0.9.6-1
+Depends: libc, librt, libpthread
+Source: realtek/packages/libs/libunistring
+License: GPL-3.0
+LicenseFiles: COPYING
+Section: libs
+Maintainer: Espen Jürgensen <espenjurgensen+openwrt@gmail.com>
+Architecture: rtd1295
+Installed-Size: 550871
+Description:  This library provides functions for manipulating Unicode strings and for manipulating C strings according to the Unicode standard.

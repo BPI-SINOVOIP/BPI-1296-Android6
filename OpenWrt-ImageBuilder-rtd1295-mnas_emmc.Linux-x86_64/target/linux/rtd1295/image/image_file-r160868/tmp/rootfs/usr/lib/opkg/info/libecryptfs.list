@@ -1,0 +1,7 @@
+/usr/lib/libecryptfs.so.1
+/usr/lib/libecryptfs.so.1.0.0
+/usr/lib/pkgconfig/libecryptfs.pc
+/usr/lib/libecryptfs.la
+/usr/lib/ecryptfs/libecryptfs_key_mod_openssl.so
+/usr/lib/ecryptfs/libecryptfs_key_mod_passphrase.so
+/usr/lib/libecryptfs.so

@@ -1,0 +1,10 @@
+Package: zoneinfo-india
+Version: 2016d-1
+Depends: libc, librt, libpthread
+Source: realtek/packages/utils/zoneinfo
+License: Public Domain
+Section: utils
+Maintainer: Vladimir Ulrich <admin@evl.su>
+Architecture: rtd1295
+Installed-Size: 989
+Description:  Zone Information (India)

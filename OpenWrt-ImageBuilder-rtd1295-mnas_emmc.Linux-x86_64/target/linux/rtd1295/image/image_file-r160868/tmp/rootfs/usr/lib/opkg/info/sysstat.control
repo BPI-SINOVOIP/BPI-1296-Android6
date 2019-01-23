@@ -1,0 +1,11 @@
+Package: sysstat
+Version: 11.0.4-2
+Depends: libc, librt, libpthread
+Source: realtek/packages/utils/sysstat
+License: GPL-2.0
+Section: utils
+Maintainer: Marko Ratkaj <marko.ratkaj@sartura.hr>
+Architecture: rtd1295
+Installed-Size: 153980
+Description:  The sysstat utilities are a collection of performance monitoring tools for
+ Linux. These include sar, sadf, mpstat, iostat, pidstat and sa tools.

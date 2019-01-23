@@ -1,0 +1,10 @@
+Package: shflags
+Version: 2012-06-11-c12b30cebb92b49c5edb6df255c0952c65b4ddc6
+Depends: libc, librt, libpthread, getopt
+Source: realtek/management/shflags
+License: LGPL-2.1
+Section: libs
+Maintainer: Luka Perkov <luka@openwrt.org>
+Architecture: rtd1295
+Installed-Size: 4295
+Description:  command-line flags module for Unix shell scripts

@@ -1,0 +1,58 @@
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8812ae/include/autoconf.h
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8812ae/include/autoconf.h
+@@ -32,6 +32,8 @@
+ 
+ #define CONFIG_PCI_HCI	1
+ 
++#define CONFIG_NAPI
++#define CONFIG_SG
+ 
+ #define PLATFORM_LINUX	1
+ 
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8812ae/os_dep/linux/os_intfs.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8812ae/os_dep/linux/os_intfs.c
+@@ -995,6 +995,14 @@ struct net_device *rtw_init_netdev(_adap
+ 	pnetdev->features |= NETIF_F_IP_CSUM;
+ #endif
+ 
++#ifdef CONFIG_SG
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 10, 0))
++	//After kernel 3.10, It is allowed to enable NETIF_F_SG but no checksum offload.
++	DBG_871X("Enable Scatter & Gather\n");
++	pnetdev->features |= NETIF_F_SG;
++#endif
++#endif
++
+ 	//pnetdev->tx_timeout = NULL;
+ 	pnetdev->watchdog_timeo = HZ*3; /* 3 second timeout */
+ 
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8821cu/os_dep/linux/os_intfs.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8821cu/os_dep/linux/os_intfs.c
+@@ -1426,6 +1426,12 @@ struct net_device *rtw_init_netdev(_adap
+ 	pnetdev->features |= NETIF_F_IP_CSUM;
+ #endif
+ 
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 10, 0))
++	//After kernel 3.10, It is allowed to enable NETIF_F_SG but no checksum offload.
++	printk("Enable Scatter & Gather\n");
++	pnetdev->features |= NETIF_F_SG;
++#endif
++
+ 	/* pnetdev->tx_timeout = NULL; */
+ 	pnetdev->watchdog_timeo = HZ * 3; /* 3 second timeout */
+ 
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8723du/os_dep/linux/os_intfs.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8723du/os_dep/linux/os_intfs.c
+@@ -1307,6 +1307,12 @@ struct net_device *rtw_init_netdev(_adap
+ 	pnetdev->features |= NETIF_F_IP_CSUM;
+ #endif
+ 
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 10, 0))
++	//After kernel 3.10, It is allowed to enable NETIF_F_SG but no checksum offload.
++	printk("Enable Scatter & Gather\n");
++	pnetdev->features |= NETIF_F_SG;
++#endif
++
+ 	/* pnetdev->tx_timeout = NULL; */
+ 	pnetdev->watchdog_timeo = HZ * 3; /* 3 second timeout */
+ 

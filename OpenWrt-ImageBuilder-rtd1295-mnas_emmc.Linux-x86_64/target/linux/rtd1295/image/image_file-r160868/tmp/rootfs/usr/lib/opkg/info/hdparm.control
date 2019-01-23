@@ -1,0 +1,10 @@
+Package: hdparm
+Version: 9.45-1
+Depends: libc, librt, libpthread
+Source: realtek/packages/utils/hdparm
+License: BSD-Style Open Source License
+Section: utils
+Maintainer: Richard Kunze <richard.kunze@web.de>
+Architecture: rtd1295
+Installed-Size: 40464
+Description:  get/set SATA/IDE device parameters

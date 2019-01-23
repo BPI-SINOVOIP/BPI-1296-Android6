@@ -1,0 +1,45 @@
+Source-Makefile: package/feeds/oldpackages/libgphoto2/Makefile
+Package: libgphoto2
+Menu: 1
+Version: 2.5.9-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libpthread +libltdl +libusb-compat +libusb-1.0 +BUILD_NLS:libiconv-full
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: !BUILD_NLS:libiconv !BUILD_NLS:libintl
+Section: libs
+Category: Libraries
+Title: The basic library of the gphoto2 program, version 2.5.9.
+Maintainer: Erwin Preuner <erwin.preuner@smart-mt.at>
+Source: libgphoto2-2.5.9.tar.bz2
+License: LGPL-2.1
+LicenseFiles: COPYING
+Type: ipkg
+Feed: oldpackages
+Description: The basic library of the gphoto2 program, version 2.5.9.
+http://www.gphoto.org/
+Erwin Preuner <erwin.preuner@smart-mt.at>
+@@
+
+Package: libgphoto2-drivers
+Version: 2.5.9-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread libgphoto2 +libusb-1.0 +libusb-compat
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: !BUILD_NLS:libiconv !BUILD_NLS:libintl
+Section: libs
+Category: Libraries
+Title: Gphoto2 drivers for various cameras
+Maintainer: Erwin Preuner <erwin.preuner@smart-mt.at>
+Source: libgphoto2-2.5.9.tar.bz2
+License: LGPL-2.1
+LicenseFiles: COPYING
+Type: ipkg
+Feed: oldpackages
+Description: Gphoto2 drivers for various cameras
+http://www.gphoto.org/
+Erwin Preuner <erwin.preuner@smart-mt.at>
+@@
+
+

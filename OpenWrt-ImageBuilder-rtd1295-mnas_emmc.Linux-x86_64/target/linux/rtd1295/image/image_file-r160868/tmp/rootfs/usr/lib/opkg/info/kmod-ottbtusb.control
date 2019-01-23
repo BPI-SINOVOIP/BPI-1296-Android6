@@ -1,0 +1,8 @@
+Package: kmod-ottbtusb
+Version: 4.1.7+1.0-1
+Depends: kernel (=4.1.7-1-3bcb2c81f93bd74f1df32abaa8430bd6)
+Source: package/kernel/ottbtusb
+Section: kernel
+Architecture: rtd1295
+Installed-Size: 23237
+Description:  Realtek bluetooth USB driver for Android

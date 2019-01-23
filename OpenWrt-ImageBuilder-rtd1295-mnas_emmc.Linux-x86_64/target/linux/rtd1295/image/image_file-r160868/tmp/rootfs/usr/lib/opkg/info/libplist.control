@@ -1,0 +1,11 @@
+Package: libplist
+Version: 1.13-1
+Depends: libc, librt, libpthread, libxml2
+Source: realtek/packages/libs/libplist
+License: LGPL-2.1+
+LicenseFiles: COPYING.LESSER
+Section: libs
+Maintainer: Lukasz Baj <l.baj@radytek.com>
+Architecture: rtd1295
+Installed-Size: 14411
+Description:  A library to handle Apple Property List format whereas it's binary or XML

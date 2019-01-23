@@ -1,0 +1,3 @@
+/usr/lib/lua/luci/controller/easycwmp.lua
+/usr/lib/lua/luci/model/cbi/easycwmp.lua
+/etc/uci-defaults/luci-easycwmp

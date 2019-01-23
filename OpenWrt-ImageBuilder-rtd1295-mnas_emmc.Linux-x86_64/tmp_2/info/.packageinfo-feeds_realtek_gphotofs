@@ -1,0 +1,30 @@
+Source-Makefile: package/feeds/realtek/gphotofs/Makefile
+Package: gphotofs
+Version: 0.5-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libgphoto2 +libpthread +glib2 +kmod-fuse +libfuse +BUILD_NLS:libintl-full +BUILD_NLS:libiconv-full
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: !BUILD_NLS:libiconv !BUILD_NLS:libintl
+Section: multimedia
+Category: Multimedia
+Title: GPhotoFS is a filesystem client based on libgphoto2 
+Maintainer: 
+Source: gphotofs-0.5.tar.bz2
+Type: ipkg
+Feed: realtek
+Description:  	GPhotoFS is a filesystem client based on libgphoto2 that exposes
+       supported cameras as filesystems; while some cameras implement the USB
+       Mass Storage class and already appear as filesystems (making this
+       program redundant), many use the Picture Transfer Protocol (PTP) or
+       some other custom protocol. But as long as the camera is supported by
+       libgphoto2, it can be mounted as a filesystem using this program.
+
+       As libgphoto2 is a userspace library for interacting with cameras, it
+       is natural that if one to build a filesystem ontop of it, one should
+       use FUSE, and that is what I have done.
+http://www.gphoto.org/
+
+@@
+
+

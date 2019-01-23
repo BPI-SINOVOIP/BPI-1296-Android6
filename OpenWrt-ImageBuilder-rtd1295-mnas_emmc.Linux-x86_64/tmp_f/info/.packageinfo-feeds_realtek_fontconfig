@@ -1,0 +1,22 @@
+Source-Makefile: package/feeds/realtek/fontconfig/Makefile
+Package: fontconfig
+Submenu: font-utils
+Version: 2.6.0-2
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libexpat +libfreetype
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: libtool libintl libiconv
+Section: xorg-util
+Category: Xorg
+Title: fontconfig
+Maintainer: 
+Source: fontconfig-2.6.0.tar.gz
+Type: ipkg
+Feed: realtek
+Description: fontconfig
+http://fontconfig.org/
+
+@@
+
+

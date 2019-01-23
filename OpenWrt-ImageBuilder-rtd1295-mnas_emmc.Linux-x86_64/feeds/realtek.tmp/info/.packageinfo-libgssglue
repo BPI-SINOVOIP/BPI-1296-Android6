@@ -1,0 +1,20 @@
+Source-Makefile: feeds/realtek/libgssglue/Makefile
+Package: libgssglue
+Version: 0.4-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: libtool libintl libiconv
+Section: libs
+Category: Libraries
+Title: Library libgssglue
+Maintainer: 
+Source: libgssglue-0.4.tar.gz
+Type: ipkg
+Description: Library libgssglue
+http://www.citi.umich.edu/projects/nfsv4/linux/libgssglue/
+
+@@
+
+

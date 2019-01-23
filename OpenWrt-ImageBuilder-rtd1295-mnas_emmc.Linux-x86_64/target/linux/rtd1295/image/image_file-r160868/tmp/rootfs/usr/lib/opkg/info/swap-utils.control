@@ -1,0 +1,10 @@
+Package: swap-utils
+Version: 2.28-1
+Depends: libc, librt, libpthread, libblkid, libmount, libsmartcols
+Source: package/utils/util-linux
+License: GPL-2.0
+LicenseFiles: COPYING getopt/COPYING libblkid/COPYING libmount/COPYING Documentation/licenses/COPYING.GPLv2 Documentation/licenses/COPYING.LGPLv2.1 libuuid/COPYING Documentation/licenses/COPYING.BSD-3
+Section: utils
+Architecture: rtd1295
+Installed-Size: 45041
+Description:  contains: mkswap, swaplabel, swapon, swapoff

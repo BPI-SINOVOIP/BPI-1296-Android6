@@ -1,0 +1,4 @@
+[ -n "${IPKG_INSTROOT}" ] || {
+	(. /etc/uci-defaults/luci-netatalk) && rm -f /etc/uci-defaults/luci-netatalk
+	exit 0
+}

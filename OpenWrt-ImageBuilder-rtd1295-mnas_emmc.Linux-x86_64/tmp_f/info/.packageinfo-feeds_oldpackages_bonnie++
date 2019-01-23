@@ -1,0 +1,21 @@
+Source-Makefile: package/feeds/oldpackages/bonnie++/Makefile
+Package: bonniexx
+Version: 1.96-2
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libstdcpp +libpthread
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Title: Bonnie++ - hard drive bottleneck testing program.
+Maintainer: 
+Source: bonnie++-1.96.tgz
+Type: ipkg
+Feed: oldpackages
+Description:   Bonnie++ is a benchmark suite that is aimed at performing a number of simple
+  tests of hard drive and file system performance.
+http://www.coker.com.au/bonnie++/
+
+@@
+
+

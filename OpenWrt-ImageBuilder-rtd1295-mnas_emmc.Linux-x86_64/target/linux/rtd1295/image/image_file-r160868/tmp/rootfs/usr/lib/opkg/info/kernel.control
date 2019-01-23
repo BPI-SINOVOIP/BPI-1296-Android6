@@ -1,0 +1,10 @@
+Package: kernel
+Version: 4.1.7-1-3bcb2c81f93bd74f1df32abaa8430bd6
+Depends: libc, librt, libpthread
+Source: package/kernel/linux
+License: GPLv2
+Section: sys
+Status: unknown hold not-installed
+Architecture: rtd1295
+Installed-Size: 106
+Description:  Virtual kernel package

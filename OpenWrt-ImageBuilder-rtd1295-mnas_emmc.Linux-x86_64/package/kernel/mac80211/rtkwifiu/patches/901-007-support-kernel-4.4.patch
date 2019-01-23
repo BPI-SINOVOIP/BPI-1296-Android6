@@ -1,0 +1,1478 @@
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8189es/include/rtw_debug.h
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8189es/include/rtw_debug.h
+@@ -229,7 +229,7 @@ extern void rtl871x_cedbg(const char *fm
+ 		if (sel == RTW_DBGDUMP)\
+ 			_DBG_871X_LEVEL(_drv_always_, fmt, ##arg); \
+ 		else {\
+-			if(_seqdump(sel, fmt, ##arg)) /*rtw_warn_on(1)*/; \
++			_seqdump(sel, fmt, ##arg) /*rtw_warn_on(1)*/; \
+ 		} \
+ 	}while(0)
+ 
+@@ -239,7 +239,7 @@ extern void rtl871x_cedbg(const char *fm
+ 		if (sel == RTW_DBGDUMP)\
+ 			DBG_871X_LEVEL(_drv_always_, fmt, ##arg); \
+ 		else {\
+-			if(_seqdump(sel, fmt, ##arg)) /*rtw_warn_on(1)*/; \
++			_seqdump(sel, fmt, ##arg) /*rtw_warn_on(1)*/; \
+ 		} \
+ 	}while(0)
+ 
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8189fs/include/rtw_debug.h
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8189fs/include/rtw_debug.h
+@@ -229,7 +229,7 @@ extern void rtl871x_cedbg(const char *fm
+ 		if (sel == RTW_DBGDUMP)\
+ 			_DBG_871X_LEVEL(_drv_always_, fmt, ##arg); \
+ 		else {\
+-			if(_seqdump(sel, fmt, ##arg)) /*rtw_warn_on(1)*/; \
++			_seqdump(sel, fmt, ##arg) /*rtw_warn_on(1)*/; \
+ 		} \
+ 	}while(0)
+ 
+@@ -239,7 +239,7 @@ extern void rtl871x_cedbg(const char *fm
+ 		if (sel == RTW_DBGDUMP)\
+ 			DBG_871X_LEVEL(_drv_always_, fmt, ##arg); \
+ 		else {\
+-			if(_seqdump(sel, fmt, ##arg)) /*rtw_warn_on(1)*/; \
++			_seqdump(sel, fmt, ##arg) /*rtw_warn_on(1)*/; \
+ 		} \
+ 	}while(0)
+ 
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8192cu/include/rtw_debug.h
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8192cu/include/rtw_debug.h
+@@ -232,7 +232,7 @@ extern void rtl871x_cedbg(const char *fm
+ 		if (sel == RTW_DBGDUMP)\
+ 			_DBG_871X_LEVEL(_drv_always_, fmt, ##arg); \
+ 		else {\
+-			if(_seqdump(sel, fmt, ##arg)) /*rtw_warn_on(1)*/; \
++			_seqdump(sel, fmt, ##arg) /*rtw_warn_on(1)*/; \
+ 		} \
+ 	}while(0)
+ 
+@@ -242,7 +242,7 @@ extern void rtl871x_cedbg(const char *fm
+ 		if (sel == RTW_DBGDUMP)\
+ 			DBG_871X_LEVEL(_drv_always_, fmt, ##arg); \
+ 		else {\
+-			if(_seqdump(sel, fmt, ##arg)) /*rtw_warn_on(1)*/; \
++			_seqdump(sel, fmt, ##arg) /*rtw_warn_on(1)*/; \
+ 		} \
+ 	}while(0)
+ 
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8192ee/include/rtw_debug.h
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8192ee/include/rtw_debug.h
+@@ -229,7 +229,7 @@ extern void rtl871x_cedbg(const char *fm
+ 		if (sel == RTW_DBGDUMP)\
+ 			_DBG_871X_LEVEL(_drv_always_, fmt, ##arg); \
+ 		else {\
+-			if(_seqdump(sel, fmt, ##arg)) /*rtw_warn_on(1)*/; \
++			_seqdump(sel, fmt, ##arg) /*rtw_warn_on(1)*/; \
+ 		} \
+ 	}while(0)
+ 
+@@ -239,7 +239,7 @@ extern void rtl871x_cedbg(const char *fm
+ 		if (sel == RTW_DBGDUMP)\
+ 			DBG_871X_LEVEL(_drv_always_, fmt, ##arg); \
+ 		else {\
+-			if(_seqdump(sel, fmt, ##arg)) /*rtw_warn_on(1)*/; \
++			_seqdump(sel, fmt, ##arg) /*rtw_warn_on(1)*/; \
+ 		} \
+ 	}while(0)
+ 
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8192eu/include/rtw_debug.h
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8192eu/include/rtw_debug.h
+@@ -227,7 +227,7 @@ extern void rtl871x_cedbg(const char *fm
+ 		if (sel == RTW_DBGDUMP)\
+ 			_DBG_871X_LEVEL(_drv_always_, fmt, ##arg); \
+ 		else {\
+-			if(_seqdump(sel, fmt, ##arg)) /*rtw_warn_on(1)*/; \
++			_seqdump(sel, fmt, ##arg) /*rtw_warn_on(1)*/; \
+ 		} \
+ 	}while(0)
+ 
+@@ -237,7 +237,7 @@ extern void rtl871x_cedbg(const char *fm
+ 		if (sel == RTW_DBGDUMP)\
+ 			DBG_871X_LEVEL(_drv_always_, fmt, ##arg); \
+ 		else {\
+-			if(_seqdump(sel, fmt, ##arg)) /*rtw_warn_on(1)*/; \
++			_seqdump(sel, fmt, ##arg) /*rtw_warn_on(1)*/; \
+ 		} \
+ 	}while(0)
+ 
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8723bu/include/rtw_debug.h
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8723bu/include/rtw_debug.h
+@@ -229,7 +229,7 @@ extern void rtl871x_cedbg(const char *fm
+ 		if (sel == RTW_DBGDUMP)\
+ 			_DBG_871X_LEVEL(_drv_always_, fmt, ##arg); \
+ 		else {\
+-			if(_seqdump(sel, fmt, ##arg)) /*rtw_warn_on(1)*/; \
++			_seqdump(sel, fmt, ##arg) /*rtw_warn_on(1)*/; \
+ 		} \
+ 	}while(0)
+ 
+@@ -239,7 +239,7 @@ extern void rtl871x_cedbg(const char *fm
+ 		if (sel == RTW_DBGDUMP)\
+ 			DBG_871X_LEVEL(_drv_always_, fmt, ##arg); \
+ 		else {\
+-			if(_seqdump(sel, fmt, ##arg)) /*rtw_warn_on(1)*/; \
++			_seqdump(sel, fmt, ##arg) /*rtw_warn_on(1)*/; \
+ 		} \
+ 	}while(0)
+ 
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8811au/include/rtw_debug.h
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8811au/include/rtw_debug.h
+@@ -229,7 +229,7 @@ extern void rtl871x_cedbg(const char *fm
+ 		if (sel == RTW_DBGDUMP)\
+ 			_DBG_871X_LEVEL(_drv_always_, fmt, ##arg); \
+ 		else {\
+-			if(_seqdump(sel, fmt, ##arg)) /*rtw_warn_on(1)*/; \
++			_seqdump(sel, fmt, ##arg) /*rtw_warn_on(1)*/; \
+ 		} \
+ 	}while(0)
+ 
+@@ -239,7 +239,7 @@ extern void rtl871x_cedbg(const char *fm
+ 		if (sel == RTW_DBGDUMP)\
+ 			DBG_871X_LEVEL(_drv_always_, fmt, ##arg); \
+ 		else {\
+-			if(_seqdump(sel, fmt, ##arg)) /*rtw_warn_on(1)*/; \
++			_seqdump(sel, fmt, ##arg) /*rtw_warn_on(1)*/; \
+ 		} \
+ 	}while(0)
+ 
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8814au/include/rtw_debug.h
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8814au/include/rtw_debug.h
+@@ -229,7 +229,7 @@ extern void rtl871x_cedbg(const char *fm
+ 		if (sel == RTW_DBGDUMP)\
+ 			_DBG_871X_LEVEL(_drv_always_, fmt, ##arg); \
+ 		else {\
+-			if(_seqdump(sel, fmt, ##arg)) /*rtw_warn_on(1)*/; \
++			_seqdump(sel, fmt, ##arg) /*rtw_warn_on(1)*/; \
+ 		} \
+ 	}while(0)
+ 
+@@ -239,7 +239,7 @@ extern void rtl871x_cedbg(const char *fm
+ 		if (sel == RTW_DBGDUMP)\
+ 			DBG_871X_LEVEL(_drv_always_, fmt, ##arg); \
+ 		else {\
+-			if(_seqdump(sel, fmt, ##arg)) /*rtw_warn_on(1)*/; \
++			_seqdump(sel, fmt, ##arg) /*rtw_warn_on(1)*/; \
+ 		} \
+ 	}while(0)
+ 
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8821as/include/rtw_debug.h
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8821as/include/rtw_debug.h
+@@ -229,7 +229,7 @@ extern void rtl871x_cedbg(const char *fm
+ 		if (sel == RTW_DBGDUMP)\
+ 			_DBG_871X_LEVEL(_drv_always_, fmt, ##arg); \
+ 		else {\
+-			if(_seqdump(sel, fmt, ##arg)) /*rtw_warn_on(1)*/; \
++			_seqdump(sel, fmt, ##arg) /*rtw_warn_on(1)*/; \
+ 		} \
+ 	}while(0)
+ 
+@@ -239,7 +239,7 @@ extern void rtl871x_cedbg(const char *fm
+ 		if (sel == RTW_DBGDUMP)\
+ 			DBG_871X_LEVEL(_drv_always_, fmt, ##arg); \
+ 		else {\
+-			if(_seqdump(sel, fmt, ##arg)) /*rtw_warn_on(1)*/; \
++			_seqdump(sel, fmt, ##arg) /*rtw_warn_on(1)*/; \
+ 		} \
+ 	}while(0)
+ 
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8821au/include/rtw_debug.h
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8821au/include/rtw_debug.h
+@@ -229,7 +229,7 @@ extern void rtl871x_cedbg(const char *fm
+ 		if (sel == RTW_DBGDUMP)\
+ 			_DBG_871X_LEVEL(_drv_always_, fmt, ##arg); \
+ 		else {\
+-			if(_seqdump(sel, fmt, ##arg)) /*rtw_warn_on(1)*/; \
++			_seqdump(sel, fmt, ##arg) /*rtw_warn_on(1)*/; \
+ 		} \
+ 	}while(0)
+ 
+@@ -239,7 +239,7 @@ extern void rtl871x_cedbg(const char *fm
+ 		if (sel == RTW_DBGDUMP)\
+ 			DBG_871X_LEVEL(_drv_always_, fmt, ##arg); \
+ 		else {\
+-			if(_seqdump(sel, fmt, ##arg)) /*rtw_warn_on(1)*/; \
++			_seqdump(sel, fmt, ##arg) /*rtw_warn_on(1)*/; \
+ 		} \
+ 	}while(0)
+ 
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8192ee/hal/hal_com_phycfg.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8192ee/hal/hal_com_phycfg.c
+@@ -2601,11 +2601,11 @@ phy_ConfigMACWithParaFile(
+ 
+ 	if ((pHalData->mac_reg_len == 0) && (pHalData->mac_reg == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrive_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrive_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -2700,11 +2700,11 @@ phy_ConfigBBWithParaFile(
+ 
+ 	if ((pBufLen != NULL) && (*pBufLen == 0) && (pBuf == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrive_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrive_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3153,11 +3153,11 @@ phy_ConfigBBWithPgParaFile(
+ 
+ 	if ((pHalData->bb_phy_reg_pg_len == 0) && (pHalData->bb_phy_reg_pg == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrive_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrive_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3216,11 +3216,11 @@ phy_ConfigBBWithMpParaFile(
+ 
+ 	if ((pHalData->bb_phy_reg_mp_len == 0) && (pHalData->bb_phy_reg_mp == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrive_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrive_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3352,11 +3352,11 @@ PHY_ConfigRFWithParaFile(
+ 
+ 	if ((pBufLen != NULL) && (*pBufLen == 0) && (pBuf == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrive_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrive_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3630,11 +3630,11 @@ PHY_ConfigRFWithTxPwrTrackParaFile(
+ 
+ 	if ((pHalData->rf_tx_pwr_track_len == 0) && (pHalData->rf_tx_pwr_track == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrive_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrive_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3999,11 +3999,11 @@ PHY_ConfigRFWithPowerLimitTableParaFile(
+ 
+ 	if ((pHalData->rf_tx_pwr_lmt_len == 0) && (pHalData->rf_tx_pwr_lmt == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrive_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrive_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8192ee/include/hal_com.h
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8192ee/include/hal_com.h
+@@ -410,7 +410,7 @@ int rtw_hal_disable_gpio_interrupt(_adap
+ 
+ #ifdef CONFIG_LOAD_PHY_PARA_FROM_FILE
+ extern char *rtw_phy_file_path;
+-extern char file_path[PATH_LENGTH_MAX];
++extern char rtw_phy_para_file_path[PATH_LENGTH_MAX];
+ #define GetLineFromBuffer(buffer)   strsep(&buffer, "\n")
+ #endif
+ 
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8811au/hal/hal_com_phycfg.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8811au/hal/hal_com_phycfg.c
+@@ -2611,11 +2611,11 @@ phy_ConfigMACWithParaFile(
+ 
+ 	if ((pHalData->mac_reg_len == 0) && (pHalData->mac_reg == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -2710,11 +2710,11 @@ phy_ConfigBBWithParaFile(
+ 
+ 	if ((pBufLen != NULL) && (*pBufLen == 0) && (pBuf == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3163,11 +3163,11 @@ phy_ConfigBBWithPgParaFile(
+ 
+ 	if ((pHalData->bb_phy_reg_pg_len == 0) && (pHalData->bb_phy_reg_pg == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3226,11 +3226,11 @@ phy_ConfigBBWithMpParaFile(
+ 
+ 	if ((pHalData->bb_phy_reg_mp_len == 0) && (pHalData->bb_phy_reg_mp == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3362,11 +3362,11 @@ PHY_ConfigRFWithParaFile(
+ 
+ 	if ((pBufLen != NULL) && (*pBufLen == 0) && (pBuf == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3640,11 +3640,11 @@ PHY_ConfigRFWithTxPwrTrackParaFile(
+ 
+ 	if ((pHalData->rf_tx_pwr_track_len == 0) && (pHalData->rf_tx_pwr_track == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -4010,11 +4010,11 @@ PHY_ConfigRFWithPowerLimitTableParaFile(
+ 
+ 	if ((pHalData->rf_tx_pwr_lmt_len == 0) && (pHalData->rf_tx_pwr_lmt == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8811au/include/hal_com.h
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8811au/include/hal_com.h
+@@ -466,7 +466,7 @@ static inline u32 rtw_phydm_ability_get(
+ 
+ #ifdef CONFIG_LOAD_PHY_PARA_FROM_FILE
+ extern char *rtw_phy_file_path;
+-extern char file_path[PATH_LENGTH_MAX];
++extern char rtw_phy_para_file_path[PATH_LENGTH_MAX];
+ #define GetLineFromBuffer(buffer)   strsep(&buffer, "\n")
+ #endif
+ 
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8821au/hal/hal_com_phycfg.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8821au/hal/hal_com_phycfg.c
+@@ -2611,11 +2611,11 @@ phy_ConfigMACWithParaFile(
+ 
+ 	if ((pHalData->mac_reg_len == 0) && (pHalData->mac_reg == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -2710,11 +2710,11 @@ phy_ConfigBBWithParaFile(
+ 
+ 	if ((pBufLen != NULL) && (*pBufLen == 0) && (pBuf == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3163,11 +3163,11 @@ phy_ConfigBBWithPgParaFile(
+ 
+ 	if ((pHalData->bb_phy_reg_pg_len == 0) && (pHalData->bb_phy_reg_pg == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3226,11 +3226,11 @@ phy_ConfigBBWithMpParaFile(
+ 
+ 	if ((pHalData->bb_phy_reg_mp_len == 0) && (pHalData->bb_phy_reg_mp == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3362,11 +3362,11 @@ PHY_ConfigRFWithParaFile(
+ 
+ 	if ((pBufLen != NULL) && (*pBufLen == 0) && (pBuf == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3640,11 +3640,11 @@ PHY_ConfigRFWithTxPwrTrackParaFile(
+ 
+ 	if ((pHalData->rf_tx_pwr_track_len == 0) && (pHalData->rf_tx_pwr_track == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -4010,11 +4010,11 @@ PHY_ConfigRFWithPowerLimitTableParaFile(
+ 
+ 	if ((pHalData->rf_tx_pwr_lmt_len == 0) && (pHalData->rf_tx_pwr_lmt == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8821au/include/hal_com.h
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8821au/include/hal_com.h
+@@ -466,7 +466,7 @@ static inline u32 rtw_phydm_ability_get(
+ 
+ #ifdef CONFIG_LOAD_PHY_PARA_FROM_FILE
+ extern char *rtw_phy_file_path;
+-extern char file_path[PATH_LENGTH_MAX];
++extern char rtw_phy_para_file_path[PATH_LENGTH_MAX];
+ #define GetLineFromBuffer(buffer)   strsep(&buffer, "\n")
+ #endif
+ 
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8192eu/hal/hal_com_phycfg.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8192eu/hal/hal_com_phycfg.c
+@@ -2575,7 +2575,7 @@ Hal_ChannelPlanToRegulation(
+ #ifdef CONFIG_LOAD_PHY_PARA_FROM_FILE
+ 
+ extern char *rtw_phy_file_path;
+-char	file_path[PATH_LENGTH_MAX];
++char	rtw_phy_para_file_path[PATH_LENGTH_MAX];
+ 
+ #define GetLineFromBuffer(buffer)	 strsep(&buffer, "\n")
+ 
+@@ -2597,11 +2597,11 @@ phy_ConfigMACWithParaFile(
+ 
+ 	if ((pHalData->mac_reg_len == 0) && (pHalData->mac_reg == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrive_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrive_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -2696,11 +2696,11 @@ phy_ConfigBBWithParaFile(
+ 
+ 	if ((pBufLen != NULL) && (*pBufLen == 0) && (pBuf == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrive_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrive_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3149,11 +3149,11 @@ phy_ConfigBBWithPgParaFile(
+ 
+ 	if ((pHalData->bb_phy_reg_pg_len == 0) && (pHalData->bb_phy_reg_pg == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrive_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrive_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3212,11 +3212,11 @@ phy_ConfigBBWithMpParaFile(
+ 
+ 	if ((pHalData->bb_phy_reg_mp_len == 0) && (pHalData->bb_phy_reg_mp == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrive_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrive_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3348,11 +3348,11 @@ PHY_ConfigRFWithParaFile(
+ 
+ 	if ((pBufLen != NULL) && (*pBufLen == 0) && (pBuf == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrive_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrive_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3626,11 +3626,11 @@ PHY_ConfigRFWithTxPwrTrackParaFile(
+ 
+ 	if ((pHalData->rf_tx_pwr_track_len == 0) && (pHalData->rf_tx_pwr_track == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrive_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrive_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3995,11 +3995,11 @@ PHY_ConfigRFWithPowerLimitTableParaFile(
+ 
+ 	if ((pHalData->rf_tx_pwr_lmt_len == 0) && (pHalData->rf_tx_pwr_lmt == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrive_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrive_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8814au/hal/hal_com_phycfg.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8814au/hal/hal_com_phycfg.c
+@@ -2670,11 +2670,11 @@ phy_ConfigMACWithParaFile(
+ 
+ 	if ((pHalData->mac_reg_len == 0) && (pHalData->mac_reg == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -2769,11 +2769,11 @@ phy_ConfigBBWithParaFile(
+ 
+ 	if ((pBufLen != NULL) && (*pBufLen == 0) && (pBuf == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3222,11 +3222,11 @@ phy_ConfigBBWithPgParaFile(
+ 
+ 	if ((pHalData->bb_phy_reg_pg_len == 0) && (pHalData->bb_phy_reg_pg == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3285,11 +3285,11 @@ phy_ConfigBBWithMpParaFile(
+ 
+ 	if ((pHalData->bb_phy_reg_mp_len == 0) && (pHalData->bb_phy_reg_mp == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3421,11 +3421,11 @@ PHY_ConfigRFWithParaFile(
+ 
+ 	if ((pBufLen != NULL) && (*pBufLen == 0) && (pBuf == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3699,11 +3699,11 @@ PHY_ConfigRFWithTxPwrTrackParaFile(
+ 
+ 	if ((pHalData->rf_tx_pwr_track_len == 0) && (pHalData->rf_tx_pwr_track == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -4069,11 +4069,11 @@ PHY_ConfigRFWithPowerLimitTableParaFile(
+ 
+ 	if ((pHalData->rf_tx_pwr_lmt_len == 0) && (pHalData->rf_tx_pwr_lmt == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8814au/include/hal_com.h
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8814au/include/hal_com.h
+@@ -512,7 +512,7 @@ static inline u32 rtw_phydm_ability_get(
+ 
+ #ifdef CONFIG_LOAD_PHY_PARA_FROM_FILE
+ extern char *rtw_phy_file_path;
+-extern char file_path[PATH_LENGTH_MAX];
++extern char rtw_phy_para_file_path[PATH_LENGTH_MAX];
+ #define GetLineFromBuffer(buffer)   strsep(&buffer, "\n")
+ #endif
+ 
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8189es/hal/hal_com_phycfg.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8189es/hal/hal_com_phycfg.c
+@@ -2597,11 +2597,11 @@ phy_ConfigMACWithParaFile(
+ 
+ 	if ((pHalData->mac_reg_len == 0) && (pHalData->mac_reg == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrive_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrive_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -2696,11 +2696,11 @@ phy_ConfigBBWithParaFile(
+ 
+ 	if ((pBufLen != NULL) && (*pBufLen == 0) && (pBuf == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrive_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrive_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3149,11 +3149,11 @@ phy_ConfigBBWithPgParaFile(
+ 
+ 	if ((pHalData->bb_phy_reg_pg_len == 0) && (pHalData->bb_phy_reg_pg == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrive_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrive_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3212,11 +3212,11 @@ phy_ConfigBBWithMpParaFile(
+ 
+ 	if ((pHalData->bb_phy_reg_mp_len == 0) && (pHalData->bb_phy_reg_mp == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrive_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrive_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3348,11 +3348,11 @@ PHY_ConfigRFWithParaFile(
+ 
+ 	if ((pBufLen != NULL) && (*pBufLen == 0) && (pBuf == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrive_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrive_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3626,11 +3626,11 @@ PHY_ConfigRFWithTxPwrTrackParaFile(
+ 
+ 	if ((pHalData->rf_tx_pwr_track_len == 0) && (pHalData->rf_tx_pwr_track == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrive_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrive_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3995,11 +3995,11 @@ PHY_ConfigRFWithPowerLimitTableParaFile(
+ 
+ 	if ((pHalData->rf_tx_pwr_lmt_len == 0) && (pHalData->rf_tx_pwr_lmt == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrive_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrive_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8189es/include/hal_com.h
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8189es/include/hal_com.h
+@@ -383,7 +383,7 @@ int rtw_hal_config_gpio(_adapter* adapte
+ 
+ #ifdef CONFIG_LOAD_PHY_PARA_FROM_FILE
+ extern char *rtw_phy_file_path;
+-extern char file_path[PATH_LENGTH_MAX];
++extern char rtw_phy_para_file_path[PATH_LENGTH_MAX];
+ #define GetLineFromBuffer(buffer)   strsep(&buffer, "\n")
+ #endif
+ 
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8723bu/hal/hal_com_phycfg.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8723bu/hal/hal_com_phycfg.c
+@@ -2601,11 +2601,11 @@ phy_ConfigMACWithParaFile(
+ 
+ 	if ((pHalData->mac_reg_len == 0) && (pHalData->mac_reg == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrive_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrive_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -2700,11 +2700,11 @@ phy_ConfigBBWithParaFile(
+ 
+ 	if ((pBufLen != NULL) && (*pBufLen == 0) && (pBuf == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrive_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrive_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3153,11 +3153,11 @@ phy_ConfigBBWithPgParaFile(
+ 
+ 	if ((pHalData->bb_phy_reg_pg_len == 0) && (pHalData->bb_phy_reg_pg == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrive_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrive_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3216,11 +3216,11 @@ phy_ConfigBBWithMpParaFile(
+ 
+ 	if ((pHalData->bb_phy_reg_mp_len == 0) && (pHalData->bb_phy_reg_mp == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrive_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrive_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3352,11 +3352,11 @@ PHY_ConfigRFWithParaFile(
+ 
+ 	if ((pBufLen != NULL) && (*pBufLen == 0) && (pBuf == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrive_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrive_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3630,11 +3630,11 @@ PHY_ConfigRFWithTxPwrTrackParaFile(
+ 
+ 	if ((pHalData->rf_tx_pwr_track_len == 0) && (pHalData->rf_tx_pwr_track == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrive_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrive_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3999,11 +3999,11 @@ PHY_ConfigRFWithPowerLimitTableParaFile(
+ 
+ 	if ((pHalData->rf_tx_pwr_lmt_len == 0) && (pHalData->rf_tx_pwr_lmt == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrive_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrive_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8723bu/include/hal_com.h
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8723bu/include/hal_com.h
+@@ -409,7 +409,7 @@ int rtw_hal_disable_gpio_interrupt(_adap
+ 
+ #ifdef CONFIG_LOAD_PHY_PARA_FROM_FILE
+ extern char *rtw_phy_file_path;
+-extern char file_path[PATH_LENGTH_MAX];
++extern char rtw_phy_para_file_path[PATH_LENGTH_MAX];
+ #define GetLineFromBuffer(buffer)   strsep(&buffer, "\n")
+ #endif
+ 
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8189fs/hal/hal_com_phycfg.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8189fs/hal/hal_com_phycfg.c
+@@ -2920,8 +2920,8 @@ int rtw_is_phy_file_readable(const char
+ {
+ #ifdef CONFIG_LOAD_PHY_PARA_FROM_FILE
+ 	if (hal_file_name) {
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, hal_file_name);
+-		return rtw_is_file_readable(file_path);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, hal_file_name);
++		return rtw_is_file_readable(rtw_phy_para_file_path);
+ 	}
+ #endif
+ 	return _FALSE;
+@@ -2946,11 +2946,11 @@ phy_ConfigMACWithParaFile(
+ 
+ 	if ((pHalData->mac_reg_len == 0) && (pHalData->mac_reg == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3045,11 +3045,11 @@ phy_ConfigBBWithParaFile(
+ 
+ 	if ((pBufLen != NULL) && (*pBufLen == 0) && (pBuf == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3497,11 +3497,11 @@ phy_ConfigBBWithPgParaFile(
+ 	_rtw_memset(pHalData->para_file_buf, 0, MAX_PARA_FILE_BUF_LEN);
+ 
+ 	if (pHalData->bb_phy_reg_pg == NULL) {
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3558,11 +3558,11 @@ phy_ConfigBBWithMpParaFile(
+ 
+ 	if ((pHalData->bb_phy_reg_mp_len == 0) && (pHalData->bb_phy_reg_mp == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3694,11 +3694,11 @@ PHY_ConfigRFWithParaFile(
+ 
+ 	if ((pBufLen != NULL) && (*pBufLen == 0) && (pBuf == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3972,11 +3972,11 @@ PHY_ConfigRFWithTxPwrTrackParaFile(
+ 
+ 	if ((pHalData->rf_tx_pwr_track_len == 0) && (pHalData->rf_tx_pwr_track == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -4344,11 +4344,11 @@ PHY_ConfigRFWithPowerLimitTableParaFile(
+ 	_rtw_memset(pHalData->para_file_buf, 0, MAX_PARA_FILE_BUF_LEN);
+ 
+ 	if (pHalData->rf_tx_pwr_lmt == NULL) {
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8189fs/include/hal_com.h
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8189fs/include/hal_com.h
+@@ -512,7 +512,7 @@ static inline u32 rtw_phydm_ability_get(
+ 
+ #ifdef CONFIG_LOAD_PHY_PARA_FROM_FILE
+ extern char *rtw_phy_file_path;
+-extern char file_path[PATH_LENGTH_MAX];
++extern char rtw_phy_para_file_path[PATH_LENGTH_MAX];
+ #define GetLineFromBuffer(buffer)   strsep(&buffer, "\r\n")
+ #endif
+ 
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8821as/hal/hal_com_phycfg.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8821as/hal/hal_com_phycfg.c
+@@ -2611,11 +2611,11 @@ phy_ConfigMACWithParaFile(
+ 
+ 	if ((pHalData->mac_reg_len == 0) && (pHalData->mac_reg == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -2710,11 +2710,11 @@ phy_ConfigBBWithParaFile(
+ 
+ 	if ((pBufLen != NULL) && (*pBufLen == 0) && (pBuf == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3163,11 +3163,11 @@ phy_ConfigBBWithPgParaFile(
+ 
+ 	if ((pHalData->bb_phy_reg_pg_len == 0) && (pHalData->bb_phy_reg_pg == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3226,11 +3226,11 @@ phy_ConfigBBWithMpParaFile(
+ 
+ 	if ((pHalData->bb_phy_reg_mp_len == 0) && (pHalData->bb_phy_reg_mp == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3362,11 +3362,11 @@ PHY_ConfigRFWithParaFile(
+ 
+ 	if ((pBufLen != NULL) && (*pBufLen == 0) && (pBuf == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -3640,11 +3640,11 @@ PHY_ConfigRFWithTxPwrTrackParaFile(
+ 
+ 	if ((pHalData->rf_tx_pwr_track_len == 0) && (pHalData->rf_tx_pwr_track == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+@@ -4010,11 +4010,11 @@ PHY_ConfigRFWithPowerLimitTableParaFile(
+ 
+ 	if ((pHalData->rf_tx_pwr_lmt_len == 0) && (pHalData->rf_tx_pwr_lmt == NULL))
+ 	{
+-		rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++		rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 	
+-		if (rtw_is_file_readable(file_path) == _TRUE)
++		if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 		{
+-			rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++			rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 			if (rlen > 0)
+ 			{
+ 				rtStatus = _SUCCESS;
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8821as/include/hal_com.h
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8821as/include/hal_com.h
+@@ -459,7 +459,7 @@ static inline u32 rtw_phydm_ability_get(
+ 
+ #ifdef CONFIG_LOAD_PHY_PARA_FROM_FILE
+ extern char *rtw_phy_file_path;
+-extern char file_path[PATH_LENGTH_MAX];
++extern char rtw_phy_para_file_path[PATH_LENGTH_MAX];
+ #define GetLineFromBuffer(buffer)   strsep(&buffer, "\n")
+ #endif
+ 
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8189es/hal/hal_com.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8189es/hal/hal_com.c
+@@ -27,7 +27,7 @@
+ //#define CONFIG_GTK_OL_DBG
+ 
+ #ifdef CONFIG_LOAD_PHY_PARA_FROM_FILE
+-char	file_path[PATH_LENGTH_MAX];
++char	rtw_phy_para_file_path[PATH_LENGTH_MAX];
+ #endif
+ 
+ u8 rtw_hal_data_init(_adapter *padapter)
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8189fs/hal/hal_com.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8189fs/hal/hal_com.c
+@@ -27,7 +27,7 @@
+ //#define CONFIG_GTK_OL_DBG
+ 
+ #ifdef CONFIG_LOAD_PHY_PARA_FROM_FILE
+-char	file_path[PATH_LENGTH_MAX];
++char	rtw_phy_para_file_path[PATH_LENGTH_MAX];
+ #endif
+ 
+ void dump_chip_info(HAL_VERSION	ChipVersion)
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8192ee/hal/hal_com.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8192ee/hal/hal_com.c
+@@ -27,7 +27,7 @@
+ //#define CONFIG_GTK_OL_DBG
+ 
+ #ifdef CONFIG_LOAD_PHY_PARA_FROM_FILE
+-char	file_path[PATH_LENGTH_MAX];
++char	rtw_phy_para_file_path[PATH_LENGTH_MAX];
+ #endif
+ 
+ u8 rtw_hal_data_init(_adapter *padapter)
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8723bu/hal/hal_com.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8723bu/hal/hal_com.c
+@@ -27,7 +27,7 @@
+ //#define CONFIG_GTK_OL_DBG
+ 
+ #ifdef CONFIG_LOAD_PHY_PARA_FROM_FILE
+-char	file_path[PATH_LENGTH_MAX];
++char	rtw_phy_para_file_path[PATH_LENGTH_MAX];
+ #endif
+ 
+ void dump_chip_info(HAL_VERSION	ChipVersion)
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8811au/hal/hal_com.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8811au/hal/hal_com.c
+@@ -27,7 +27,7 @@
+ //#define CONFIG_GTK_OL_DBG
+ 
+ #ifdef CONFIG_LOAD_PHY_PARA_FROM_FILE
+-char	file_path[PATH_LENGTH_MAX];
++char	rtw_phy_para_file_path[PATH_LENGTH_MAX];
+ #endif
+ 
+ void dump_chip_info(HAL_VERSION	ChipVersion)
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8814au/hal/hal_com.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8814au/hal/hal_com.c
+@@ -27,7 +27,7 @@
+ //#define CONFIG_GTK_OL_DBG
+ 
+ #ifdef CONFIG_LOAD_PHY_PARA_FROM_FILE
+-char	file_path[PATH_LENGTH_MAX];
++char	rtw_phy_para_file_path[PATH_LENGTH_MAX];
+ #endif
+ 
+ void dump_chip_info(HAL_VERSION	ChipVersion)
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8821as/hal/hal_com.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8821as/hal/hal_com.c
+@@ -27,7 +27,7 @@
+ //#define CONFIG_GTK_OL_DBG
+ 
+ #ifdef CONFIG_LOAD_PHY_PARA_FROM_FILE
+-char	file_path[PATH_LENGTH_MAX];
++char	rtw_phy_para_file_path[PATH_LENGTH_MAX];
+ #endif
+ 
+ void dump_chip_info(HAL_VERSION	ChipVersion)
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8821au/hal/hal_com.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8821au/hal/hal_com.c
+@@ -27,7 +27,7 @@
+ //#define CONFIG_GTK_OL_DBG
+ 
+ #ifdef CONFIG_LOAD_PHY_PARA_FROM_FILE
+-char	file_path[PATH_LENGTH_MAX];
++char	rtw_phy_para_file_path[PATH_LENGTH_MAX];
+ #endif
+ 
+ void dump_chip_info(HAL_VERSION	ChipVersion)
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8189es/hal/hal_btcoex.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8189es/hal/hal_btcoex.c
+@@ -3334,11 +3334,11 @@ hal_btcoex_AntIsolationConfig_ParaFile(
+ 	_rtw_memset(pHalData->para_file_buf, 0, MAX_PARA_FILE_BUF_LEN);
+ 
+ 
+-	rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++	rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 
+-	if (rtw_is_file_readable(file_path) == _TRUE)
++	if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 	{
+-		rlen = rtw_retrive_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++		rlen = rtw_retrive_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 		if (rlen > 0)
+ 		{
+ 			rtStatus = _SUCCESS;
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8189fs/hal/hal_btcoex.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8189fs/hal/hal_btcoex.c
+@@ -3640,11 +3640,11 @@ hal_btcoex_AntIsolationConfig_ParaFile(
+ 	_rtw_memset(pHalData->para_file_buf , 0 , MAX_PARA_FILE_BUF_LEN);
+ 
+ 
+-	rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++	rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 
+-	if (rtw_is_file_readable(file_path) == _TRUE)
++	if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 	{
+-		rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++		rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 		if (rlen > 0)
+ 		{
+ 			rtStatus = _SUCCESS;
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8192ee/hal/hal_btcoex.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8192ee/hal/hal_btcoex.c
+@@ -3490,11 +3490,11 @@ hal_btcoex_AntIsolationConfig_ParaFile(
+ 	_rtw_memset(pHalData->para_file_buf , 0 , MAX_PARA_FILE_BUF_LEN);
+ 
+ 
+-	rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++	rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 
+-	if (rtw_is_file_readable(file_path) == _TRUE)
++	if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 	{
+-		rlen = rtw_retrive_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++		rlen = rtw_retrive_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 		if (rlen > 0)
+ 		{
+ 			rtStatus = _SUCCESS;
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8811au/hal/hal_btcoex.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8811au/hal/hal_btcoex.c
+@@ -3397,11 +3397,11 @@ hal_btcoex_AntIsolationConfig_ParaFile(
+ 	_rtw_memset(pHalData->para_file_buf , 0 , MAX_PARA_FILE_BUF_LEN);
+ 
+ 
+-	rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++	rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 
+-	if (rtw_is_file_readable(file_path) == _TRUE)
++	if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 	{
+-		rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++		rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 		if (rlen > 0)
+ 		{
+ 			rtStatus = _SUCCESS;
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8814au/hal/hal_btcoex.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8814au/hal/hal_btcoex.c
+@@ -3397,11 +3397,11 @@ hal_btcoex_AntIsolationConfig_ParaFile(
+ 	_rtw_memset(pHalData->para_file_buf , 0 , MAX_PARA_FILE_BUF_LEN);
+ 
+ 
+-	rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++	rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 
+-	if (rtw_is_file_readable(file_path) == _TRUE)
++	if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 	{
+-		rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++		rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 		if (rlen > 0)
+ 		{
+ 			rtStatus = _SUCCESS;
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8821as/hal/hal_btcoex.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8821as/hal/hal_btcoex.c
+@@ -3397,11 +3397,11 @@ hal_btcoex_AntIsolationConfig_ParaFile(
+ 	_rtw_memset(pHalData->para_file_buf , 0 , MAX_PARA_FILE_BUF_LEN);
+ 
+ 
+-	rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++	rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 
+-	if (rtw_is_file_readable(file_path) == _TRUE)
++	if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 	{
+-		rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++		rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 		if (rlen > 0)
+ 		{
+ 			rtStatus = _SUCCESS;
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8821au/hal/hal_btcoex.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8821au/hal/hal_btcoex.c
+@@ -3397,11 +3397,11 @@ hal_btcoex_AntIsolationConfig_ParaFile(
+ 	_rtw_memset(pHalData->para_file_buf , 0 , MAX_PARA_FILE_BUF_LEN);
+ 
+ 
+-	rtw_merge_string(file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
++	rtw_merge_string(rtw_phy_para_file_path, PATH_LENGTH_MAX, rtw_phy_file_path, pFileName);
+ 
+-	if (rtw_is_file_readable(file_path) == _TRUE)
++	if (rtw_is_file_readable(rtw_phy_para_file_path) == _TRUE)
+ 	{
+-		rlen = rtw_retrieve_from_file(file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
++		rlen = rtw_retrieve_from_file(rtw_phy_para_file_path, pHalData->para_file_buf, MAX_PARA_FILE_BUF_LEN);
+ 		if (rlen > 0)
+ 		{
+ 			rtStatus = _SUCCESS;

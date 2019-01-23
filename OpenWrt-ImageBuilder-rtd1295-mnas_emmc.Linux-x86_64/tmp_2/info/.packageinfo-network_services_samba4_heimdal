@@ -1,0 +1,62 @@
+Source-Makefile: package/network/services/samba4/heimdal/Makefile
+Package: heimdal-libs
+Submenu: Kerberos
+Version: 1.5.3-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libsqlite3 +libreadline +libncurses +libopenssl
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: heimdal/host
+Build-Types: host
+Section: network
+Category: Network
+Title: Heimdal Kerberos 5 (Libraries)
+Maintainer: 
+Source: heimdal-1.5.3.tar.gz
+Type: ipkg
+Description: Heimdal Kerberos 5 (Libraries)
+http://www.h5l.org
+
+@@
+
+Package: heimdal-client
+Submenu: Kerberos
+Version: 1.5.3-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +heimdal-libs
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: heimdal/host
+Build-Types: host
+Section: network
+Category: Network
+Title: Heimdal Kerberos 5 (Client)
+Maintainer: 
+Source: heimdal-1.5.3.tar.gz
+Type: ipkg
+Description: Heimdal Kerberos 5 (Client)
+http://www.h5l.org
+
+@@
+
+Package: heimdal-server
+Submenu: Kerberos
+Version: 1.5.3-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +heimdal-libs
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: heimdal/host
+Build-Types: host
+Section: network
+Category: Network
+Title: Heimdal Kerberos 5 (Server)
+Maintainer: 
+Source: heimdal-1.5.3.tar.gz
+Type: ipkg
+Description: Heimdal Kerberos 5 (Server)
+http://www.h5l.org
+
+@@
+
+

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+export PATH=/bin:/sbin:/usr/bin:/usr/sbin
+
+echo "`date` Starting OpenWRT init"
+
+#while [ ! -e /android/dev/.coldboot_done ]; do
+#while [ -e /android/dev/.booting ]; do
+
+exec unshare --fork --pid /etc/preinit $*

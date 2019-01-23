@@ -1,0 +1,21 @@
+Source-Makefile: feeds/realtek/python-setuptools/Makefile
+Package: python-setuptools
+Submenu: Python
+Version: 18.4-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: python
+Section: language-python
+Category: Languages
+Title: Python Setuptools
+Maintainer: 
+Source: setuptools-18.4.tar.gz
+Type: ipkg
+Description:  Easily download, build, install, upgrade, and uninstall Python packages.
+https://pypi.python.org/pypi/setuptools/
+
+@@
+
+

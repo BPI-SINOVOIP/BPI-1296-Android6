@@ -1,0 +1,8 @@
+Package: luci-app-aria2
+Version: git-17.233.32017-dc12a34-1
+Depends: libc, librt, libpthread, aria2
+Source: realtek/luci/applications/luci-app-aria2
+Section: luci
+Architecture: all
+Installed-Size: 4621
+Description:  LuCI Support for Aria2

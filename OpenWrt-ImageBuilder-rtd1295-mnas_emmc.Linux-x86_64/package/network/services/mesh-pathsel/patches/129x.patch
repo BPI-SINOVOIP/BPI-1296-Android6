@@ -1,0 +1,143 @@
+--- a/Tree_Proactive.c
++++ b/Tree_Proactive.c
+@@ -448,7 +448,7 @@ void retx_pann(){
+ 	unsigned char nexthop_mac_addr[MACADDRLEN] = {0};
+ 
+ #ifdef Tree_debug
+-    printf("\n    --retransmit package---\n");
++    printf("\n    --retransmit packet---\n");
+ #endif
+     for(i = 0; i < MAX_MPP_NUM; i++){
+ 
+@@ -595,7 +595,7 @@ void retx_rann(){
+     unsigned char nexthop_mac_addr[MACADDRLEN] = {0};
+ 
+ #ifdef Tree_debug
+-    printf("\n    --retransmit RANN package---\n");
++    printf("\n    --retransmit RANN packet---\n");
+ #endif
+     if(rann_retx_entry.flag == 1){
+         rann_retx_entry.timeout--;
+--- a/pathselection.c
++++ b/pathselection.c
+@@ -36,6 +36,8 @@
+ #include "pathselection.h"
+ #include "Tree.h"
+ #include "util_PathUpdate.h"
++
++#define PATHSEL_DAEMON_DEBUG
+ 
+ 
+ char interface_ioctl[IFNAMSIZ] = {0};
+@@ -513,18 +515,22 @@ int SendPid()
+     return ret;
+ }
+ 
+-void dequeue_from_driver(struct iwreq wrq, char* buf)
++int dequeue_from_driver(struct iwreq wrq, char* buf)
+ {	
+ 	int sd;	
++	int status = 0;
+ 	sd = iw_sockets_open();	   
+-    strncpy(wrq.ifr_name, interface_ioctl, IFNAMSIZ);
+-    ioctl(sd, DEQUEUEDATA_IOCTL, &wrq);
+-    if( strcmp(buf, "Queue is empty") == 0 ){
+-        gHasData = 0;
+-        signal(SIGUSR1, callback_usr1);
++	strncpy(wrq.ifr_name, interface_ioctl, IFNAMSIZ);
++	ioctl(sd, DEQUEUEDATA_IOCTL, &wrq);
++	if( strcmp(buf, "Queue is empty") == 0 ){
++		gHasData = 0;
++		signal(SIGUSR1, callback_usr1);
++		status = 1;
+ 	}    
+ 	if(sd>=0)
+ 		close(sd);		
++	
++	return status;
+ }
+ 
+ 
+@@ -554,7 +560,8 @@ static void do_daemon()
+ 		{				
+ 			datawrq.u.data.length = sizeof(databuf);
+ 			datawrq.u.data.pointer = (caddr_t) databuf;
+-			dequeue_from_driver(datawrq, (char *)databuf);
++			if(dequeue_from_driver(datawrq, (char *)databuf))
++				break;
+ #else
+ 			RecvQueueBuf = (char *)&hapd->RecvBuf[5];
+ 			nRead = read(hapd->readfifo, hapd->RecvBuf, MAX_MSG_SIZE);
+--- a/pathselection.h
++++ b/pathselection.h
+@@ -139,10 +139,10 @@ typedef struct _DOT11s_RECV_PACKET{
+ 
+ // Copy from realtek code
+ #define BIT(x)  (1 << (x))
+-#define GetAddr1Ptr(pbuf)	((unsigned char *)((unsigned int)(pbuf) + 4))
+-#define GetAddr2Ptr(pbuf)	((unsigned char *)((unsigned int)(pbuf) + 10))
+-#define GetAddr3Ptr(pbuf)	((unsigned char *)((unsigned int)(pbuf) + 16))
+-#define GetAddr4Ptr(pbuf)	((unsigned char *)((unsigned int)(pbuf) + 24))
++#define GetAddr1Ptr(pbuf)	((unsigned char *)((unsigned long)(pbuf) + 4))
++#define GetAddr2Ptr(pbuf)	((unsigned char *)((unsigned long)(pbuf) + 10))
++#define GetAddr3Ptr(pbuf)	((unsigned char *)((unsigned long)(pbuf) + 16))
++#define GetAddr4Ptr(pbuf)	((unsigned char *)((unsigned long)(pbuf) + 24))
+ 
+ #define GetFrameSubType(pbuf)	(cpu_to_le16(*(unsigned short *)(pbuf)) & (BIT(7) | BIT(6) | BIT(5) | BIT(4) | BIT(3) | BIT(2)))
+ 
+@@ -164,8 +164,8 @@ typedef struct _DOT11s_RECV_PACKET{
+ 	
+ /*
+ // Pointer to packet (Skuo MAC header)
+-#define GetMeshDataPtr(pbuf)	((unsigned char *)((unsigned int)(pbuf) + 36))
+-#define GetMeshMgtPtr(pbuf)	((unsigned char *)((unsigned int)(pbuf) + 34))
++#define GetMeshDataPtr(pbuf)	((unsigned char *)((unsigned long)(pbuf) + 36))
++#define GetMeshMgtPtr(pbuf)	((unsigned char *)((unsigned long)(pbuf) + 34))
+ 
+ #define _TO_DS_			BIT(8)	///< To DS
+ #define _FROM_DS_		BIT(9)	///< Frome DS
+@@ -259,34 +259,34 @@ typedef struct _DOT11s_RECV_PACKET{
+ 	} while(0)
+ 
+ 
+-#define GetSequence(pbuf)	(cpu_to_le16(*(unsigned short *)((unsigned int)(pbuf) + 22)) >> 4)
++#define GetSequence(pbuf)	(cpu_to_le16(*(unsigned short *)((unsigned long)(pbuf) + 22)) >> 4)
+ 
+-#define GetFragNum(pbuf)	(cpu_to_le16(*(unsigned short *)((unsigned int)(pbuf) + 22)) & 0x0f)
++#define GetFragNum(pbuf)	(cpu_to_le16(*(unsigned short *)((unsigned long)(pbuf) + 22)) & 0x0f)
+ 
+-#define GetTupleCache(pbuf)	(cpu_to_le16(*(unsigned short *)((unsigned int)(pbuf) + 22)))
++#define GetTupleCache(pbuf)	(cpu_to_le16(*(unsigned short *)((unsigned long)(pbuf) + 22)))
+ 
+ #define SetFragNum(pbuf, num) \
+ 	do {    \
+-		*(unsigned short *)((unsigned int)(pbuf) + 22) = \
+-			((*(unsigned short *)((unsigned int)(pbuf) + 22)) & le16_to_cpu(~(0x000f))) | \
++		*(unsigned short *)((unsigned long)(pbuf) + 22) = \
++			((*(unsigned short *)((unsigned long)(pbuf) + 22)) & le16_to_cpu(~(0x000f))) | \
+ 			cpu_to_le16(0x0f & (num));     \
+ 	} while(0)
+ 
+ #define SetSeqNum(pbuf, num) \
+ 	do {    \
+-		*(unsigned short *)((unsigned int)(pbuf) + 22) = \
+-			((*(unsigned short *)((unsigned int)(pbuf) + 22)) & le16_to_cpu((unsigned short)~0xfff0)) | \
++		*(unsigned short *)((unsigned long)(pbuf) + 22) = \
++			((*(unsigned short *)((unsigned long)(pbuf) + 22)) & le16_to_cpu((unsigned short)~0xfff0)) | \
+ 			le16_to_cpu((unsigned short)(0xfff0 & (num << 4))); \
+ 	} while(0)
+ 
+ #define SetDuration(pbuf, dur) \
+ 	do {    \
+-		*(unsigned short *)((unsigned int)(pbuf) + 2) |= cpu_to_le16(0xffff & (dur)); \
++		*(unsigned short *)((unsigned long)(pbuf) + 2) |= cpu_to_le16(0xffff & (dur)); \
+ 	} while(0)
+ 
+-#define GetAid(pbuf)	(cpu_to_le16(*(unsigned short *)((unsigned int)(pbuf) + 2)) & 0x3fff)	//
++#define GetAid(pbuf)	(cpu_to_le16(*(unsigned short *)((unsigned long)(pbuf) + 2)) & 0x3fff)	//
+ 
+-#define GetTid(pbuf)	(cpu_to_le16(*(unsigned short *)((unsigned int)(pbuf) + (((GetToDs(pbuf)<<1)|GetFrDs(pbuf))==3?30:24))) & 0x000f)
++#define GetTid(pbuf)	(cpu_to_le16(*(unsigned short *)((unsigned long)(pbuf) + (((GetToDs(pbuf)<<1)|GetFrDs(pbuf))==3?30:24))) & 0x000f)
+ 	
+ */
+ 

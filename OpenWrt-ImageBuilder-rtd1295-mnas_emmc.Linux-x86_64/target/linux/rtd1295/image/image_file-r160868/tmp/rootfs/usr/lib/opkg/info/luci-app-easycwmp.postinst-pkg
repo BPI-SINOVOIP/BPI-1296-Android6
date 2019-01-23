@@ -1,0 +1,4 @@
+[ -n "${IPKG_INSTROOT}" ] || {
+	(. /etc/uci-defaults/luci-easycwmp) && rm -f /etc/uci-defaults/luci-easycwmp
+	exit 0
+}

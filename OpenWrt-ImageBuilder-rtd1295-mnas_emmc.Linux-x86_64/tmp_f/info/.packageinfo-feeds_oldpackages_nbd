@@ -1,0 +1,21 @@
+Source-Makefile: package/feeds/oldpackages/nbd/Makefile
+Package: nbd
+Version: 2.9.23-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +kmod-nbd
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: glib2 libintl
+Section: net
+Category: Network
+Title: Network Block Device utilities
+Maintainer: 
+Source: nbd-2.9.23.tar.bz2
+Type: ipkg
+Feed: oldpackages
+Description:   This package contains the network block device client.
+http://nbd.sourceforge.net
+
+@@
+
+

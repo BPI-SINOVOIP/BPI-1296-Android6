@@ -1,0 +1,19 @@
+Source-Makefile: package/kernel/ottbtusb/Makefile
+Package: kmod-ottbtusb
+Submenu: Other modules
+Version: <LINUX_VERSION>+1.0-1
+Depends: +@USB_SUPPORT
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: kernel
+Category: Kernel modules
+Title: Realtek bluetooth USB driver for Android
+Maintainer: 
+Source: ottbtusb-1.0-HEAD.tar.gz
+Type: ipkg
+Description: Realtek bluetooth USB driver for Android
+
+@@
+
+

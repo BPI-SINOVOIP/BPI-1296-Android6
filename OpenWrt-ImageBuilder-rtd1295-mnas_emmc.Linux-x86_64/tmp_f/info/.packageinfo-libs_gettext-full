@@ -1,0 +1,42 @@
+Source-Makefile: package/libs/gettext-full/Makefile
+Package: libintl-full
+Version: 0.19.6-2
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: gettext-full/host
+Build-Types: host
+Section: libs
+Category: Libraries
+Title: GNU Internationalization library
+Maintainer: Jo-Philipp Wich <jow@openwrt.org>
+Source: gettext-0.19.6.tar.xz
+License: GPL-3.0+
+Type: ipkg
+Description: GNU Internationalization library
+http://www.gnu.org/software/gettext/
+Jo-Philipp Wich <jow@openwrt.org>
+@@
+
+Package: gettext-tools
+Version: 0.19.6-2
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libxml2 +libintl-full
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: gettext-full/host
+Build-Types: host
+Section: Utilies
+Category: Terminal
+Title: GNU gettext utility
+Maintainer: Jo-Philipp Wich <jow@openwrt.org>
+Source: gettext-0.19.6.tar.xz
+License: GPL-3.0+
+Type: ipkg
+Description: GNU gettext utility
+http://www.gnu.org/software/gettext/
+Jo-Philipp Wich <jow@openwrt.org>
+@@
+
+

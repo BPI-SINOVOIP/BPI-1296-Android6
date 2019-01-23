@@ -1,0 +1,18 @@
+Source-Makefile: package/network/services/samba4/wsdd/Makefile
+Package: wsdd
+Version: 1.0-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libuuid
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Title: WS Discovery daemon
+Maintainer: Tobias Waldvogel <tobias.waldvogel@gmail.com>
+Source: 
+Type: ipkg
+Description: WS Discovery daemon
+Tobias Waldvogel <tobias.waldvogel@gmail.com>
+@@
+
+

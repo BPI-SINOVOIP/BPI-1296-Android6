@@ -1,0 +1,14 @@
+Package: btrfs-progs
+Version: 4.7.2-1
+Depends: libc, librt, libpthread, libattr, libuuid, zlib, libblkid, liblzo, libpthread
+Source: realtek/packages/utils/btrfs-progs
+License: GPL-2.0
+LicenseFiles: COPYING
+Section: utils
+Maintainer: Daniel Golle <daniel@makrotopia.org>
+Architecture: rtd1295
+Installed-Size: 1225390
+Description:  Btrfs is a new copy on write filesystem for Linux aimed at implementing
+ advanced features while focusing on fault tolerance, repair and easy
+ administration. Initially developed by Oracle, Btrfs is licensed under the
+ GPL and open for contribution from anyone.

@@ -1,0 +1,20 @@
+Source-Makefile: feeds/realtek/xorg/liberation-fonts-ttf/Makefile
+Package: liberation-fonts-ttf
+Submenu: font
+Version: 1.04-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: xorg-font
+Category: Xorg
+Title: liberation-fonts-ttf
+Maintainer: 
+Source: liberation-fonts-1.04.tar.gz
+Type: ipkg
+Description: liberation-fonts-ttf
+https://fedorahosted.org/liberation-fonts/
+
+@@
+
+

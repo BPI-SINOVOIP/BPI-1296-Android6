@@ -1,0 +1,4632 @@
+config ALL
+	bool
+	default y
+
+config MODULES
+	bool
+	default y
+
+config HAVE_DOT_CONFIG
+	bool
+	default y
+
+config TARGET_rtd1295
+	bool
+	default y
+
+config TARGET_rtd1295_mnas_emmc
+	bool
+	default y
+
+config TARGET_rtd1295_mnas_emmc_giraffe-2GB
+	bool
+	default y
+
+config HAS_SUBTARGETS
+	bool
+	default y
+
+config TARGET_BOARD
+	string
+	default "rtd1295"
+
+config TARGET_ARCH_PACKAGES
+	string
+	default "rtd1295"
+
+config DEFAULT_TARGET_OPTIMIZATION
+	string
+	default "-Os -pipe -fno-caller-saves"
+
+config CPU_TYPE
+	string
+	default "cortex-a53+neon"
+
+config LINUX_4_1
+	bool
+	default y
+
+config DEFAULT_base-files
+	bool
+	default y
+
+config DEFAULT_busybox
+	bool
+	default y
+
+config DEFAULT_dnsmasq
+	bool
+	default y
+
+config DEFAULT_dropbear
+	bool
+	default y
+
+config DEFAULT_firewall
+	bool
+	default y
+
+config DEFAULT_fstools
+	bool
+	default y
+
+config DEFAULT_ip6tables
+	bool
+	default y
+
+config DEFAULT_iptables
+	bool
+	default y
+
+config DEFAULT_kmod-mali
+	bool
+	default y
+
+config DEFAULT_kmod-nf-nathelper
+	bool
+	default y
+
+config DEFAULT_libc
+	bool
+	default y
+
+config DEFAULT_libgcc
+	bool
+	default y
+
+config DEFAULT_mtd
+	bool
+	default y
+
+config DEFAULT_netifd
+	bool
+	default y
+
+config DEFAULT_odhcp6c
+	bool
+	default y
+
+config DEFAULT_odhcpd
+	bool
+	default y
+
+config DEFAULT_opkg
+	bool
+	default y
+
+config DEFAULT_ppp
+	bool
+	default y
+
+config DEFAULT_ppp-mod-pppoe
+	bool
+	default y
+
+config DEFAULT_uci
+	bool
+	default y
+
+config AUDIO_SUPPORT
+	bool
+	default y
+
+config GPIO_SUPPORT
+	bool
+	default y
+
+config PCI_SUPPORT
+	bool
+	default y
+
+config USB_SUPPORT
+	bool
+	default y
+
+config USES_DEVICETREE
+	bool
+	default y
+
+config USES_SQUASHFS
+	bool
+	default y
+
+config ARCH_64BIT
+	bool
+	default y
+
+config aarch64
+	bool
+	default y
+
+config ARCH
+	string
+	default "aarch64"
+
+config TARGET_ROOTFS_INITRD
+	bool
+	default y
+
+config TARGET_INITRAMFS_COMPRESSION_GZIP
+	bool
+	default y
+
+config EXTERNAL_CPIO
+	string
+	default ""
+
+config TARGET_ROOTFS_TARGZ
+	bool
+	default y
+
+config TARGET_NAS_IMG
+	bool
+	default y
+
+config TARGET_NAS_IMG_ANDROID_OUT_DIR
+	string
+	default "../android/out"
+
+config TARGET_NAS_IMG_ANDROID_TARGET_PATH
+	string
+	default "target/product/kylin32"
+
+config TARGET_UBIFS_FREE_SPACE_FIXUP
+	bool
+	default y
+
+config TARGET_UBIFS_JOURNAL_SIZE
+	string
+	default ""
+
+config TARGET_ROOTFS_INCLUDE_UIMAGE
+	bool
+	default y
+
+config TARGET_ROOTFS_INCLUDE_ZIMAGE
+	bool
+	default y
+
+config TARGET_ROOTFS_INCLUDE_FIT
+	bool
+	default y
+
+config TARGET_LAYOUT_SIZE_8GB
+	bool
+	default y
+
+config UPDATE_AUDIO_FW
+	bool
+	default y
+
+config AUDIO_CUST_BRANCH
+	bool
+	default y
+
+config AUDIO_FW_TRUNK
+	string
+	default "trunk-6.0.0_r1"
+
+config AUDIO_CVBS_ON
+	bool
+	default y
+
+config AUDIO_FW_REVISION
+	string
+	default "HEAD"
+
+config AUDIO_UPDATE_MNAS
+	bool
+	default y
+
+config DISPLAY_SUPPORT
+	bool
+	default y
+
+config BUILD_PATENTED
+	bool
+	default y
+
+config SHADOW_PASSWORDS
+	bool
+	default y
+
+config KERNEL_PRINTK
+	bool
+	default y
+
+config KERNEL_CRASHLOG
+	bool
+	default y
+
+config KERNEL_SWAP
+	bool
+	default y
+
+config KERNEL_DEBUG_FS
+	bool
+	default y
+
+config KERNEL_PERF_EVENTS
+	bool
+	default y
+
+config KERNEL_PROFILING
+	bool
+	default y
+
+config KERNEL_KALLSYMS
+	bool
+	default y
+
+config KERNEL_FTRACE
+	bool
+	default y
+
+config KERNEL_FUNCTION_TRACER
+	bool
+	default y
+
+config KERNEL_FUNCTION_GRAPH_TRACER
+	bool
+	default y
+
+config KERNEL_DYNAMIC_FTRACE
+	bool
+	default y
+
+config KERNEL_DEBUG_KERNEL
+	bool
+	default y
+
+config KERNEL_DEBUG_INFO
+	bool
+	default y
+
+config KERNEL_DYNAMIC_DEBUG
+	bool
+	default y
+
+config KERNEL_AIO
+	bool
+	default y
+
+config KERNEL_DIRECT_IO
+	bool
+	default y
+
+config KERNEL_FHANDLE
+	bool
+	default y
+
+config KERNEL_BLK_DEV_BSG
+	bool
+	default y
+
+config KERNEL_MAGIC_SYSRQ
+	bool
+	default y
+
+config KERNEL_COREDUMP
+	bool
+	default y
+
+config KERNEL_ELF_CORE
+	bool
+	default y
+
+config KERNEL_PRINTK_TIME
+	bool
+	default y
+
+config KERNEL_PROC_PAGE_MONITOR
+	bool
+	default y
+
+config USE_RFKILL
+	bool
+	default y
+
+config KERNEL_DEVTMPFS
+	bool
+	default y
+
+config KERNEL_DEVTMPFS_MOUNT
+	bool
+	default y
+
+config KERNEL_CGROUPS
+	bool
+	default y
+
+config KERNEL_FREEZER
+	bool
+	default y
+
+config KERNEL_CGROUP_FREEZER
+	bool
+	default y
+
+config KERNEL_CGROUP_DEVICE
+	bool
+	default y
+
+config KERNEL_CPUSETS
+	bool
+	default y
+
+config KERNEL_PROC_PID_CPUSET
+	bool
+	default y
+
+config KERNEL_CGROUP_CPUACCT
+	bool
+	default y
+
+config KERNEL_RESOURCE_COUNTERS
+	bool
+	default y
+
+config KERNEL_MM_OWNER
+	bool
+	default y
+
+config KERNEL_MEMCG
+	bool
+	default y
+
+config KERNEL_MEMCG_SWAP
+	bool
+	default y
+
+config KERNEL_MEMCG_SWAP_ENABLED
+	bool
+	default y
+
+config KERNEL_MEMCG_KMEM
+	bool
+	default y
+
+config KERNEL_CGROUP_SCHED
+	bool
+	default y
+
+config KERNEL_FAIR_GROUP_SCHED
+	bool
+	default y
+
+config KERNEL_CFS_BANDWIDTH
+	bool
+	default y
+
+config KERNEL_RT_GROUP_SCHED
+	bool
+	default y
+
+config KERNEL_BLK_CGROUP
+	bool
+	default y
+
+config KERNEL_NETPRIO_CGROUP
+	bool
+	default y
+
+config KERNEL_NAMESPACES
+	bool
+	default y
+
+config KERNEL_UTS_NS
+	bool
+	default y
+
+config KERNEL_IPC_NS
+	bool
+	default y
+
+config KERNEL_PID_NS
+	bool
+	default y
+
+config KERNEL_NET_NS
+	bool
+	default y
+
+config KERNEL_SECCOMP_FILTER
+	bool
+	default y
+
+config KERNEL_SECCOMP
+	bool
+	default y
+
+config IPV6
+	bool
+	default y
+
+config PKG_BUILD_PARALLEL
+	bool
+	default y
+
+config PKG_BUILD_USE_JOBSERVER
+	bool
+	default y
+
+config USE_STRIP
+	bool
+	default y
+
+config STRIP_ARGS
+	string
+	default "--strip-all"
+
+config USE_LIBSTDCXX
+	bool
+	default y
+
+config PKG_CC_STACKPROTECTOR_NONE
+	bool
+	default y
+
+config KERNEL_CC_STACKPROTECTOR_NONE
+	bool
+	default y
+
+config PKG_FORTIFY_SOURCE_NONE
+	bool
+	default y
+
+config PKG_RELRO_NONE
+	bool
+	default y
+
+config DEVEL
+	bool
+	default y
+
+config BINARY_FOLDER
+	string
+	default ""
+
+config DOWNLOAD_FOLDER
+	string
+	default ""
+
+config LOCALMIRROR
+	string
+	default ""
+
+config AUTOREBUILD
+	bool
+	default y
+
+config BUILD_SUFFIX
+	string
+	default ""
+
+config TARGET_ROOTFS_DIR
+	string
+	default ""
+
+config CCACHE
+	bool
+	default y
+
+config EXTERNAL_KERNEL_TREE
+	string
+	default ""
+
+config KERNEL_GIT_CLONE_URI
+	string
+	default "xxx"
+
+config KERNEL_GIT_REVISION
+	string
+	default "HEAD"
+
+config ANDROID_CONSOLE
+	bool
+	default y
+
+config EXTRA_OPTIMIZATION
+	string
+	default "-fno-caller-saves"
+
+config TARGET_OPTIMIZATION
+	string
+	default "-Os -pipe -fno-caller-saves"
+
+config NEED_TOOLCHAIN
+	bool
+	default y
+
+config TOOLCHAINOPTS
+	bool
+	default y
+
+config BINUTILS_VERSION_LINARO
+	bool
+	default y
+
+config EXTRA_BINUTILS_CONFIG_OPTIONS
+	string
+	default ""
+
+config BINUTILS_VERSION
+	string
+	default "linaro"
+
+config GCC_USE_VERSION_4_9_LINARO
+	bool
+	default y
+
+config EXTRA_GCC_CONFIG_OPTIONS
+	string
+	default ""
+
+config LIBC_USE_GLIBC
+	bool
+	default y
+
+config EGLIBC_USE_VERSION_2_19
+	bool
+	default y
+
+config EGLIBC_OPTION_EGLIBC_ADVANCED_INET6
+	bool
+	default y
+
+config EGLIBC_OPTION_EGLIBC_BACKTRACE
+	bool
+	default y
+
+config EGLIBC_OPTION_EGLIBC_BIG_MACROS
+	bool
+	default y
+
+config EGLIBC_OPTION_EGLIBC_BSD
+	bool
+	default y
+
+config EGLIBC_OPTION_EGLIBC_CXX_TESTS
+	bool
+	default y
+
+config EGLIBC_OPTION_EGLIBC_CATGETS
+	bool
+	default y
+
+config EGLIBC_OPTION_EGLIBC_CHARSETS
+	bool
+	default y
+
+config EGLIBC_OPTION_EGLIBC_CRYPT
+	bool
+	default y
+
+config EGLIBC_OPTION_EGLIBC_CRYPT_UFC
+	bool
+	default y
+
+config EGLIBC_OPTION_EGLIBC_DB_ALIASES
+	bool
+	default y
+
+config EGLIBC_OPTION_EGLIBC_ENVZ
+	bool
+	default y
+
+config EGLIBC_OPTION_EGLIBC_FCVT
+	bool
+	default y
+
+config EGLIBC_OPTION_EGLIBC_FMTMSG
+	bool
+	default y
+
+config EGLIBC_OPTION_EGLIBC_FSTAB
+	bool
+	default y
+
+config EGLIBC_OPTION_EGLIBC_FTRAVERSE
+	bool
+	default y
+
+config EGLIBC_OPTION_EGLIBC_GETLOGIN
+	bool
+	default y
+
+config EGLIBC_OPTION_EGLIBC_IDN
+	bool
+	default y
+
+config EGLIBC_OPTION_EGLIBC_INET
+	bool
+	default y
+
+config EGLIBC_OPTION_EGLIBC_INET_ANL
+	bool
+	default y
+
+config EGLIBC_OPTION_EGLIBC_LIBM
+	bool
+	default y
+
+config EGLIBC_OPTION_EGLIBC_LIBM_BIG
+	bool
+	default y
+
+config EGLIBC_OPTION_EGLIBC_LOCALES
+	bool
+	default y
+
+config EGLIBC_OPTION_EGLIBC_LOCALE_CODE
+	bool
+	default y
+
+config EGLIBC_OPTION_EGLIBC_MEMUSAGE
+	bool
+	default y
+
+config EGLIBC_OPTION_EGLIBC_NIS
+	bool
+	default y
+
+config EGLIBC_OPTION_EGLIBC_NSSWITCH
+	bool
+	default y
+
+config EGLIBC_OPTION_EGLIBC_RCMD
+	bool
+	default y
+
+config EGLIBC_OPTION_EGLIBC_RTLD_DEBUG
+	bool
+	default y
+
+config EGLIBC_OPTION_EGLIBC_SPAWN
+	bool
+	default y
+
+config EGLIBC_OPTION_EGLIBC_STREAMS
+	bool
+	default y
+
+config EGLIBC_OPTION_EGLIBC_SUNRPC
+	bool
+	default y
+
+config EGLIBC_OPTION_EGLIBC_UTMP
+	bool
+	default y
+
+config EGLIBC_OPTION_EGLIBC_UTMPX
+	bool
+	default y
+
+config EGLIBC_OPTION_EGLIBC_WORDEXP
+	bool
+	default y
+
+config EGLIBC_OPTION_POSIX_C_LANG_WIDE_CHAR
+	bool
+	default y
+
+config EGLIBC_OPTION_POSIX_REGEXP
+	bool
+	default y
+
+config EGLIBC_OPTION_POSIX_REGEXP_GLIBC
+	bool
+	default y
+
+config EGLIBC_OPTION_POSIX_WIDE_CHAR_DEVICE_IO
+	bool
+	default y
+
+config USE_GLIBC
+	bool
+	default y
+
+config GCC_VERSION_4_9_LINARO
+	bool
+	default y
+
+config GCC_VERSION
+	string
+	default "4.9-linaro"
+
+config GCC_VERSION_4_9
+	bool
+	default y
+
+config GLIBC_VERSION
+	string
+	default "2.19"
+
+config EGLIBC_VERSION_2_19
+	bool
+	default y
+
+config GLIBC_REVISION
+	string
+	default "25243"
+
+config LIBC
+	string
+	default "glibc"
+
+config LIBC_VERSION
+	string
+	default "2.19"
+
+config TARGET_SUFFIX
+	string
+	default "gnu"
+
+config IB
+	bool
+	default y
+
+config IB_STANDALONE
+	bool
+	default y
+
+config IB_LINUX_SOURCE
+	bool
+	default y
+
+config TARGET_PREINIT_SUPPRESS_STDERR
+	bool
+	default y
+
+config TARGET_PREINIT_TIMEOUT
+	int
+	default 2
+
+config TARGET_PREINIT_IFNAME
+	string
+	default ""
+
+config TARGET_PREINIT_IP
+	string
+	default "192.168.1.1"
+
+config TARGET_PREINIT_NETMASK
+	string
+	default "255.255.255.0"
+
+config TARGET_PREINIT_BROADCAST
+	string
+	default "192.168.1.255"
+
+config TARGET_INIT_PATH
+	string
+	default "/bin:/sbin:/usr/bin:/usr/sbin"
+
+config TARGET_INIT_ENV
+	string
+	default ""
+
+config TARGET_INIT_CMD
+	string
+	default "/sbin/init"
+
+config TARGET_INIT_SUPPRESS_STDERR
+	bool
+	default y
+
+config PER_FEED_REPO
+	bool
+	default y
+
+config PER_FEED_REPO_ADD_DISABLED
+	bool
+	default y
+
+config PER_FEED_REPO_ADD_COMMENTED
+	bool
+	default y
+
+config OPKGSMIME_PASSPHRASE
+	bool
+	default y
+
+config FEATURE_drawing-backend_DirectFB
+	bool
+	default y
+
+config PACKAGE_base-files
+	bool
+	default y
+
+config PACKAGE_block-mount
+	bool
+	default y
+
+config PACKAGE_busybox
+	bool
+	default y
+
+config BUSYBOX_CUSTOM
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_HAVE_DOT_CONFIG
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_INCLUDE_SUSv2
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_PLATFORM_LINUX
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_BUFFERS_GO_ON_STACK
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_SHOW_USAGE
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_VERBOSE_USAGE
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_COMPRESS_USAGE
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_SUBST_WCHAR
+	int
+	default 0
+
+config BUSYBOX_DEFAULT_LAST_SUPPORTED_WCHAR
+	int
+	default 0
+
+config BUSYBOX_DEFAULT_LONG_OPTS
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_DEVPTS
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_PIDFILE
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_PID_FILE_PATH
+	string
+	default "/var/run"
+
+config BUSYBOX_DEFAULT_FEATURE_SUID
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_PREFER_APPLETS
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_BUSYBOX_EXEC_PATH
+	string
+	default "/proc/self/exe"
+
+config BUSYBOX_DEFAULT_FEATURE_SYSLOG
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_LFS
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_CROSS_COMPILER_PREFIX
+	string
+	default ""
+
+config BUSYBOX_DEFAULT_SYSROOT
+	string
+	default ""
+
+config BUSYBOX_DEFAULT_EXTRA_CFLAGS
+	string
+	default ""
+
+config BUSYBOX_DEFAULT_EXTRA_LDFLAGS
+	string
+	default ""
+
+config BUSYBOX_DEFAULT_EXTRA_LDLIBS
+	string
+	default ""
+
+config BUSYBOX_DEFAULT_NO_DEBUG_LIB
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_INSTALL_APPLET_SYMLINKS
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_PREFIX
+	string
+	default "./_install"
+
+config BUSYBOX_DEFAULT_PASSWORD_MINLEN
+	int
+	default 6
+
+config BUSYBOX_DEFAULT_MD5_SMALL
+	int
+	default 1
+
+config BUSYBOX_DEFAULT_SHA3_SMALL
+	int
+	default 1
+
+config BUSYBOX_DEFAULT_FEATURE_FAST_TOP
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_EDITING
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_EDITING_MAX_LEN
+	int
+	default 512
+
+config BUSYBOX_DEFAULT_FEATURE_EDITING_HISTORY
+	int
+	default 256
+
+config BUSYBOX_DEFAULT_FEATURE_TAB_COMPLETION
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_EDITING_FANCY_PROMPT
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_NON_POSIX_CP
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_COPYBUF_KB
+	int
+	default 4
+
+config BUSYBOX_DEFAULT_IOCTL_HEX2STR_ERROR
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_SEAMLESS_GZ
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_GUNZIP
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_BUNZIP2
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_GZIP
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_GZIP_FAST
+	int
+	default 0
+
+config BUSYBOX_DEFAULT_TAR
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_TAR_CREATE
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_TAR_FROM
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_TAR_GNU_EXTENSIONS
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_BASENAME
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_CAT
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_DATE
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_DATE_ISOFMT
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_HOSTID
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_ID
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_TEST
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_TEST_64
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_TOUCH
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_TOUCH_SUSV3
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_TR
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_CHGRP
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_CHMOD
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_CHOWN
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_CHROOT
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_CP
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_CUT
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_DD
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_DD_SIGNAL_HANDLING
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_DD_IBS_OBS
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_DF
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_DIRNAME
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_DU
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_DU_DEFAULT_BLOCKSIZE_1K
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_ECHO
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_FANCY_ECHO
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_ENV
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_EXPR
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_EXPR_MATH_SUPPORT_64
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FALSE
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FSYNC
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_HEAD
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_FANCY_HEAD
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_LN
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_LS
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_LS_FILETYPES
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_LS_FOLLOWLINKS
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_LS_RECURSIVE
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_LS_SORTFILES
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_LS_TIMESTAMPS
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_LS_USERNAME
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_LS_COLOR
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_LS_COLOR_IS_DEFAULT
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_MD5SUM
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_MKDIR
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_MKFIFO
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_MKNOD
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_MV
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_NICE
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_PRINTF
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_PWD
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_READLINK
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_READLINK_FOLLOW
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_RM
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_RMDIR
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_SEQ
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_SLEEP
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_FANCY_SLEEP
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_SORT
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_SYNC
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_TAIL
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_FANCY_TAIL
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_TEE
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_TEE_USE_BLOCK_IO
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_TRUE
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_UNAME
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_UNIQ
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_WC
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_YES
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_PRESERVE_HARDLINKS
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_AUTOWIDTH
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_HUMAN_READABLE
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_MD5_SHA1_SUM_CHECK
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_CLEAR
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_RESET
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_DEFAULT_SETFONT_DIR
+	string
+	default ""
+
+config BUSYBOX_DEFAULT_MKTEMP
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_START_STOP_DAEMON
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_WHICH
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_AWK
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_AWK_LIBM
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_AWK_GNU_EXTENSIONS
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_CMP
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_SED
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_VI
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_VI_MAX_LEN
+	int
+	default 1024
+
+config BUSYBOX_DEFAULT_FEATURE_VI_COLON
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_VI_YANKMARK
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_VI_SEARCH
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_VI_USE_SIGNALS
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_VI_DOT_CMD
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_VI_READONLY
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_VI_SETOPTS
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_VI_SET
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_VI_WIN_RESIZE
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_VI_ASK_TERMINAL
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_VI_UNDO_QUEUE_MAX
+	int
+	default 0
+
+config BUSYBOX_DEFAULT_FEATURE_ALLOW_EXEC
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FIND
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_FIND_PRINT0
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_FIND_PERM
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_FIND_TYPE
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_FIND_XDEV
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_FIND_MAXDEPTH
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_FIND_EXEC
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_FIND_USER
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_FIND_GROUP
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_FIND_NOT
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_FIND_DEPTH
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_FIND_PAREN
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_FIND_SIZE
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_FIND_PRUNE
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_FIND_PATH
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_FIND_REGEX
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_GREP
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_GREP_EGREP_ALIAS
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_GREP_FGREP_ALIAS
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_GREP_CONTEXT
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_XARGS
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_XARGS_SUPPORT_CONFIRMATION
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_XARGS_SUPPORT_QUOTES
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_XARGS_SUPPORT_TERMOPT
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_XARGS_SUPPORT_ZERO_TERM
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_HALT
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_TELINIT_PATH
+	string
+	default ""
+
+config BUSYBOX_DEFAULT_FEATURE_KILL_DELAY
+	int
+	default 0
+
+config BUSYBOX_DEFAULT_INIT_TERMINAL_TYPE
+	string
+	default ""
+
+config BUSYBOX_DEFAULT_FEATURE_SHADOWPASSWDS
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_LAST_ID
+	int
+	default 0
+
+config BUSYBOX_DEFAULT_FIRST_SYSTEM_ID
+	int
+	default 0
+
+config BUSYBOX_DEFAULT_LAST_SYSTEM_ID
+	int
+	default 0
+
+config BUSYBOX_DEFAULT_PASSWD
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_PASSWD_WEAK_CHECK
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_DEFAULT_PASSWD_ALGO
+	string
+	default "md5"
+
+config BUSYBOX_DEFAULT_DEFAULT_MODULES_DIR
+	string
+	default ""
+
+config BUSYBOX_DEFAULT_DEFAULT_DEPMOD_FILE
+	string
+	default ""
+
+config BUSYBOX_DEFAULT_DMESG
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_DMESG_PRETTY
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_HEXDUMP
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_HWCLOCK
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_MKSWAP
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_MOUNT
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_MOUNT_HELPERS
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_MOUNT_CIFS
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_MOUNT_FLAGS
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_MOUNT_FSTAB
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_PIVOT_ROOT
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_SWITCH_ROOT
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_UMOUNT
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_UMOUNT_ALL
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_MOUNT_LOOP
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_CROND
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_CROND_DIR
+	string
+	default "/etc"
+
+config BUSYBOX_DEFAULT_LESS
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_LESS_MAXLINES
+	int
+	default 9999999
+
+config BUSYBOX_DEFAULT_FEATURE_BEEP_FREQ
+	int
+	default 0
+
+config BUSYBOX_DEFAULT_FEATURE_BEEP_LENGTH_MS
+	int
+	default 0
+
+config BUSYBOX_DEFAULT_CRONTAB
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_DEVMEM
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_LOCK
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_STRINGS
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_TIME
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_NC
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_PING
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_PING6
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_FANCY_PING
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_IPV6
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_PREFER_IPV4_ADDRESS
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_VERBOSE_RESOLUTION_ERRORS
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_ARPING
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_BRCTL
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_BRCTL_FANCY
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_BRCTL_SHOW
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_IFCONFIG
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_IFCONFIG_STATUS
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_IFCONFIG_HW
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_IFCONFIG_BROADCAST_PLUS
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_IFUPDOWN_IFSTATE_PATH
+	string
+	default ""
+
+config BUSYBOX_DEFAULT_NETMSG
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_NETSTAT
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_NETSTAT_WIDE
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_NETSTAT_PRG
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_NSLOOKUP
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_NTPD
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_NTPD_SERVER
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_ROUTE
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_TELNET
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_TELNET_TTYPE
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_TELNETD
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_TELNETD_STANDALONE
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_TRACEROUTE
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_TRACEROUTE_VERBOSE
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_DHCPD_LEASES_FILE
+	string
+	default ""
+
+config BUSYBOX_DEFAULT_UDHCPC
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_UDHCP_DEBUG
+	int
+	default 0
+
+config BUSYBOX_DEFAULT_FEATURE_UDHCP_RFC3397
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_UDHCPC_DEFAULT_SCRIPT
+	string
+	default "/usr/share/udhcpc/default.script"
+
+config BUSYBOX_DEFAULT_UDHCPC_SLACK_FOR_BUGGY_SERVERS
+	int
+	default 80
+
+config BUSYBOX_DEFAULT_IFUPDOWN_UDHCPC_CMD_OPTIONS
+	string
+	default ""
+
+config BUSYBOX_DEFAULT_VCONFIG
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_WGET
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_WGET_STATUSBAR
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_WGET_AUTHENTICATION
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_WGET_LONG_OPTIONS
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_MIME_CHARSET
+	string
+	default ""
+
+config BUSYBOX_DEFAULT_TOP
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_TOP_CPU_USAGE_PERCENTAGE
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_TOP_CPU_GLOBAL_PERCENTS
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_UPTIME
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FREE
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_KILL
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_KILLALL
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_PGREP
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_PIDOF
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_PS
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_PS_WIDE
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_BB_SYSCTL
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_SV_DEFAULT_SERVICE_DIR
+	string
+	default ""
+
+config BUSYBOX_DEFAULT_ASH
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_ASH_BASH_COMPAT
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_ASH_JOB_CONTROL
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_ASH_ALIAS
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_ASH_GETOPTS
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_ASH_BUILTIN_ECHO
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_ASH_BUILTIN_PRINTF
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_ASH_BUILTIN_TEST
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_ASH_CMDCMD
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_ASH_EXPAND_PRMT
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_SH_IS_ASH
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_BASH_IS_NONE
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_SH_MATH_SUPPORT
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_SH_MATH_SUPPORT_64
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_SH_NOFORK
+	bool
+	default y
+
+config BUSYBOX_DEFAULT_FEATURE_SYSLOGD_READ_BUFFER_SIZE
+	int
+	default 0
+
+config BUSYBOX_DEFAULT_FEATURE_IPC_SYSLOG_BUFFER_SIZE
+	int
+	default 0
+
+config BUSYBOX_DEFAULT_LOGGER
+	bool
+	default y
+
+config BUSYBOX_CONFIG_HAVE_DOT_CONFIG
+	bool
+	default y
+
+config BUSYBOX_CONFIG_INCLUDE_SUSv2
+	bool
+	default y
+
+config BUSYBOX_CONFIG_PLATFORM_LINUX
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_BUFFERS_GO_ON_STACK
+	bool
+	default y
+
+config BUSYBOX_CONFIG_SHOW_USAGE
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_VERBOSE_USAGE
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_COMPRESS_USAGE
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_USE_SENDFILE
+	bool
+	default y
+
+config BUSYBOX_CONFIG_LONG_OPTS
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_DEVPTS
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_PIDFILE
+	bool
+	default y
+
+config BUSYBOX_CONFIG_PID_FILE_PATH
+	string
+	default "/var/run"
+
+config BUSYBOX_CONFIG_FEATURE_SUID
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_PREFER_APPLETS
+	bool
+	default y
+
+config BUSYBOX_CONFIG_BUSYBOX_EXEC_PATH
+	string
+	default "/proc/self/exe"
+
+config BUSYBOX_CONFIG_FEATURE_SYSLOG
+	bool
+	default y
+
+config BUSYBOX_CONFIG_LFS
+	bool
+	default y
+
+config BUSYBOX_CONFIG_CROSS_COMPILER_PREFIX
+	string
+	default ""
+
+config BUSYBOX_CONFIG_SYSROOT
+	string
+	default ""
+
+config BUSYBOX_CONFIG_EXTRA_CFLAGS
+	string
+	default ""
+
+config BUSYBOX_CONFIG_EXTRA_LDFLAGS
+	string
+	default ""
+
+config BUSYBOX_CONFIG_EXTRA_LDLIBS
+	string
+	default ""
+
+config BUSYBOX_CONFIG_NO_DEBUG_LIB
+	bool
+	default y
+
+config BUSYBOX_CONFIG_INSTALL_APPLET_SYMLINKS
+	bool
+	default y
+
+config BUSYBOX_CONFIG_PREFIX
+	string
+	default "./_install"
+
+config BUSYBOX_CONFIG_PASSWORD_MINLEN
+	int
+	default 6
+
+config BUSYBOX_CONFIG_MD5_SMALL
+	int
+	default 1
+
+config BUSYBOX_CONFIG_SHA3_SMALL
+	int
+	default 1
+
+config BUSYBOX_CONFIG_FEATURE_FAST_TOP
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_EDITING
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_EDITING_MAX_LEN
+	int
+	default 512
+
+config BUSYBOX_CONFIG_FEATURE_EDITING_HISTORY
+	int
+	default 256
+
+config BUSYBOX_CONFIG_FEATURE_TAB_COMPLETION
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_EDITING_FANCY_PROMPT
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_NON_POSIX_CP
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_COPYBUF_KB
+	int
+	default 4
+
+config BUSYBOX_CONFIG_IOCTL_HEX2STR_ERROR
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_SEAMLESS_GZ
+	bool
+	default y
+
+config BUSYBOX_CONFIG_GUNZIP
+	bool
+	default y
+
+config BUSYBOX_CONFIG_BUNZIP2
+	bool
+	default y
+
+config BUSYBOX_CONFIG_GZIP
+	bool
+	default y
+
+config BUSYBOX_CONFIG_GZIP_FAST
+	int
+	default 0
+
+config BUSYBOX_CONFIG_TAR
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_TAR_CREATE
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_TAR_FROM
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_TAR_GNU_EXTENSIONS
+	bool
+	default y
+
+config BUSYBOX_CONFIG_DATE
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_DATE_ISOFMT
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_DATE_NANO
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_DATE_COMPAT
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FSYNC
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_AUTOWIDTH
+	bool
+	default y
+
+config BUSYBOX_CONFIG_CLEAR
+	bool
+	default y
+
+config BUSYBOX_CONFIG_RESET
+	bool
+	default y
+
+config BUSYBOX_CONFIG_MKTEMP
+	bool
+	default y
+
+config BUSYBOX_CONFIG_START_STOP_DAEMON
+	bool
+	default y
+
+config BUSYBOX_CONFIG_WHICH
+	bool
+	default y
+
+config BUSYBOX_CONFIG_AWK
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_AWK_LIBM
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_AWK_GNU_EXTENSIONS
+	bool
+	default y
+
+config BUSYBOX_CONFIG_CMP
+	bool
+	default y
+
+config BUSYBOX_CONFIG_SED
+	bool
+	default y
+
+config BUSYBOX_CONFIG_VI
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_VI_MAX_LEN
+	int
+	default 1024
+
+config BUSYBOX_CONFIG_FEATURE_VI_COLON
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_VI_YANKMARK
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_VI_SEARCH
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_VI_USE_SIGNALS
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_VI_DOT_CMD
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_VI_READONLY
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_VI_SETOPTS
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_VI_SET
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_VI_WIN_RESIZE
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_VI_ASK_TERMINAL
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_ALLOW_EXEC
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FIND
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_FIND_PRINT0
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_FIND_PERM
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_FIND_TYPE
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_FIND_XDEV
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_FIND_MAXDEPTH
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_FIND_EXEC
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_FIND_USER
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_FIND_GROUP
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_FIND_NOT
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_FIND_DEPTH
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_FIND_PAREN
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_FIND_SIZE
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_FIND_PRUNE
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_FIND_PATH
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_FIND_REGEX
+	bool
+	default y
+
+config BUSYBOX_CONFIG_GREP
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_GREP_EGREP_ALIAS
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_GREP_FGREP_ALIAS
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_GREP_CONTEXT
+	bool
+	default y
+
+config BUSYBOX_CONFIG_XARGS
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_XARGS_SUPPORT_CONFIRMATION
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_XARGS_SUPPORT_QUOTES
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_XARGS_SUPPORT_TERMOPT
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_XARGS_SUPPORT_ZERO_TERM
+	bool
+	default y
+
+config BUSYBOX_CONFIG_HALT
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_SHADOWPASSWDS
+	bool
+	default y
+
+config BUSYBOX_CONFIG_PASSWD
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_PASSWD_WEAK_CHECK
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_DEFAULT_PASSWD_ALGO
+	string
+	default "md5"
+
+config BUSYBOX_CONFIG_DMESG
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_DMESG_PRETTY
+	bool
+	default y
+
+config BUSYBOX_CONFIG_HEXDUMP
+	bool
+	default y
+
+config BUSYBOX_CONFIG_HWCLOCK
+	bool
+	default y
+
+config BUSYBOX_CONFIG_MKSWAP
+	bool
+	default y
+
+config BUSYBOX_CONFIG_PIVOT_ROOT
+	bool
+	default y
+
+config BUSYBOX_CONFIG_SWITCH_ROOT
+	bool
+	default y
+
+config BUSYBOX_CONFIG_CROND
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_CROND_DIR
+	string
+	default "/etc"
+
+config BUSYBOX_CONFIG_LESS
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_LESS_MAXLINES
+	int
+	default 9999999
+
+config BUSYBOX_CONFIG_CRONTAB
+	bool
+	default y
+
+config BUSYBOX_CONFIG_DEVMEM
+	bool
+	default y
+
+config BUSYBOX_CONFIG_LOCK
+	bool
+	default y
+
+config BUSYBOX_CONFIG_STRINGS
+	bool
+	default y
+
+config BUSYBOX_CONFIG_TIME
+	bool
+	default y
+
+config BUSYBOX_CONFIG_NC
+	bool
+	default y
+
+config BUSYBOX_CONFIG_PING
+	bool
+	default y
+
+config BUSYBOX_CONFIG_PING6
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_FANCY_PING
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_IPV6
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_PREFER_IPV4_ADDRESS
+	bool
+	default y
+
+config BUSYBOX_CONFIG_VERBOSE_RESOLUTION_ERRORS
+	bool
+	default y
+
+config BUSYBOX_CONFIG_ARPING
+	bool
+	default y
+
+config BUSYBOX_CONFIG_BRCTL
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_BRCTL_FANCY
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_BRCTL_SHOW
+	bool
+	default y
+
+config BUSYBOX_CONFIG_IFCONFIG
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_IFCONFIG_STATUS
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_IFCONFIG_HW
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_IFCONFIG_BROADCAST_PLUS
+	bool
+	default y
+
+config BUSYBOX_CONFIG_IFENSLAVE
+	bool
+	default y
+
+config BUSYBOX_CONFIG_IP
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_IP_LINK
+	bool
+	default y
+
+config BUSYBOX_CONFIG_NETMSG
+	bool
+	default y
+
+config BUSYBOX_CONFIG_NETSTAT
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_NETSTAT_WIDE
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_NETSTAT_PRG
+	bool
+	default y
+
+config BUSYBOX_CONFIG_NSLOOKUP
+	bool
+	default y
+
+config BUSYBOX_CONFIG_NTPD
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_NTPD_SERVER
+	bool
+	default y
+
+config BUSYBOX_CONFIG_ROUTE
+	bool
+	default y
+
+config BUSYBOX_CONFIG_TELNET
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_TELNET_TTYPE
+	bool
+	default y
+
+config BUSYBOX_CONFIG_TELNETD
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_TELNETD_STANDALONE
+	bool
+	default y
+
+config BUSYBOX_CONFIG_TRACEROUTE
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_TRACEROUTE_VERBOSE
+	bool
+	default y
+
+config BUSYBOX_CONFIG_UDHCPC
+	bool
+	default y
+
+config BUSYBOX_CONFIG_UDHCP_DEBUG
+	int
+	default 0
+
+config BUSYBOX_CONFIG_FEATURE_UDHCP_RFC3397
+	bool
+	default y
+
+config BUSYBOX_CONFIG_UDHCPC_DEFAULT_SCRIPT
+	string
+	default "/usr/share/udhcpc/default.script"
+
+config BUSYBOX_CONFIG_UDHCPC_SLACK_FOR_BUGGY_SERVERS
+	int
+	default 80
+
+config BUSYBOX_CONFIG_VCONFIG
+	bool
+	default y
+
+config BUSYBOX_CONFIG_WGET
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_WGET_STATUSBAR
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_WGET_AUTHENTICATION
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_WGET_LONG_OPTIONS
+	bool
+	default y
+
+config BUSYBOX_CONFIG_UPTIME
+	bool
+	default y
+
+config BUSYBOX_CONFIG_KILL
+	bool
+	default y
+
+config BUSYBOX_CONFIG_KILLALL
+	bool
+	default y
+
+config BUSYBOX_CONFIG_PIDOF
+	bool
+	default y
+
+config BUSYBOX_CONFIG_BB_SYSCTL
+	bool
+	default y
+
+config BUSYBOX_CONFIG_ASH
+	bool
+	default y
+
+config BUSYBOX_CONFIG_ASH_BASH_COMPAT
+	bool
+	default y
+
+config BUSYBOX_CONFIG_ASH_JOB_CONTROL
+	bool
+	default y
+
+config BUSYBOX_CONFIG_ASH_ALIAS
+	bool
+	default y
+
+config BUSYBOX_CONFIG_ASH_GETOPTS
+	bool
+	default y
+
+config BUSYBOX_CONFIG_ASH_BUILTIN_PRINTF
+	bool
+	default y
+
+config BUSYBOX_CONFIG_ASH_BUILTIN_TEST
+	bool
+	default y
+
+config BUSYBOX_CONFIG_ASH_CMDCMD
+	bool
+	default y
+
+config BUSYBOX_CONFIG_ASH_EXPAND_PRMT
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_SH_IS_ASH
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_BASH_IS_ASH
+	bool
+	default y
+
+config BUSYBOX_CONFIG_SH_MATH_SUPPORT
+	bool
+	default y
+
+config BUSYBOX_CONFIG_SH_MATH_SUPPORT_64
+	bool
+	default y
+
+config BUSYBOX_CONFIG_FEATURE_SH_NOFORK
+	bool
+	default y
+
+config BUSYBOX_CONFIG_LOGGER
+	bool
+	default y
+
+config PACKAGE_dnsmasq
+	bool
+	default y
+
+config PACKAGE_dropbear
+	bool
+	default y
+
+config PACKAGE_firewall
+	bool
+	default y
+
+config PACKAGE_fstools
+	bool
+	default y
+
+config PACKAGE_jsonfilter
+	bool
+	default y
+
+config PACKAGE_libc
+	bool
+	default y
+
+config PACKAGE_libgcc
+	bool
+	default y
+
+config PACKAGE_libpthread
+	bool
+	default y
+
+config PACKAGE_librt
+	bool
+	default y
+
+config PACKAGE_libstdcpp
+	bool
+	default y
+
+config PACKAGE_logd
+	bool
+	default y
+
+config PACKAGE_mtd
+	bool
+	default y
+
+config PACKAGE_netifd
+	bool
+	default y
+
+config PACKAGE_opkg
+	bool
+	default y
+
+config PACKAGE_procd
+	bool
+	default y
+
+config PACKAGE_qos-scripts
+	bool
+	default y
+
+config PACKAGE_resolveip
+	bool
+	default y
+
+config PACKAGE_rpcd
+	bool
+	default y
+
+config PACKAGE_rpcd-mod-file
+	bool
+	default y
+
+config PACKAGE_rpcd-mod-iwinfo
+	bool
+	default y
+
+config PACKAGE_rpcd-mod-rpcsys
+	bool
+	default y
+
+config PACKAGE_ubox
+	bool
+	default y
+
+config PACKAGE_ubus
+	bool
+	default y
+
+config PACKAGE_ubusd
+	bool
+	default y
+
+config PACKAGE_uci
+	bool
+	default y
+
+config PACKAGE_udev
+	bool
+	default y
+
+config UDEV_EXTRA_accelerometer
+	bool
+	default y
+
+config UDEV_EXTRA_ata_id
+	bool
+	default y
+
+config UDEV_EXTRA_cdrom_id
+	bool
+	default y
+
+config UDEV_EXTRA_input_id
+	bool
+	default y
+
+config UDEV_EXTRA_mtd_probe
+	bool
+	default y
+
+config UDEV_EXTRA_path_id
+	bool
+	default y
+
+config UDEV_EXTRA_scsi_id
+	bool
+	default y
+
+config UDEV_EXTRA_usb_id
+	bool
+	default y
+
+config UDEV_EXTRA_v4l_id
+	bool
+	default y
+
+config PACKAGE_usign
+	bool
+	default y
+
+config PACKAGE_wireless-tools
+	bool
+	default y
+
+config PACKAGE_kmod-ata-core
+	bool
+	default y
+
+config PACKAGE_kmod-ata-ahci
+	bool
+	default y
+
+config PACKAGE_kmod-dm
+	bool
+	default y
+
+config PACKAGE_kmod-md-mod
+	bool
+	default y
+
+config PACKAGE_kmod-md-linear
+	bool
+	default y
+
+config PACKAGE_kmod-md-multipath
+	bool
+	default y
+
+config PACKAGE_kmod-md-raid0
+	bool
+	default y
+
+config PACKAGE_kmod-md-raid1
+	bool
+	default y
+
+config PACKAGE_kmod-md-raid10
+	bool
+	default y
+
+config PACKAGE_kmod-md-raid456
+	bool
+	default y
+
+config PACKAGE_kmod-scsi-core
+	bool
+	default y
+
+config PACKAGE_kmod-crypto-aead
+	bool
+	default y
+
+config PACKAGE_kmod-crypto-aes
+	bool
+	default y
+
+config PACKAGE_kmod-crypto-arc4
+	bool
+	default y
+
+config PACKAGE_kmod-crypto-authenc
+	bool
+	default y
+
+config PACKAGE_kmod-crypto-core
+	bool
+	default y
+
+config PACKAGE_kmod-crypto-crc32c
+	bool
+	default y
+
+config PACKAGE_kmod-crypto-ecb
+	bool
+	default y
+
+config PACKAGE_kmod-crypto-hash
+	bool
+	default y
+
+config PACKAGE_kmod-crypto-manager
+	bool
+	default y
+
+config PACKAGE_kmod-crypto-pcompress
+	bool
+	default y
+
+config PACKAGE_kmod-crypto-sha1
+	bool
+	default y
+
+config PACKAGE_kmod-cryptodev
+	bool
+	default y
+
+config PACKAGE_kmod-ufsd
+	bool
+	default y
+
+config PACKAGE_kmod-lib-crc-ccitt
+	bool
+	default y
+
+config PACKAGE_kmod-lib-crc32c
+	bool
+	default y
+
+config PACKAGE_kmod-lib-lzo
+	bool
+	default y
+
+config PACKAGE_kmod-lib-raid6
+	bool
+	default y
+
+config PACKAGE_kmod-lib-xor
+	bool
+	default y
+
+config PACKAGE_kmod-lib-zlib
+	bool
+	default y
+
+config PACKAGE_kmod-ip6tables
+	bool
+	default y
+
+config PACKAGE_kmod-ipt-conntrack
+	bool
+	default y
+
+config PACKAGE_kmod-ipt-conntrack-extra
+	bool
+	default y
+
+config PACKAGE_kmod-ipt-core
+	bool
+	default y
+
+config PACKAGE_kmod-ipt-ipopt
+	bool
+	default y
+
+config PACKAGE_kmod-ipt-nat
+	bool
+	default y
+
+config PACKAGE_kmod-nf-builtin
+	bool
+	default y
+
+config PACKAGE_kmod-nf-conntrack
+	bool
+	default y
+
+config PACKAGE_kmod-nf-conntrack6
+	bool
+	default y
+
+config PACKAGE_kmod-nf-ipt
+	bool
+	default y
+
+config PACKAGE_kmod-nf-ipt6
+	bool
+	default y
+
+config PACKAGE_kmod-nf-nat
+	bool
+	default y
+
+config PACKAGE_kmod-nf-nathelper
+	bool
+	default y
+
+config PACKAGE_kmod-ifb
+	bool
+	default y
+
+config PACKAGE_kmod-mii
+	bool
+	default y
+
+config PACKAGE_kmod-rtd1295hwnat
+	bool
+	default y
+
+config PACKAGE_kmod-gre
+	bool
+	default y
+
+config PACKAGE_kmod-iptunnel
+	bool
+	default y
+
+config PACKAGE_kmod-ipv6
+	bool
+	default y
+
+config PACKAGE_kmod-l2tp
+	bool
+	default y
+
+config PACKAGE_kmod-ppp
+	bool
+	default y
+
+config PACKAGE_kmod-mppe
+	bool
+	default y
+
+config PACKAGE_kmod-pppoe
+	bool
+	default y
+
+config PACKAGE_kmod-pppol2tp
+	bool
+	default y
+
+config PACKAGE_kmod-pppox
+	bool
+	default y
+
+config PACKAGE_kmod-pptp
+	bool
+	default y
+
+config PACKAGE_kmod-sched-connmark
+	bool
+	default y
+
+config PACKAGE_kmod-sched-core
+	bool
+	default y
+
+config PACKAGE_kmod-slhc
+	bool
+	default y
+
+config PACKAGE_kmod-tun
+	bool
+	default y
+
+config PACKAGE_kmod-udptunnel4
+	bool
+	default y
+
+config PACKAGE_kmod-udptunnel6
+	bool
+	default y
+
+config PACKAGE_kmod-mali
+	bool
+	default y
+
+config PACKAGE_kmod-rtksdmmc
+	bool
+	default y
+
+config PACKAGE_kmod-cfg80211
+	bool
+	default y
+
+config PACKAGE_kmod-lib80211
+	bool
+	default y
+
+config PACKAGE_kmod-mac80211
+	bool
+	default y
+
+config PACKAGE_MAC80211_DEBUGFS
+	bool
+	default y
+
+config PACKAGE_MAC80211_MESH
+	bool
+	default y
+
+config PACKAGE_kmod-rtl8192cd
+	bool
+	default y
+
+config RTL8192CD
+	bool
+	default y
+
+config OPENWRT_SDK
+	bool
+	default y
+
+config PCI_HCI
+	bool
+	default y
+
+config MAC_PHY_RF_Parameter_V702B_Skyworth
+	bool
+	default y
+
+config USE_PCIE_SLOT_0
+	bool
+	default y
+
+config SLOT_0_8192EE
+	bool
+	default y
+
+config SLOT_0_TX_BEAMFORMING
+	bool
+	default y
+
+config SLOT_0_ENABLE_EFUSE
+	bool
+	default y
+
+config USE_PCIE_SLOT_1
+	bool
+	default y
+
+config SLOT_1_8812
+	bool
+	default y
+
+config SLOT_1_EXT_PA
+	bool
+	default y
+
+config SLOT_1_EXT_LNA
+	bool
+	default y
+
+config SLOT_1_TX_BEAMFORMING
+	bool
+	default y
+
+config SLOT_1_ENABLE_EFUSE
+	bool
+	default y
+
+config WLAN_HAL
+	bool
+	default y
+
+config WLAN_HAL_88XX
+	bool
+	default y
+
+config WLAN_HAL_8192EE
+	bool
+	default y
+
+config RTL_8812_SUPPORT
+	bool
+	default y
+
+config PA_SKYWORKS_5022
+	bool
+	default y
+
+config RTL_DFS_SUPPORT
+	bool
+	default y
+
+config RTL_VAP_SUPPORT
+	bool
+	default y
+
+config RTL_CLIENT_MODE_SUPPORT
+	bool
+	default y
+
+config RTL_REPEATER_MODE_SUPPORT
+	bool
+	default y
+
+config RTL_SUPPORT_MULTI_PROFILE
+	bool
+	default y
+
+config RTL_WDS_SUPPORT
+	bool
+	default y
+
+config RTL_COMAPI_WLTOOLS
+	bool
+	default y
+
+config RTL_WPS2_SUPPORT
+	bool
+	default y
+
+config PHY_EAT_40MHZ
+	bool
+	default y
+
+config PHY_WLAN_EAT_40MHZ
+	bool
+	default y
+
+config TXPWR_LMT
+	bool
+	default y
+
+config RTL_TDLS_SUPPORT
+	bool
+	default y
+
+config BAND_5G_ON_WLAN0
+	bool
+	default y
+
+config RTL_5G_SLOT_1
+	bool
+	default y
+
+config RTL_ODM_WLAN_DRIVER
+	bool
+	default y
+
+config RTL_WLAN_HAL_NOT_EXIST
+	bool
+	default y
+
+config ENABLE_EFUSE
+	bool
+	default y
+
+config PACKAGE_libiwinfo-lua
+	bool
+	default y
+
+config PACKAGE_lua
+	bool
+	default y
+
+config PACKAGE_python-base
+	bool
+	default y
+
+config PACKAGE_python-light
+	bool
+	default y
+
+config PACKAGE_libbz2
+	bool
+	default y
+
+config PACKAGE_libacl
+	bool
+	default y
+
+config PACKAGE_libattr
+	bool
+	default y
+
+config PACKAGE_libecryptfs
+	bool
+	default y
+
+config PACKAGE_libext2fs
+	bool
+	default y
+
+config PACKAGE_libip4tc
+	bool
+	default y
+
+config PACKAGE_libip6tc
+	bool
+	default y
+
+config PACKAGE_libxtables
+	bool
+	default y
+
+config PACKAGE_libopenssl
+	bool
+	default y
+
+config OPENSSL_WITH_EC
+	bool
+	default y
+
+config OPENSSL_ENGINE_CRYPTO
+	bool
+	default y
+
+config OPENSSL_ENGINE_DIGEST
+	bool
+	default y
+
+config PACKAGE_libpolarssl
+	bool
+	default y
+
+config PACKAGE_libsqlite3
+	bool
+	default y
+
+config PACKAGE_alsa-lib
+	bool
+	default y
+
+config PACKAGE_confuse
+	bool
+	default y
+
+config PACKAGE_libaio
+	bool
+	default y
+
+config PACKAGE_libantlr3c
+	bool
+	default y
+
+config PACKAGE_libavahi-client
+	bool
+	default y
+
+config PACKAGE_libavahi-dbus-support
+	bool
+	default y
+
+config PACKAGE_libblkid
+	bool
+	default y
+
+config PACKAGE_libblobmsg-json
+	bool
+	default y
+
+config PACKAGE_libbsd
+	bool
+	default y
+
+config PACKAGE_libcap
+	bool
+	default y
+
+config PACKAGE_libcurl
+	bool
+	default y
+
+config LIBCURL_POLARSSL
+	bool
+	default y
+
+config LIBCURL_FILE
+	bool
+	default y
+
+config LIBCURL_FTP
+	bool
+	default y
+
+config LIBCURL_HTTP
+	bool
+	default y
+
+config LIBCURL_COOKIES
+	bool
+	default y
+
+config LIBCURL_NO_SMB
+	string
+	default "!"
+
+config LIBCURL_PROXY
+	bool
+	default y
+
+config PACKAGE_libdaemon
+	bool
+	default y
+
+config PACKAGE_libdb47
+	bool
+	default y
+
+config PACKAGE_libdbus
+	bool
+	default y
+
+config PACKAGE_libdevmapper
+	bool
+	default y
+
+config PACKAGE_libevent2
+	bool
+	default y
+
+config PACKAGE_libevent2.1
+	bool
+	default y
+
+config PACKAGE_libexif
+	bool
+	default y
+
+config PACKAGE_libexpat
+	bool
+	default y
+
+config PACKAGE_libffi
+	bool
+	default y
+
+config PACKAGE_libffmpeg-full
+	bool
+	default y
+
+config PACKAGE_libffmpeg-mini
+	bool
+	default y
+
+config PACKAGE_libflac
+	bool
+	default y
+
+config PACKAGE_libgcrypt
+	bool
+	default y
+
+config PACKAGE_libgdbm
+	bool
+	default y
+
+config PACKAGE_libgmp
+	bool
+	default y
+
+config PACKAGE_libgpg-error
+	bool
+	default y
+
+config PACKAGE_libgssglue
+	bool
+	default y
+
+config PACKAGE_libiconv
+	bool
+	default y
+
+config PACKAGE_libid3tag
+	bool
+	default y
+
+config PACKAGE_libintl-full
+	bool
+	default y
+
+config PACKAGE_libiwinfo
+	bool
+	default y
+
+config PACKAGE_libjpeg
+	bool
+	default y
+
+config PACKAGE_libjson-c
+	bool
+	default y
+
+config PACKAGE_libkeyutils
+	bool
+	default y
+
+config PACKAGE_liblua
+	bool
+	default y
+
+config PACKAGE_liblzo
+	bool
+	default y
+
+config PACKAGE_libmicroxml
+	bool
+	default y
+
+config PACKAGE_libmount
+	bool
+	default y
+
+config PACKAGE_libncurses
+	bool
+	default y
+
+config PACKAGE_libnl-tiny
+	bool
+	default y
+
+config PACKAGE_libogg
+	bool
+	default y
+
+config PACKAGE_libpam
+	bool
+	default y
+
+config PACKAGE_libplist
+	bool
+	default y
+
+config PACKAGE_libpopt
+	bool
+	default y
+
+config PACKAGE_libreadline
+	bool
+	default y
+
+config PACKAGE_librpc
+	bool
+	default y
+
+config PACKAGE_libsasl2
+	bool
+	default y
+
+config PACKAGE_libsmartcols
+	bool
+	default y
+
+config PACKAGE_libtirpc
+	bool
+	default y
+
+config PACKAGE_libubox
+	bool
+	default y
+
+config PACKAGE_libubus
+	bool
+	default y
+
+config PACKAGE_libubus-lua
+	bool
+	default y
+
+config PACKAGE_libuci
+	bool
+	default y
+
+config PACKAGE_libuci-lua
+	bool
+	default y
+
+config PACKAGE_libunistring
+	bool
+	default y
+
+config PACKAGE_libuuid
+	bool
+	default y
+
+config PACKAGE_libvorbis
+	bool
+	default y
+
+config PACKAGE_libxml2
+	bool
+	default y
+
+config PACKAGE_mxml
+	bool
+	default y
+
+config PACKAGE_shflags
+	bool
+	default y
+
+config PACKAGE_terminfo
+	bool
+	default y
+
+config PACKAGE_zlib
+	bool
+	default y
+
+config PACKAGE_luci
+	bool
+	default y
+
+config PACKAGE_luci-base
+	bool
+	default y
+
+config PACKAGE_luci-mod-admin-full
+	bool
+	default y
+
+config PACKAGE_luci-app-aria2
+	bool
+	default y
+
+config PACKAGE_luci-app-diskmanager
+	bool
+	default y
+
+config PACKAGE_luci-app-easycwmp
+	bool
+	default y
+
+config PACKAGE_luci-app-firewall
+	bool
+	default y
+
+config PACKAGE_luci-app-forked-daapd
+	bool
+	default y
+
+config PACKAGE_luci-app-minidlna
+	bool
+	default y
+
+config PACKAGE_luci-app-netatalk
+	bool
+	default y
+
+config PACKAGE_luci-app-openvpn
+	bool
+	default y
+
+config PACKAGE_luci-app-qos
+	bool
+	default y
+
+config PACKAGE_luci-app-samba
+	bool
+	default y
+
+config PACKAGE_luci-app-transmission
+	bool
+	default y
+
+config PACKAGE_luci-app-vsftpd
+	bool
+	default y
+
+config PACKAGE_luci-theme-bootstrap
+	bool
+	default y
+
+config PACKAGE_luci-proto-ipv6
+	bool
+	default y
+
+config PACKAGE_luci-proto-ppp
+	bool
+	default y
+
+config PACKAGE_luci-lib-ip
+	bool
+	default y
+
+config PACKAGE_luci-lib-nixio
+	bool
+	default y
+
+config POSTFIX_TLS
+	bool
+	default y
+
+config POSTFIX_SASL
+	bool
+	default y
+
+config POSTFIX_LDAP
+	bool
+	default y
+
+config POSTFIX_CDB
+	bool
+	default y
+
+config PACKAGE_minidlna
+	bool
+	default y
+
+config PACKAGE_transmission-daemon
+	bool
+	default y
+
+config PACKAGE_transmission-web
+	bool
+	default y
+
+config PACKAGE_webui-aria2
+	bool
+	default y
+
+config PACKAGE_yaaw
+	bool
+	default y
+
+config PACKAGE_aria2
+	bool
+	default y
+
+config ARIA2_OPENSSL
+	bool
+	default y
+
+config ARIA2_BITTORRENT
+	bool
+	default y
+
+config ARIA2_METALINK
+	bool
+	default y
+
+config PACKAGE_curl
+	bool
+	default y
+
+config PACKAGE_vsftpd
+	bool
+	default y
+
+config PACKAGE_vsftpd-tls
+	bool
+	default y
+
+config PACKAGE_netatalk
+	bool
+	default y
+
+config PACKAGE_ip6tables
+	bool
+	default y
+
+config PACKAGE_iptables
+	bool
+	default y
+
+config PACKAGE_iptables-mod-conntrack-extra
+	bool
+	default y
+
+config PACKAGE_iptables-mod-ipopt
+	bool
+	default y
+
+config PACKAGE_avahi-dbus-daemon
+	bool
+	default y
+
+config PACKAGE_ip-full
+	bool
+	default y
+
+config PACKAGE_tc
+	bool
+	default y
+
+config PACKAGE_openvpn-openssl
+	bool
+	default y
+
+config OPENVPN_openssl_ENABLE_LZO
+	bool
+	default y
+
+config OPENVPN_openssl_ENABLE_SERVER
+	bool
+	default y
+
+config OPENVPN_openssl_ENABLE_HTTP
+	bool
+	default y
+
+config OPENVPN_openssl_ENABLE_SOCKS
+	bool
+	default y
+
+config OPENVPN_openssl_ENABLE_FRAGMENT
+	bool
+	default y
+
+config OPENVPN_openssl_ENABLE_MULTIHOME
+	bool
+	default y
+
+config OPENVPN_openssl_ENABLE_PORT_SHARE
+	bool
+	default y
+
+config OPENVPN_openssl_ENABLE_DEF_AUTH
+	bool
+	default y
+
+config OPENVPN_openssl_ENABLE_PF
+	bool
+	default y
+
+config OPENVPN_openssl_ENABLE_SMALL
+	bool
+	default y
+
+config PACKAGE_xl2tpd
+	bool
+	default y
+
+config PACKAGE_uhttpd
+	bool
+	default y
+
+config PACKAGE_uhttpd-mod-lua
+	bool
+	default y
+
+config PACKAGE_uhttpd-mod-ubus
+	bool
+	default y
+
+config PACKAGE_hostapd-common
+	bool
+	default y
+
+config PACKAGE_hostapd-utils
+	bool
+	default y
+
+config PACKAGE_iperf
+	bool
+	default y
+
+config PACKAGE_iperf-mt
+	bool
+	default y
+
+config PACKAGE_iperf3
+	bool
+	default y
+
+config PACKAGE_iw
+	bool
+	default y
+
+config PACKAGE_odhcp6c
+	bool
+	default y
+
+config PACKAGE_odhcp6c_ext_cer_id
+	int
+	default 0
+
+config PACKAGE_odhcpd
+	bool
+	default y
+
+config PACKAGE_odhcpd_ext_cer_id
+	int
+	default 0
+
+config PACKAGE_ppp
+	bool
+	default y
+
+config PACKAGE_ppp-mod-pppoe
+	bool
+	default y
+
+config PACKAGE_ppp-mod-pppol2tp
+	bool
+	default y
+
+config PACKAGE_ppp-mod-pptp
+	bool
+	default y
+
+config PACKAGE_samba-hotplug
+	bool
+	default y
+
+config PACKAGE_samba4-server
+	bool
+	default y
+
+config PACKAGE_wpa-cli
+	bool
+	default y
+
+config WPA_SUPPLICANT_INTERNAL
+	bool
+	default y
+
+config WPA_MSG_MIN_PRIORITY
+	int
+	default 3
+
+config DRIVER_11N_SUPPORT
+	bool
+	default y
+
+config PACKAGE_wpad
+	bool
+	default y
+
+config PACKAGE_wsdd
+	bool
+	default y
+
+config PACKAGE_forked-daapd
+	bool
+	default y
+
+config PACKAGE_gettext-tools
+	bool
+	default y
+
+config PACKAGE_dhrystone
+	bool
+	default y
+
+config PACKAGE_taskset
+	bool
+	default y
+
+config PACKAGE_btrfs-progs
+	bool
+	default y
+
+config PACKAGE_e2fsprogs
+	bool
+	default y
+
+config PACKAGE_ecryptfs-utils
+	bool
+	default y
+
+config PACKAGE_mkdosfs
+	bool
+	default y
+
+config PACKAGE_sqlite3-cli
+	bool
+	default y
+
+config PACKAGE_blkid
+	bool
+	default y
+
+config PACKAGE_blockdev
+	bool
+	default y
+
+config PACKAGE_hdparm
+	bool
+	default y
+
+config PACKAGE_iozone
+	bool
+	default y
+
+config PACKAGE_lsblk
+	bool
+	default y
+
+config PACKAGE_lvm2
+	bool
+	default y
+
+config PACKAGE_parted
+	bool
+	default y
+
+config PACKAGE_sfdisk
+	bool
+	default y
+
+config PACKAGE_swap-utils
+	bool
+	default y
+
+config PACKAGE_zoneinfo-africa
+	bool
+	default y
+
+config PACKAGE_zoneinfo-asia
+	bool
+	default y
+
+config PACKAGE_zoneinfo-atlantic
+	bool
+	default y
+
+config PACKAGE_zoneinfo-australia-nz
+	bool
+	default y
+
+config PACKAGE_zoneinfo-core
+	bool
+	default y
+
+config PACKAGE_zoneinfo-europe
+	bool
+	default y
+
+config PACKAGE_zoneinfo-india
+	bool
+	default y
+
+config PACKAGE_zoneinfo-northamerica
+	bool
+	default y
+
+config PACKAGE_zoneinfo-pacific
+	bool
+	default y
+
+config PACKAGE_zoneinfo-poles
+	bool
+	default y
+
+config PACKAGE_zoneinfo-simple
+	bool
+	default y
+
+config PACKAGE_zoneinfo-southamerica
+	bool
+	default y
+
+config PACKAGE_coreutils
+	bool
+	default y
+
+config PACKAGE_coreutils-base64
+	bool
+	default y
+
+config PACKAGE_coreutils-basename
+	bool
+	default y
+
+config PACKAGE_coreutils-cat
+	bool
+	default y
+
+config PACKAGE_coreutils-chcon
+	bool
+	default y
+
+config PACKAGE_coreutils-chgrp
+	bool
+	default y
+
+config PACKAGE_coreutils-chmod
+	bool
+	default y
+
+config PACKAGE_coreutils-chown
+	bool
+	default y
+
+config PACKAGE_coreutils-chroot
+	bool
+	default y
+
+config PACKAGE_coreutils-cksum
+	bool
+	default y
+
+config PACKAGE_coreutils-comm
+	bool
+	default y
+
+config PACKAGE_coreutils-cp
+	bool
+	default y
+
+config PACKAGE_coreutils-csplit
+	bool
+	default y
+
+config PACKAGE_coreutils-cut
+	bool
+	default y
+
+config PACKAGE_coreutils-dd
+	bool
+	default y
+
+config PACKAGE_coreutils-df
+	bool
+	default y
+
+config PACKAGE_coreutils-dir
+	bool
+	default y
+
+config PACKAGE_coreutils-dircolors
+	bool
+	default y
+
+config PACKAGE_coreutils-dirname
+	bool
+	default y
+
+config PACKAGE_coreutils-du
+	bool
+	default y
+
+config PACKAGE_coreutils-echo
+	bool
+	default y
+
+config PACKAGE_coreutils-env
+	bool
+	default y
+
+config PACKAGE_coreutils-expand
+	bool
+	default y
+
+config PACKAGE_coreutils-expr
+	bool
+	default y
+
+config PACKAGE_coreutils-factor
+	bool
+	default y
+
+config PACKAGE_coreutils-false
+	bool
+	default y
+
+config PACKAGE_coreutils-fmt
+	bool
+	default y
+
+config PACKAGE_coreutils-fold
+	bool
+	default y
+
+config PACKAGE_coreutils-groups
+	bool
+	default y
+
+config PACKAGE_coreutils-head
+	bool
+	default y
+
+config PACKAGE_coreutils-hostid
+	bool
+	default y
+
+config PACKAGE_coreutils-id
+	bool
+	default y
+
+config PACKAGE_coreutils-install
+	bool
+	default y
+
+config PACKAGE_coreutils-join
+	bool
+	default y
+
+config PACKAGE_coreutils-kill
+	bool
+	default y
+
+config PACKAGE_coreutils-link
+	bool
+	default y
+
+config PACKAGE_coreutils-ln
+	bool
+	default y
+
+config PACKAGE_coreutils-logname
+	bool
+	default y
+
+config PACKAGE_coreutils-ls
+	bool
+	default y
+
+config PACKAGE_coreutils-md5sum
+	bool
+	default y
+
+config PACKAGE_coreutils-mkdir
+	bool
+	default y
+
+config PACKAGE_coreutils-mkfifo
+	bool
+	default y
+
+config PACKAGE_coreutils-mknod
+	bool
+	default y
+
+config PACKAGE_coreutils-mktemp
+	bool
+	default y
+
+config PACKAGE_coreutils-mv
+	bool
+	default y
+
+config PACKAGE_coreutils-nice
+	bool
+	default y
+
+config PACKAGE_coreutils-nl
+	bool
+	default y
+
+config PACKAGE_coreutils-nohup
+	bool
+	default y
+
+config PACKAGE_coreutils-nproc
+	bool
+	default y
+
+config PACKAGE_coreutils-od
+	bool
+	default y
+
+config PACKAGE_coreutils-paste
+	bool
+	default y
+
+config PACKAGE_coreutils-pathchk
+	bool
+	default y
+
+config PACKAGE_coreutils-pinky
+	bool
+	default y
+
+config PACKAGE_coreutils-pr
+	bool
+	default y
+
+config PACKAGE_coreutils-printenv
+	bool
+	default y
+
+config PACKAGE_coreutils-printf
+	bool
+	default y
+
+config PACKAGE_coreutils-ptx
+	bool
+	default y
+
+config PACKAGE_coreutils-pwd
+	bool
+	default y
+
+config PACKAGE_coreutils-readlink
+	bool
+	default y
+
+config PACKAGE_coreutils-realpath
+	bool
+	default y
+
+config PACKAGE_coreutils-rm
+	bool
+	default y
+
+config PACKAGE_coreutils-rmdir
+	bool
+	default y
+
+config PACKAGE_coreutils-runcon
+	bool
+	default y
+
+config PACKAGE_coreutils-seq
+	bool
+	default y
+
+config PACKAGE_coreutils-sha1sum
+	bool
+	default y
+
+config PACKAGE_coreutils-sha224sum
+	bool
+	default y
+
+config PACKAGE_coreutils-sha256sum
+	bool
+	default y
+
+config PACKAGE_coreutils-sha384sum
+	bool
+	default y
+
+config PACKAGE_coreutils-sha512sum
+	bool
+	default y
+
+config PACKAGE_coreutils-shred
+	bool
+	default y
+
+config PACKAGE_coreutils-shuf
+	bool
+	default y
+
+config PACKAGE_coreutils-sleep
+	bool
+	default y
+
+config PACKAGE_coreutils-sort
+	bool
+	default y
+
+config PACKAGE_coreutils-split
+	bool
+	default y
+
+config PACKAGE_coreutils-stat
+	bool
+	default y
+
+config PACKAGE_coreutils-stdbuf
+	bool
+	default y
+
+config PACKAGE_coreutils-stty
+	bool
+	default y
+
+config PACKAGE_coreutils-sum
+	bool
+	default y
+
+config PACKAGE_coreutils-sync
+	bool
+	default y
+
+config PACKAGE_coreutils-tac
+	bool
+	default y
+
+config PACKAGE_coreutils-tail
+	bool
+	default y
+
+config PACKAGE_coreutils-tee
+	bool
+	default y
+
+config PACKAGE_coreutils-test
+	bool
+	default y
+
+config PACKAGE_coreutils-timeout
+	bool
+	default y
+
+config PACKAGE_coreutils-touch
+	bool
+	default y
+
+config PACKAGE_coreutils-tr
+	bool
+	default y
+
+config PACKAGE_coreutils-true
+	bool
+	default y
+
+config PACKAGE_coreutils-truncate
+	bool
+	default y
+
+config PACKAGE_coreutils-tsort
+	bool
+	default y
+
+config PACKAGE_coreutils-tty
+	bool
+	default y
+
+config PACKAGE_coreutils-uname
+	bool
+	default y
+
+config PACKAGE_coreutils-unexpand
+	bool
+	default y
+
+config PACKAGE_coreutils-uniq
+	bool
+	default y
+
+config PACKAGE_coreutils-unlink
+	bool
+	default y
+
+config PACKAGE_coreutils-uptime
+	bool
+	default y
+
+config PACKAGE_coreutils-users
+	bool
+	default y
+
+config PACKAGE_coreutils-vdir
+	bool
+	default y
+
+config PACKAGE_coreutils-wc
+	bool
+	default y
+
+config PACKAGE_coreutils-who
+	bool
+	default y
+
+config PACKAGE_coreutils-whoami
+	bool
+	default y
+
+config PACKAGE_coreutils-yes
+	bool
+	default y
+
+config PACKAGE_dbus
+	bool
+	default y
+
+config PACKAGE_easycwmp
+	bool
+	default y
+
+config EASYCWMP_SCRIPTS_FULL
+	bool
+	default y
+
+config PACKAGE_getopt
+	bool
+	default y
+
+config PACKAGE_jshn
+	bool
+	default y
+
+config PACKAGE_ldconfig
+	bool
+	default y
+
+config PACKAGE_ldd
+	bool
+	default y
+
+config PACKAGE_libc-bin
+	bool
+	default y
+
+config PACKAGE_libjson-script
+	bool
+	default y
+
+config PACKAGE_lsof
+	bool
+	default y
+
+config PACKAGE_mdadm
+	bool
+	default y
+
+config PACKAGE_mount-utils
+	bool
+	default y
+
+config PACKAGE_namespace-utils
+	bool
+	default y
+
+config PACKAGE_openssl-util
+	bool
+	default y
+
+config PACKAGE_procps
+	bool
+	default y
+
+config PACKAGE_procps-free
+	bool
+	default y
+
+config PACKAGE_procps-pgrep
+	bool
+	default y
+
+config PACKAGE_procps-pkill
+	bool
+	default y
+
+config PACKAGE_procps-pmap
+	bool
+	default y
+
+config PACKAGE_procps-ps
+	bool
+	default y
+
+config PACKAGE_procps-pwdx
+	bool
+	default y
+
+config PACKAGE_procps-skill
+	bool
+	default y
+
+config PACKAGE_procps-slabtop
+	bool
+	default y
+
+config PACKAGE_procps-snice
+	bool
+	default y
+
+config PACKAGE_procps-tload
+	bool
+	default y
+
+config PACKAGE_procps-top
+	bool
+	default y
+
+config PACKAGE_procps-vmstat
+	bool
+	default y
+
+config PACKAGE_procps-w
+	bool
+	default y
+
+config PACKAGE_procps-watch
+	bool
+	default y
+
+config PACKAGE_strace
+	bool
+	default y
+
+config PACKAGE_sysstat
+	bool
+	default y
+

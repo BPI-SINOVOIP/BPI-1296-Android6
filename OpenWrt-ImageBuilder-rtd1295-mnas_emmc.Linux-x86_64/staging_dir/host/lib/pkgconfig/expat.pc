@@ -1,0 +1,11 @@
+prefix=/home1/CustBranch-QA160627-nuplayer-2016-11-17/software_phoenix/openwrt/staging_dir/host
+exec_prefix=/home1/CustBranch-QA160627-nuplayer-2016-11-17/software_phoenix/openwrt/staging_dir/host
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: expat
+Version: 2.1.0
+Description: expat XML parser
+URL: http://www.libexpat.org
+Libs: -L${libdir} -lexpat
+Cflags: -I${includedir}

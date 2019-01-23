@@ -1,0 +1,39 @@
+Source-Makefile: feeds/luci/applications/luci-app-vsftpd/Makefile
+Package: luci-app-vsftpd
+Submenu: 3. Applications
+Version: x-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +vsftpd +vsftpd-tls
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: lua/host luci-base/host 
+Section: luci
+Category: LuCI
+Title: Very Secure FTPD
+Maintainer: 
+Source: 
+Type: ipkg
+Description: Very Secure FTPD
+
+@@
+
+Package: luci-i18n-vsftpd-zh_CN
+Default: LUCI_LANG_zh_CN||(ALL&&m)
+Version: x-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread luci-app-vsftpd
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: lua/host luci-base/host 
+Section: luci
+Category: LuCI
+Title: luci-app-vsftpd - zh_CN translation
+Maintainer: 
+Source: 
+Type: ipkg
+Hidden: 1
+Description:     Translation for luci-app-vsftpd - 
+
+@@
+
+

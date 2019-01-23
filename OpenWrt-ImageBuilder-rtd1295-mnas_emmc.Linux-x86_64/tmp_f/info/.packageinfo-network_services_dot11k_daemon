@@ -1,0 +1,50 @@
+Source-Makefile: package/network/services/dot11k_daemon/Makefile
+Package: dot11k_daemon
+Version: 1-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Title: Realtek 802.11k daemon
+Maintainer: 
+Source: 
+Type: ipkg
+Description: 	Realtek 802.11k Daemon
+
+@@
+
+Package: 11k_test_daemon
+Version: 1-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Title: Realtek 802.11k test daemon
+Maintainer: 
+Source: 
+Type: ipkg
+Description: Realtek 802.11k test daemon
+
+@@
+
+Package: 11v_test_daemon
+Version: 1-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Title: Realtek 802.11v test daemon
+Maintainer: 
+Source: 
+Type: ipkg
+Description: Realtek 802.11v test daemon
+
+@@
+
+

@@ -1,0 +1,188 @@
+--- a/drivers/net/wireless/realtek/rtkwifiu/rtl8811au/os_dep/linux/ioctl_cfg80211.c
++++ b/drivers/net/wireless/realtek/rtkwifiu/rtl8811au/os_dep/linux/ioctl_cfg80211.c
+@@ -5809,6 +5809,167 @@ static int cfg80211_rtw_sched_scan_stop(
+ }
+ #endif /* CONFIG_PNO_SUPPORT */
+ 
++static int get_best_channel(_adapter *padapter, enum ieee80211_band band)
++{
++	struct mlme_ext_priv *pmlmeext = &padapter->mlmeextpriv;
++	u32 i, best_channel_24G = 1, best_channel_5G = 36, index_24G = 0, index_5G = 0;
++
++	for (i=0; pmlmeext->channel_set[i].ChannelNum !=0; i++) {
++		if ( pmlmeext->channel_set[i].ChannelNum == 1)
++			index_24G = i;
++		if ( pmlmeext->channel_set[i].ChannelNum == 36)
++			index_5G = i;
++	}
++
++	for (i=0; (i < MAX_CHANNEL_NUM) && (pmlmeext->channel_set[i].ChannelNum !=0) ; i++) {
++		// 2.4G
++		if ( pmlmeext->channel_set[i].ChannelNum == 6 ) {
++			if ( pmlmeext->channel_set[i].rx_count < pmlmeext->channel_set[index_24G].rx_count ) {
++				index_24G = i;
++				best_channel_24G = pmlmeext->channel_set[i].ChannelNum;
++			}
++		}
++	
++		// 5G
++		if ( pmlmeext->channel_set[i].ChannelNum >= 36
++			&& pmlmeext->channel_set[i].ChannelNum < 140 ) {
++			// Find primary channel
++			if ( (( pmlmeext->channel_set[i].ChannelNum - 36) % 8 == 0)
++				&& (pmlmeext->channel_set[i].rx_count < pmlmeext->channel_set[index_5G].rx_count) ) {
++				index_5G = i;
++				best_channel_5G = pmlmeext->channel_set[i].ChannelNum;
++			}
++		}
++	
++		if ( pmlmeext->channel_set[i].ChannelNum >= 149
++			&& pmlmeext->channel_set[i].ChannelNum < 165) {
++			// find primary channel
++			if ( (( pmlmeext->channel_set[i].ChannelNum - 149) % 8 == 0)
++				&& (pmlmeext->channel_set[i].rx_count < pmlmeext->channel_set[index_5G].rx_count) ) {
++				index_5G = i;
++				best_channel_5G = pmlmeext->channel_set[i].ChannelNum;
++			}
++		}
++	}
++
++	if (band == NL80211_BAND_2GHZ)
++		return best_channel_24G;
++
++	return best_channel_5G;
++}
++
++static int cfg80211_rtw_dump_survey(struct wiphy *wiphy, struct net_device *dev, int idx, struct survey_info *survey)
++{
++	_adapter *padapter = wiphy_to_adapter(wiphy);
++	struct mlme_ext_priv *pmlmeext = &padapter->mlmeextpriv;
++	struct ss_res *ss = &pmlmeext->sitesurvey_res;
++	struct rtw_ieee80211_channel *ch;
++	struct ieee80211_supported_band *sband=NULL;
++	int freq, band=0;
++
++	if (idx < ss->ch_num)
++		ch = &ss->ch[idx];
++	else
++		return -1;
++
++	if (ch->hw_value > 14)
++		band = NL80211_BAND_5GHZ;
++	else
++		band = NL80211_BAND_2GHZ;
++
++	sband = wiphy->bands[band];
++
++	if(!sband) {
++		DBG_871X("%s under unknown band!!\n",dev->name);
++		return -1;
++	} else {
++		//this ops will be invoked several times, until statistic of all channels reported
++		if(idx > sband->n_channels-1)
++		{
++			DBG_871X("Exceed maximum:%d, statistic of all channels were reported \n", sband->n_channels-1);
++			return -1;
++		}
++	}
++
++	if(sband->band == NL80211_BAND_2GHZ)
++		freq = ieee80211_channel_to_frequency(ch->hw_value, IEEE80211_BAND_2GHZ);
++	else
++		freq = ieee80211_channel_to_frequency(ch->hw_value, IEEE80211_BAND_5GHZ);
++
++	survey->channel = ieee80211_get_channel(wiphy, freq);
++
++	if (get_best_channel(padapter, sband->band) == ch->hw_value)
++		survey->noise = -128;
++	else
++		survey->noise = -30;
++
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4,0,0)) || defined(BUILD_OPENWRT)
++	survey->time = 1000;
++	survey->time_busy = 200;
++	survey->time_rx = 100;
++	survey->time_tx = 100;
++	survey->filled = SURVEY_INFO_NOISE_DBM | SURVEY_INFO_TIME | SURVEY_INFO_TIME_BUSY
++			| SURVEY_INFO_TIME_RX | SURVEY_INFO_TIME_TX;
++#else
++	survey->channel_time = 1000;
++	survey->channel_time_busy = 200
++	survey->channel_time_rx = 100
++	survey->channel_time_tx = 100
++	survey->filled = SURVEY_INFO_NOISE_DBM | SURVEY_INFO_CHANNEL_TIME | SURVEY_INFO_CHANNEL_TIME_BUSY
++			| SURVEY_INFO_CHANNEL_TIME_RX | SURVEY_INFO_CHANNEL_TIME_TX;
++#endif
++
++	return 0;
++}
++
++static int cfg80211_rtw_get_channel(struct wiphy *wiphy, struct wireless_dev *wdev, struct cfg80211_chan_def *chandef)
++{
++	_adapter *padapter = wiphy_to_adapter(wiphy);
++	struct dvobj_priv *dvobj = adapter_to_dvobj(padapter);
++	struct mlme_priv *pmlmepriv = &padapter->mlmepriv;
++	struct mlme_ext_priv *pmlmeext = &padapter->mlmeextpriv;
++	struct mlme_ext_info    *pmlmeinfo = &(pmlmeext->mlmext_info);
++	enum nl80211_channel_type chan_type;
++	struct ieee80211_channel *chan;
++	enum ieee80211_band band;
++	int ret = -ENODATA;
++	int freq;
++	
++	if (pmlmeext->cur_channel > 14)
++		band = NL80211_BAND_5GHZ;
++	else
++		band = NL80211_BAND_2GHZ;
++	
++	freq = ieee80211_channel_to_frequency(pmlmeext->cur_channel, band);
++	chan = ieee80211_get_channel(wiphy, freq);
++	
++	switch (pmlmeext->cur_bwmode) {
++	case CHANNEL_WIDTH_20:
++		if (pmlmeinfo->HT_enable)
++			chan_type = NL80211_CHAN_HT20;
++		else
++			chan_type = NL80211_CHAN_NO_HT;
++		break;
++	default:
++		if (pmlmeext->cur_ch_offset == HAL_PRIME_CHNL_OFFSET_UPPER)
++			chan_type = NL80211_CHAN_HT40MINUS;
++		else
++			chan_type = NL80211_CHAN_HT40PLUS;
++		break;
++	}
++	#ifdef CONFIG_DEBUG_CFG80211
++	DBG_8192C("cur_channel=%d, cur_bwmode=%d, cur_ch_offset=%d, band=%d\n",
++		pmlmeext->cur_channel, pmlmeext->cur_bwmode, pmlmeext->cur_ch_offset, band);
++	#endif
++	
++	cfg80211_chandef_create(chandef, chan, chan_type);
++	
++	if (cfg80211_chandef_valid(chandef))
++		ret = 0;
++	
++	return ret;
++}
++
+ static int rtw_cfg80211_set_beacon_wpsp2pie(struct net_device *ndev, char *buf, int len)
+ {	
+ 	int ret = 0;
+@@ -6547,6 +6708,8 @@ static void rtw_cfg80211_preinit_wiphy(_
+ #if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,2,0))
+ 	//wiphy->flags |= WIPHY_FLAG_SUPPORTS_FW_ROAM;
+ #endif
++
++	_rtw_memcpy(wiphy->perm_addr, adapter_mac_addr(adapter), ETH_ALEN);
+ }
+ 
+ static struct cfg80211_ops rtw_cfg80211_ops = {
+@@ -6621,6 +6784,8 @@ static struct cfg80211_ops rtw_cfg80211_
+ 	.sched_scan_start = cfg80211_rtw_sched_scan_start,
+ 	.sched_scan_stop = cfg80211_rtw_sched_scan_stop,
+ #endif /* CONFIG_PNO_SUPPORT */
++	.dump_survey = cfg80211_rtw_dump_survey,
++	.get_channel = cfg80211_rtw_get_channel,
+ };
+ 
+ struct wiphy *rtw_wiphy_alloc(_adapter *padapter, struct device *dev)

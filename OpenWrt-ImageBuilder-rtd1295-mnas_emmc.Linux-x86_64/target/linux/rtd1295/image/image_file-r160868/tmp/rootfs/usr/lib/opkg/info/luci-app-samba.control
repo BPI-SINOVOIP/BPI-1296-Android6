@@ -1,0 +1,8 @@
+Package: luci-app-samba
+Version: git-17.233.32017-dc12a34-1
+Depends: libc, librt, libpthread, samba4-server
+Source: realtek/luci/applications/luci-app-samba
+Section: luci
+Architecture: all
+Installed-Size: 1954
+Description:  Network Shares - Samba SMB/CIFS module

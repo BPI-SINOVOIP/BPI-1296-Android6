@@ -1,0 +1,20 @@
+Source-Makefile: feeds/realtek/libtirpc/Makefile
+Package: libtirpc
+Version: 0.2.3-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libpthread +libgssglue
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: libtool libintl libiconv
+Section: libs
+Category: Libraries
+Title: Library TI RPC for RPC bindings
+Maintainer: 
+Source: libtirpc-0.2.3.tar.bz2
+Type: ipkg
+Description: Library TI RPC for RPC bindings
+http://libtirpc.sourceforge.net/
+
+@@
+
+

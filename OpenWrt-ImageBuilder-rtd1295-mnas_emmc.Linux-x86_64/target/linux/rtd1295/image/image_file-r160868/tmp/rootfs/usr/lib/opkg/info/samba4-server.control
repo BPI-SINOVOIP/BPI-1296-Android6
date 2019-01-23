@@ -1,0 +1,13 @@
+Package: samba4-server
+Version: 4.4.13-1
+Depends: libc, librt, libpthread, zlib, libpthread, libpopt, libbsd, libattr, libiconv, libacl, libtirpc, libcap
+Source: package/network/services/samba4/samba4
+License: GPLv3
+LicenseFiles: COPYING
+Section: net
+Architecture: rtd1295
+Installed-Size: 4375898
+Description:  The Samba software suite is a collection of programs that implements the
+ SMB protocol for UNIX systems, allowing you to serve files and printers to
+ Windows, NT, OS/2 and DOS clients. This protocol is sometimes also referred
+ to as the LanManager or Netbios protocol.

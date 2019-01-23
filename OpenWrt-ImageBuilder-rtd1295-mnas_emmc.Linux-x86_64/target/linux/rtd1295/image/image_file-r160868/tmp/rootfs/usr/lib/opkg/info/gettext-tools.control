@@ -1,0 +1,10 @@
+Package: gettext-tools
+Version: 0.19.6-2
+Depends: libc, librt, libpthread, libxml2, libintl-full
+Source: package/libs/gettext-full
+License: GPL-3.0+
+Section: Utilies
+Maintainer: Jo-Philipp Wich <jow@openwrt.org>
+Architecture: rtd1295
+Installed-Size: 28109
+Description:  GNU gettext utility

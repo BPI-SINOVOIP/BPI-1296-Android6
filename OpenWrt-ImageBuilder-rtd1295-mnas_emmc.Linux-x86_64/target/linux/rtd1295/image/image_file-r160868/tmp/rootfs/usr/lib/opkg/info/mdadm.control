@@ -1,0 +1,9 @@
+Package: mdadm
+Version: 3.2.5-1
+Depends: libc, librt, libpthread
+Source: package/utils/mdadm
+Section: utils
+Maintainer: Felix Fietkau <nbd@openwrt.org>
+Architecture: rtd1295
+Installed-Size: 120724
+Description:  A tool for managing Linux Software RAID arrays.

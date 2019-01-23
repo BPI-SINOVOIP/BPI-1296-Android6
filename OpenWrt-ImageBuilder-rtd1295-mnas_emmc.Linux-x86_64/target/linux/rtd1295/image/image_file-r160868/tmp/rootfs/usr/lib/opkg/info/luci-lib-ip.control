@@ -1,0 +1,8 @@
+Package: luci-lib-ip
+Version: git-17.233.32017-dc12a34-1
+Depends: libc, librt, libpthread, liblua, libnl-tiny
+Source: realtek/luci/libs/luci-lib-ip
+Section: luci
+Architecture: rtd1295
+Installed-Size: 9199
+Description:  Lua library for IP calculation and routing information

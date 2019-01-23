@@ -1,0 +1,18 @@
+Source-Makefile: feeds/realtek/rtkbist/Makefile
+Package: rtkbist
+Version: 1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @TARGET_rtd1295 +memtester +tinymembench +testusb +iozone
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Title: Realtek BIST tool
+Maintainer: 
+Source: 
+Type: ipkg
+Description:  Realtek BIST tool
+
+@@
+
+

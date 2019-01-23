@@ -1,0 +1,8 @@
+Package: luci
+Version: git-17.233.32017-dc12a34-1
+Depends: libc, librt, libpthread, luci-mod-admin-full, luci-theme-bootstrap, luci-proto-ppp, libiwinfo-lua, luci-proto-ipv6
+Source: realtek/luci/collections/luci
+Section: luci
+Architecture: all
+Installed-Size: 105
+Description:  Standard OpenWrt set including full admin with ppp support and the default Bootstrap theme

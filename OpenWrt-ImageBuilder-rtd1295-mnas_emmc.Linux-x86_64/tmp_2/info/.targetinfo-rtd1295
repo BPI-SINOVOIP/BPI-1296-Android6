@@ -1,0 +1,313 @@
+Source-Makefile: target/linux/rtd1295/Makefile
+Target: rtd1295
+Target-Board: rtd1295
+Target-Name: Realtek RTD1295
+Target-Path: /home/stan/externel/60_e/build_scripts/OpenWrt-ImageBuilder-rtd1295-mnas_emmc.Linux-x86_64
+Target-Arch: aarch64
+Target-Arch-Packages: rtd1295
+Target-Features: display dt gpio pci usb
+Target-Depends: 
+Target-Optimization: -Os -pipe -fno-caller-saves
+CPU-Type: cortex-a53+neon
+Linux-Version: 4.1.7
+Linux-Release: 1
+Linux-Kernel-Arch: arm64
+Target-Description:
+
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg netifd fstools logd dnsmasq iptables ip6tables ppp ppp-mod-pppoe kmod-nf-nathelper firewall odhcpd odhcp6c  
+Target-Profile: giraffe-1GB
+Target-Profile-Name: Giraffe 1GB board
+Target-Profile-Packages:  
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Giraffe board V0.1 1GB
+@@
+
+Target-Profile: giraffe-2GB
+Target-Profile-Name: Giraffe 2GB board
+Target-Profile-Packages:  
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Giraffe board V0.1 2GB
+@@
+
+Target-Profile: giraffe-2GB-B00
+Target-Profile-Name: Giraffe V5.0 2GB board
+Target-Profile-Packages:  
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Giraffe board V5.0 2GB with B00 chip
+@@
+
+Target-Profile: saola-1GB
+Target-Profile-Name: Saola 1GB board
+Target-Profile-Packages:  
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Saola board V1.0 1GB
+@@
+
+Target-Profile: saola-2GB
+Target-Profile-Name: Saola 2GB board
+Target-Profile-Packages:  
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Saola board V0.1 2GB
+@@
+
+Target-Profile: saola-3GB
+Target-Profile-Name: Saola 3GB board
+Target-Profile-Packages:  
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Saola board V1.0 3GB
+@@
+
+Target: rtd1295/nas_emmc
+Target-Board: rtd1295
+Target-Name: RTD1295 NAS with eMMC
+Target-Path: target/linux/rtd1295
+Target-Arch: aarch64
+Target-Arch-Packages: rtd1295
+Target-Features: display dt gpio pci squashfs usb
+Target-Depends: 
+Target-Optimization: -Os -pipe -fno-caller-saves
+CPU-Type: cortex-a53+neon
+Linux-Version: 4.1.7
+Linux-Release: 1
+Linux-Kernel-Arch: arm64
+Target-Description:
+	Build pure NAS firmware image for Realtek RTD1295 SoC devices.
+	Currently produces eMMC image for Giraffe board.
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg netifd fstools logd dnsmasq iptables ip6tables ppp ppp-mod-pppoe kmod-nf-nathelper firewall odhcpd odhcp6c  
+Target-Profile: giraffe-1GB
+Target-Profile-Name: Giraffe 1GB board
+Target-Profile-Packages:  
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Giraffe board V0.1 1GB
+@@
+
+Target-Profile: giraffe-2GB
+Target-Profile-Name: Giraffe 2GB board
+Target-Profile-Packages:  
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Giraffe board V0.1 2GB
+@@
+
+Target-Profile: giraffe-2GB-B00
+Target-Profile-Name: Giraffe V5.0 2GB board
+Target-Profile-Packages:  
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Giraffe board V5.0 2GB with B00 chip
+@@
+
+Target-Profile: saola-1GB
+Target-Profile-Name: Saola 1GB board
+Target-Profile-Packages:  
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Saola board V1.0 1GB
+@@
+
+Target-Profile: saola-2GB
+Target-Profile-Name: Saola 2GB board
+Target-Profile-Packages:  
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Saola board V0.1 2GB
+@@
+
+Target-Profile: saola-3GB
+Target-Profile-Name: Saola 3GB board
+Target-Profile-Packages:  
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Saola board V1.0 3GB
+@@
+
+Target: rtd1295/mnas_emmc
+Target-Board: rtd1295
+Target-Name: RTD1295 media NAS with eMMC
+Target-Path: target/linux/rtd1295
+Target-Arch: aarch64
+Target-Arch-Packages: rtd1295
+Target-Features: display dt gpio pci squashfs usb
+Target-Depends: 
+Target-Optimization: -Os -pipe -fno-caller-saves
+CPU-Type: cortex-a53+neon
+Linux-Version: 4.1.7
+Linux-Release: 1
+Linux-Kernel-Arch: arm64
+Target-Description:
+	Build media NAS firmware image for Realtek RTD1295 SoC devices.
+	Currently produces eMMC image for Giraffe board.
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg netifd fstools logd kmod-mali dnsmasq iptables ip6tables ppp ppp-mod-pppoe kmod-nf-nathelper firewall odhcpd odhcp6c  
+Target-Profile: giraffe-1GB
+Target-Profile-Name: Giraffe 1GB board
+Target-Profile-Packages:  
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Giraffe board V0.1 1GB
+@@
+
+Target-Profile: giraffe-2GB
+Target-Profile-Name: Giraffe 2GB board
+Target-Profile-Packages:  
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Giraffe board V0.1 2GB
+@@
+
+Target-Profile: giraffe-2GB-B00
+Target-Profile-Name: Giraffe V5.0 2GB board
+Target-Profile-Packages:  
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Giraffe board V5.0 2GB with B00 chip
+@@
+
+Target-Profile: saola-1GB
+Target-Profile-Name: Saola 1GB board
+Target-Profile-Packages:  
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Saola board V1.0 1GB
+@@
+
+Target-Profile: saola-2GB
+Target-Profile-Name: Saola 2GB board
+Target-Profile-Packages:  
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Saola board V0.1 2GB
+@@
+
+Target-Profile: saola-3GB
+Target-Profile-Name: Saola 3GB board
+Target-Profile-Packages:  
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Saola board V1.0 3GB
+@@
+
+Target: rtd1295/gmnas_emmc
+Target-Board: rtd1295
+Target-Name: RTD1295 generic media NAS with eMMC
+Target-Path: target/linux/rtd1295
+Target-Arch: aarch64
+Target-Arch-Packages: rtd1295
+Target-Features: display dt gpio pci squashfs usb
+Target-Depends: 
+Target-Optimization: -Os -pipe -fno-caller-saves
+CPU-Type: cortex-a53+neon
+Linux-Version: 4.1.7
+Linux-Release: 1
+Linux-Kernel-Arch: arm64
+Target-Description:
+	Build NAS firmware image with transcode for Realtek RTD1295 SoC devices.
+	Currently produces eMMC image for Giraffe board.
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg netifd fstools logd dnsmasq iptables ip6tables ppp ppp-mod-pppoe kmod-nf-nathelper firewall odhcpd odhcp6c  
+Target-Profile: giraffe-1GB
+Target-Profile-Name: Giraffe 1GB board
+Target-Profile-Packages:  
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Giraffe board V0.1 1GB
+@@
+
+Target-Profile: giraffe-2GB
+Target-Profile-Name: Giraffe 2GB board
+Target-Profile-Packages:  
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Giraffe board V0.1 2GB
+@@
+
+Target-Profile: giraffe-2GB-B00
+Target-Profile-Name: Giraffe V5.0 2GB board
+Target-Profile-Packages:  
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Giraffe board V5.0 2GB with B00 chip
+@@
+
+Target-Profile: saola-1GB
+Target-Profile-Name: Saola 1GB board
+Target-Profile-Packages:  
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Saola board V1.0 1GB
+@@
+
+Target-Profile: saola-2GB
+Target-Profile-Name: Saola 2GB board
+Target-Profile-Packages:  
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Saola board V0.1 2GB
+@@
+
+Target-Profile: saola-3GB
+Target-Profile-Name: Saola 3GB board
+Target-Profile-Packages:  
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Saola board V1.0 3GB
+@@
+
+

@@ -1,0 +1,45 @@
+# Package Information
+company=""
+description=""
+modelname=""
+version=""
+releaseDate=""
+signature=""
+# Package Configuration
+start_customer=y
+verify=y
+install_factory=y
+install_dtb=y
+update_etc=y
+install_avfile_count=1
+reboot_delay=5
+ifcmd0 = "cd ../../;cp -rpf tmp/install_factory/* tmp/factory/;"
+ifcmd1 = "rm -rf /tmp/factory/recovery;"
+efuse_key=0
+efuse_fw=0
+rpmb_fw=0
+secure_boot=0
+fw = GOLDrescueDT omv/gold.rescue.emmc.dtb 0x02140000
+fw = GOLDRootFS omv/gold.rescue.root.emmc.cpio.gz_pad.img 0x30000000
+fw = GOLDKernel omv/gold.emmc.uImage 0x03000000
+fw = GOLDaudio omv/gold.bluecore.audio 0x01b00000
+fw = kernelDT omv/android.emmc.dtb 0x02100000 
+fw = rescueDT omv/rescue.emmc.dtb 0x02140000 
+fw = rescueRootFS omv/rescue.root.emmc.cpio.gz_pad.img 0x30000000 
+fw = linuxKernel omv/emmc.uImage 0x03000000 
+fw = audioKernel omv/bluecore.audio 0x01b00000 
+fw = imageFile omv/bootfile.image 0x1e800000  
+###
+###	  part = (name mount_point filesystem file size)
+part = system /system ext4 omv/system.bin 504365056
+#part = data /data ext4 omv/data.bin 2117074944
+part = data /data ext4 omv/data.bin 1907359744
+part = cache /cache ext4 omv/cache.bin 419430400
+part = uboot /uboot ext4 omv/uboot_p.bin 4194304
+part = logo /logo ext4 omv/logo_p.bin 16777216
+part = backup /backup ext4 omv/backup.bin 524288000
+part = verify /verify ext4 omv/verify_p.bin 104857600
+part = rootfs / squashfs omv/squashfs1.img 100663296
+part = etc etc ext4 omv/etc.bin 41943040
+###
+###	  part = (name mount_point filesystem file size)

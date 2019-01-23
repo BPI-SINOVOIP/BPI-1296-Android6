@@ -1,0 +1,21 @@
+Source-Makefile: feeds/realtek/iozone/Makefile
+Package: iozone
+Submenu: disc
+Version: 3.434-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Title: File System Benchmark
+Maintainer: 
+Source: iozone3_434.tar
+License: IOzone license (NO DERIVED WORKS ALLOWED)
+Type: ipkg
+Description:  File System Benchmark
+http://www.iozone.org/
+
+@@
+
+

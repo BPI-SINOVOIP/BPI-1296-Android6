@@ -1,0 +1,10 @@
+Package: libdbus
+Version: 1.9.14-1
+Depends: libc, librt, libpthread, libpthread
+Source: realtek/packages/utils/dbus
+License: AFL-2.1
+Section: utils
+Maintainer: Steven Barth <cyrus@openwrt.org>
+Architecture: rtd1295
+Installed-Size: 97814
+Description:  Simple interprocess messaging system (library)

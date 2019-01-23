@@ -1,0 +1,8 @@
+Package: ecryptfs-utils
+Version: 106-2
+Depends: libc, librt, libpthread, keyutils, openssl, libecryptfs, libc-bin, gettext-tools
+Source: realtek/realtek/ecryptfs-utils
+Section: utils
+Architecture: rtd1295
+Installed-Size: 49589
+Description:  eCryptfs utilities

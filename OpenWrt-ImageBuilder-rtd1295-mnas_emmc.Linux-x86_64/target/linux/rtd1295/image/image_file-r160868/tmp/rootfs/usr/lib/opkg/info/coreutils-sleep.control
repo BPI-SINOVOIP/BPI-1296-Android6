@@ -1,0 +1,9 @@
+Package: coreutils-sleep
+Version: 8.23-2
+Depends: libc, librt, libpthread, coreutils
+Source: realtek/packages/utils/coreutils
+Section: utils
+Maintainer: Jo-Philipp Wich <jo@mein.io>
+Architecture: rtd1295
+Installed-Size: 12168
+Description:  Full version of standard GNU sleep utility.

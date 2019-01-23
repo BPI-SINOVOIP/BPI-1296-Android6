@@ -1,0 +1,4 @@
+/etc/init.d/minidlna
+/usr/bin/minidlna
+/etc/hotplug.d/block/20-minidlna-hotplug
+/etc/config/minidlna

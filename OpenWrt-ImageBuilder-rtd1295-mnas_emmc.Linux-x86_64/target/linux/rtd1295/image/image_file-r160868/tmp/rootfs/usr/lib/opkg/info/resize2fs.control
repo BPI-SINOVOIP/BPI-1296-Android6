@@ -1,0 +1,8 @@
+Package: resize2fs
+Version: 1.42.12-1
+Depends: libc, librt, libpthread, e2fsprogs
+Source: package/utils/e2fsprogs
+Section: utils
+Architecture: rtd1295
+Installed-Size: 18491
+Description:  Ext2 Filesystem resize utility

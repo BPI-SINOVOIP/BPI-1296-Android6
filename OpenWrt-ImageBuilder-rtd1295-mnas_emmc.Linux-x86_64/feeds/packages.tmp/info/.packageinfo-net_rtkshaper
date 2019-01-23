@@ -1,0 +1,18 @@
+Source-Makefile: feeds/packages/net/rtkshaper/Makefile
+Package: rtkshaper
+Version: 1-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +kmod-ifb +ip +kmod-sched +tc
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Title: rtkshaper
+Maintainer: Jo-Philipp Wich <jow@openwrt.org>
+Source: 
+Type: ipkg
+Description:  A script to do traffing shaping with the HTB algorithm.
+Jo-Philipp Wich <jow@openwrt.org>
+@@
+
+

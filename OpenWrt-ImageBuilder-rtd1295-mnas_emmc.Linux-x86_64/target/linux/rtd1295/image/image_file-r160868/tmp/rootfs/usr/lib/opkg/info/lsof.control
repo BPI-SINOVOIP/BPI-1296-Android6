@@ -1,0 +1,11 @@
+Package: lsof
+Version: 4.86-2
+Depends: libc, librt, libpthread, librpc
+Source: realtek/packages/utils/lsof
+License: Unique
+LicenseFiles: 00README
+Section: utils
+Maintainer: Maxim Storchak <m.storchak@gmail.com>
+Architecture: rtd1295
+Installed-Size: 58490
+Description:  LiSt Open Files - a diagnostic tool

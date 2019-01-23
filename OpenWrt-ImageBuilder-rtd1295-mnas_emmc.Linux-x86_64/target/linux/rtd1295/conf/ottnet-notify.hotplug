@@ -1,0 +1,26 @@
+#!/bin/bash
+
+[ -d "/dev/xen" ] || exit 0
+
+
+if [ "$INTERFACE" = "br-lan" ] && [ "$ACTION" = "add" ]; then
+    export LD_LIBRARY_PATH=/usr/local/lib
+    /usr/local/sbin/xl network-detach OTT 0
+fi
+
+[ -e "/tmp/dhcp.leases" ] || exit 0
+
+REMOTE_IP="`grep 00:16:3e: /tmp/dhcp.leases | grep android | awk -F ' ' '{print $3}'`"
+[ -n "$REMOTE_IP" ] || exit 0
+
+PORT=59955
+
+# Handle event only for WAN interface
+WAN="`uci get network.wan.ifname || echo eth0`"
+[ "$INTERFACE" = "$WAN" ] || exit 0
+
+if [ "$ACTION" = "linkup" ]; then
+    netmsg $REMOTE_IP $PORT "eth_link_up"
+elif [ "$ACTION" = "linkdown" ]; then
+    netmsg $REMOTE_IP $PORT "eth_link_down"
+fi

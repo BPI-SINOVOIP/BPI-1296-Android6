@@ -1,0 +1,9 @@
+Package: libcap
+Version: 2.25-1
+Depends: libc, librt, libpthread
+Source: realtek/packages/libs/libcap
+Section: libs
+Maintainer: Paul Wassi <p.wassi@gmx.at>
+Architecture: rtd1295
+Installed-Size: 6271
+Description:  Linux capabilities library

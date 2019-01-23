@@ -1,0 +1,11 @@
+Package: mxml
+Version: 2.8-1
+Depends: libc, librt, libpthread
+Source: realtek/packages/libs/mxml
+License: GPL-2.0
+LicenseFiles: COPYING
+Section: libs
+Maintainer: Espen Jürgensen <espenjurgensen+openwrt@gmail.com>
+Architecture: rtd1295
+Installed-Size: 17362
+Description:  A small xml library.

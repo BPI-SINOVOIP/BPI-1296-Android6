@@ -1,0 +1,7 @@
+/usr/lib/forked-daapd/forked-daapd-sqlext.la
+/etc/hotplug.d/block/20-forked-daapd-hotplug
+/usr/sbin/forked-daapd
+/usr/lib/forked-daapd/forked-daapd-sqlext.so
+/etc/forked-daapd.conf
+/etc/init.d/forked-daapd
+/etc/config/forked-daapd

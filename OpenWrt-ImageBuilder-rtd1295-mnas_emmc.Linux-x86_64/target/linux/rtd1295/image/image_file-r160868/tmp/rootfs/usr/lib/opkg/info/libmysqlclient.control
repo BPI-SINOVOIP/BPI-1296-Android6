@@ -1,0 +1,10 @@
+Package: libmysqlclient
+Version: 5.1.73-1
+Depends: libc, librt, libpthread, libstdcpp, zlib
+Source: realtek/packages/utils/mysql
+License: GPL-2.0
+Section: libs
+Maintainer: Jo-Philipp Wich <jow@openwrt.org>
+Architecture: rtd1295
+Installed-Size: 153078
+Description:  MySQL client library

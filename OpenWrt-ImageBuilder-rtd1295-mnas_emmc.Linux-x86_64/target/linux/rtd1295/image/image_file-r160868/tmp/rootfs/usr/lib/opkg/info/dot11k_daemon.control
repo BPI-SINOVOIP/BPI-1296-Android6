@@ -1,0 +1,8 @@
+Package: dot11k_daemon
+Version: 1-1
+Depends: libc, librt, libpthread
+Source: package/network/services/dot11k_daemon
+Section: net
+Architecture: rtd1295
+Installed-Size: 6706
+Description:  Realtek 802.11k Daemon

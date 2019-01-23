@@ -1,0 +1,445 @@
+Source-Makefile: feeds/realtek/dhrystone/Makefile
+Package: dhrystone
+Submenu: CPU tools
+Version: 2.1-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Title: Easy-to-use integer benchmark
+Maintainer: 
+Source: 
+Type: ipkg
+Description: Easy-to-use integer benchmark
+http://www.netlib.org/benchmark/dhry-c
+
+@@
+
+
+Source-Makefile: feeds/realtek/ecryptfs-utils/Makefile
+Package: ecryptfs-utils
+Submenu: Filesystem
+Version: 106-2
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +keyutils +openssl +libecryptfs +libc-bin +gettext-tools
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: intltool/host
+Section: utils
+Category: Utilities
+Title: eCryptfs utilities
+Maintainer: 
+Source: ecryptfs-utils_106.orig.tar.gz
+Type: ipkg
+Description: 	eCryptfs utilities
+http://ecryptfs-utils.sourceforge.net/
+
+@@
+
+Package: libecryptfs
+Submenu: Filesystem
+Version: 106-2
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libgcrypt +libkeyutils +libopenssl
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: intltool/host
+Section: libs
+Category: Libraries
+Title: eCryptfs Library
+Maintainer: 
+Source: ecryptfs-utils_106.orig.tar.gz
+Type: ipkg
+Description: 	eCryptfs library
+
+@@
+
+
+Source-Makefile: feeds/realtek/gphotofs/Makefile
+Package: gphotofs
+Version: 0.5-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libgphoto2 +libpthread +glib2 +kmod-fuse +libfuse +BUILD_NLS:libintl-full +BUILD_NLS:libiconv-full
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: !BUILD_NLS:libiconv !BUILD_NLS:libintl
+Section: multimedia
+Category: Multimedia
+Title: GPhotoFS is a filesystem client based on libgphoto2 
+Maintainer: 
+Source: gphotofs-0.5.tar.bz2
+Type: ipkg
+Description:  	GPhotoFS is a filesystem client based on libgphoto2 that exposes
+       supported cameras as filesystems; while some cameras implement the USB
+       Mass Storage class and already appear as filesystems (making this
+       program redundant), many use the Picture Transfer Protocol (PTP) or
+       some other custom protocol. But as long as the camera is supported by
+       libgphoto2, it can be mounted as a filesystem using this program.
+
+       As libgphoto2 is a userspace library for interacting with cameras, it
+       is natural that if one to build a filesystem ontop of it, one should
+       use FUSE, and that is what I have done.
+http://www.gphoto.org/
+
+@@
+
+
+Source-Makefile: feeds/realtek/iozone/Makefile
+Package: iozone
+Submenu: disc
+Version: 3.434-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Title: File System Benchmark
+Maintainer: 
+Source: iozone3_434.tar
+License: IOzone license (NO DERIVED WORKS ALLOWED)
+Type: ipkg
+Description:  File System Benchmark
+http://www.iozone.org/
+
+@@
+
+
+Source-Makefile: feeds/realtek/libc-bin/Makefile
+Package: libc-bin
+Version: 1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: util
+Category: Utilities
+Title: Binaries for GNU C libraries
+Maintainer: 
+Source: 
+Type: ipkg
+Description: Binaries for GNU C libraries
+http://www.eglibc.org
+
+@@
+
+
+Source-Makefile: feeds/realtek/libgssglue/Makefile
+Package: libgssglue
+Version: 0.4-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: libtool libintl libiconv
+Section: libs
+Category: Libraries
+Title: Library libgssglue
+Maintainer: 
+Source: libgssglue-0.4.tar.gz
+Type: ipkg
+Description: Library libgssglue
+http://www.citi.umich.edu/projects/nfsv4/linux/libgssglue/
+
+@@
+
+
+Source-Makefile: feeds/realtek/libtirpc/Makefile
+Package: libtirpc
+Version: 0.2.3-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libpthread +libgssglue
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: libtool libintl libiconv
+Section: libs
+Category: Libraries
+Title: Library TI RPC for RPC bindings
+Maintainer: 
+Source: libtirpc-0.2.3.tar.bz2
+Type: ipkg
+Description: Library TI RPC for RPC bindings
+http://libtirpc.sourceforge.net/
+
+@@
+
+
+Source-Makefile: feeds/realtek/linuxmedia/Makefile
+Package: linuxmedia
+Version: 2016-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libstdcpp +librpc
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: multimedia
+Category: Multimedia
+Title: Realtek media libraries
+Maintainer: 
+Source: linuxmedia-HEAD.tar.gz
+Type: ipkg
+Description:  Realtek media libraries
+
+@@
+
+
+Source-Makefile: feeds/realtek/osspuuid/Makefile
+Package: osspuuid
+Version: 1.6.2-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Title: OSSP uuid
+Maintainer: 
+Source: uuid-1.6.2.tar.gz
+Type: ipkg
+Description:     OSSP uuid
+    http://www.ossp.org/pkg/lib/uuid/
+http://www.ossp.org/pkg/lib/uuid/
+
+@@
+
+
+Source-Makefile: feeds/realtek/parted/Makefile
+Package: parted
+Submenu: disc
+Version: 3.2-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libreadline +libncurses +libblkid +libuuid
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Title: parted Partition editor
+Maintainer: 
+Source: parted-3.2.tar.xz
+Type: ipkg
+Description:     parted Partition editor
+    http://www.gnu.org/software/parted/index.shtml
+http://www.gnu.org/software/parted/index.shtml
+
+@@
+
+
+Source-Makefile: feeds/realtek/python-setuptools/Makefile
+Package: python-setuptools
+Submenu: Python
+Version: 18.4-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: python
+Section: language-python
+Category: Languages
+Title: Python Setuptools
+Maintainer: 
+Source: setuptools-18.4.tar.gz
+Type: ipkg
+Description:  Easily download, build, install, upgrade, and uninstall Python packages.
+https://pypi.python.org/pypi/setuptools/
+
+@@
+
+
+Source-Makefile: feeds/realtek/rtkbist/Makefile
+Package: rtkbist
+Version: 1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @TARGET_rtd1295 +memtester +tinymembench +testusb +iozone
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Title: Realtek BIST tool
+Maintainer: 
+Source: 
+Type: ipkg
+Description:  Realtek BIST tool
+
+@@
+
+
+Source-Makefile: feeds/realtek/tinymembench/Makefile
+Package: tinymembench
+Version: 0.4.9-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Title: Simple memory benchmark program
+Maintainer: 
+Source: tinymembench-0.4.9-HEAD.tar.gz
+Type: ipkg
+Description:  Simple memory benchmark program
+
+@@
+
+
+Source-Makefile: feeds/realtek/uuid/Makefile
+Package: uuid
+Version: 1.6.2-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Title: OSSP uuid
+Maintainer: 
+Source: uuid-1.6.2.tar.gz
+Type: ipkg
+Description:     OSSP uuid
+    http://www.ossp.org/pkg/lib/uuid/
+http://www.ossp.org/pkg/lib/uuid/
+
+@@
+
+
+Source-Makefile: feeds/realtek/xorg/cairo/Makefile
+Feature: drawing-backend_None
+Target-Name: drawing-backend
+Target-Title: Drawing Backend
+Feature-Name: None
+Feature-Description:
+
+@@
+
+Package: cairo
+Submenu: libraries
+Version: 1.14.0-3
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +fontconfig +libpng +libexpat +pixman +libpthread +librt +libxcb-render +libxcb-shm +libxcb +libjpeg +glib2 +liblzo
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: libtool libintl libiconv
+Section: xorg-libraries
+Category: Xorg
+Title: Multi-platform 2D graphics library
+Maintainer: 
+Source: cairo-1.14.0.tar.xz
+Type: ipkg
+Description: Cairo is a 2D graphics library. The cairo API provides operations similar
+to the drawing operators of PostScript and PDF. Operations in cairo
+include stroking and filling cubic Bézier splines, transforming and
+compositing translucent images, and antialiased text rendering. All
+drawing operations can be transformed by any affine transformation
+(scale, rotation, shear, etc.).
+http://cairographics.org/
+
+@@
+
+
+Source-Makefile: feeds/realtek/xorg/dejavu-fonts-ttf/Makefile
+Package: dejavu-fonts-ttf
+Submenu: font
+Version: 2.23-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: xorg-font
+Category: Xorg
+Title: dejavu-fonts-ttf
+Maintainer: 
+Source: dejavu-fonts-ttf-2.23.tar.bz2
+Type: ipkg
+Description: dejavu-fonts-ttf
+http://dejavu.sourceforge.net/
+
+@@
+
+
+Source-Makefile: feeds/realtek/xorg/fontconfig/Makefile
+Package: fontconfig
+Submenu: font-utils
+Version: 2.6.0-2
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libexpat +libfreetype
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: libtool libintl libiconv
+Section: xorg-util
+Category: Xorg
+Title: fontconfig
+Maintainer: 
+Source: fontconfig-2.6.0.tar.gz
+Type: ipkg
+Description: fontconfig
+http://fontconfig.org/
+
+@@
+
+
+Source-Makefile: feeds/realtek/xorg/liberation-fonts-ttf/Makefile
+Package: liberation-fonts-ttf
+Submenu: font
+Version: 1.04-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: xorg-font
+Category: Xorg
+Title: liberation-fonts-ttf
+Maintainer: 
+Source: liberation-fonts-1.04.tar.gz
+Type: ipkg
+Description: liberation-fonts-ttf
+https://fedorahosted.org/liberation-fonts/
+
+@@
+
+
+Source-Makefile: feeds/realtek/xorg/pango/Makefile
+Package: pango
+Submenu: libraries
+Version: 1.28.4-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +cairo +glib2 +fontconfig +libfreetype
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: !BUILD_NLS:libiconv !BUILD_NLS:libintl
+Section: xorg-libraries
+Category: Xorg
+Title: Text layout and rendering library
+Maintainer: 
+Source: pango-1.28.4.tar.bz2
+Type: ipkg
+Description: Pango is a library for layout and rendering of text, with an emphasis
+on internationalization. Pango can be used anywhere that text layout
+is needed; however, most of the work on Pango so far has been done using
+the GTK+ widget toolkit as a test platform. Pango forms the core of text
+and font handling for GTK+-2.x.
+http://www.pango.org/
+
+@@
+
+
+Source-Makefile: feeds/realtek/xorg/pixman/Makefile
+Package: pixman
+Submenu: libraries
+Version: 0.32.4-2
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: libtool libintl libiconv
+Section: xorg-libraries
+Category: Xorg
+Title: pixman
+Maintainer: 
+Source: pixman-0.32.4.tar.gz
+Type: ipkg
+Description: pixman
+http://cairographics.org/
+
+@@
+
+

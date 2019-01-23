@@ -1,0 +1,12 @@
+Package: mkdosfs
+Version: 3.0.28-1
+Depends: libc, librt, libpthread
+Source: realtek/packages/utils/dosfstools
+License: GPL-3.0+
+LicenseFiles: COPYING
+Section: utils
+Maintainer: David Bonnes <david.bonnes@gmail.com>
+Architecture: rtd1295
+Installed-Size: 12188
+Description:  Utilities to create and check MS-DOS FAT filesystems.
+ (mkfs.vfat and mkfs.fat for creating FAT volumes)

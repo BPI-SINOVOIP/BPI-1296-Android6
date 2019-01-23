@@ -1,0 +1,10 @@
+Package: kmod-md-linear
+Version: 4.1.7-1
+Depends: kernel (=4.1.7-1-3bcb2c81f93bd74f1df32abaa8430bd6), kmod-md-mod
+Source: package/kernel/linux
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: rtd1295
+Installed-Size: 3712
+Description:  RAID "Linear" or "Append" driver module (linear.ko)

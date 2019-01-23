@@ -1,0 +1,20 @@
+Source-Makefile: feeds/realtek/xorg/dejavu-fonts-ttf/Makefile
+Package: dejavu-fonts-ttf
+Submenu: font
+Version: 2.23-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: xorg-font
+Category: Xorg
+Title: dejavu-fonts-ttf
+Maintainer: 
+Source: dejavu-fonts-ttf-2.23.tar.bz2
+Type: ipkg
+Description: dejavu-fonts-ttf
+http://dejavu.sourceforge.net/
+
+@@
+
+

@@ -1,0 +1,8 @@
+Package: libgssglue
+Version: 0.4-1
+Depends: libc, librt, libpthread
+Source: realtek/realtek/libgssglue
+Section: libs
+Architecture: rtd1295
+Installed-Size: 12217
+Description:  Library libgssglue

@@ -1,0 +1,14 @@
+prefix=/home1/CustBranch-QA160627-nuplayer-2016-11-17/software_phoenix/openwrt/staging_dir/host
+exec_prefix=/home1/CustBranch-QA160627-nuplayer-2016-11-17/software_phoenix/openwrt/staging_dir/host
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+gmodule_supported=true
+
+Name: GModule
+Description: Dynamic module loader for GLib
+Requires: glib-2.0
+Version: 2.43.4
+Libs: -L${libdir} -lgmodule-2.0 -pthread
+Libs.private: -ldl
+Cflags: -pthread

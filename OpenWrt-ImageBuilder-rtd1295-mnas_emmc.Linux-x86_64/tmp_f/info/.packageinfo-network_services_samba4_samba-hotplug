@@ -1,0 +1,18 @@
+Source-Makefile: package/network/services/samba4/samba-hotplug/Makefile
+Package: samba-hotplug
+Version: 1-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Title: Samba autoconfig hotplug script.
+Maintainer: GuoGuo
+Source: 
+Type: ipkg
+Description: A hotplug script to config Samba share automatically.
+GuoGuo
+@@
+
+

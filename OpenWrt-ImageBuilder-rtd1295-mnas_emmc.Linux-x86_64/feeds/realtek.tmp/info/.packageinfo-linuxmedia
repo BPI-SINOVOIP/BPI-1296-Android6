@@ -1,0 +1,18 @@
+Source-Makefile: feeds/realtek/linuxmedia/Makefile
+Package: linuxmedia
+Version: 2016-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libstdcpp +librpc
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: multimedia
+Category: Multimedia
+Title: Realtek media libraries
+Maintainer: 
+Source: linuxmedia-HEAD.tar.gz
+Type: ipkg
+Description:  Realtek media libraries
+
+@@
+
+

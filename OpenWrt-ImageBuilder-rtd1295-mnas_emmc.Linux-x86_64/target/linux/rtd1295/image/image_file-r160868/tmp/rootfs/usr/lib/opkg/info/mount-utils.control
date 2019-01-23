@@ -1,0 +1,10 @@
+Package: mount-utils
+Version: 2.28-1
+Depends: libc, librt, libpthread, libmount, libsmartcols
+Source: package/utils/util-linux
+License: GPL-2.0
+LicenseFiles: COPYING getopt/COPYING libblkid/COPYING libmount/COPYING Documentation/licenses/COPYING.GPLv2 Documentation/licenses/COPYING.LGPLv2.1 libuuid/COPYING Documentation/licenses/COPYING.BSD-3
+Section: utils
+Architecture: rtd1295
+Installed-Size: 38724
+Description:  contains: mount, umount, findmnt

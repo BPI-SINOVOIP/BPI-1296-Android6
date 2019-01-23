@@ -1,0 +1,10 @@
+Package: kmod-mppe
+Version: 4.1.7-1
+Depends: kernel (=4.1.7-1-3bcb2c81f93bd74f1df32abaa8430bd6), kmod-ppp, kmod-crypto-core, kmod-crypto-arc4, kmod-crypto-sha1, kmod-crypto-ecb
+Source: package/kernel/linux
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: rtd1295
+Installed-Size: 5253
+Description:  Kernel modules for Microsoft PPP compression/encryption

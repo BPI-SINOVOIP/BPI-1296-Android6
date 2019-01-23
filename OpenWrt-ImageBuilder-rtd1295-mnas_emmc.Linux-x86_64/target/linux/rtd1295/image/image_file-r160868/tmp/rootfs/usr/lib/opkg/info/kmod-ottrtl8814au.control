@@ -1,0 +1,8 @@
+Package: kmod-ottrtl8814au
+Version: 4.1.7-rtd1295-1
+Depends: kernel (=4.1.7-1-3bcb2c81f93bd74f1df32abaa8430bd6)
+Source: package/kernel/ottwifi
+Section: kernel
+Architecture: rtd1295
+Installed-Size: 103
+Description:  Realtek Wifi for Android

@@ -1,0 +1,8 @@
+Package: luci-proto-ipv6
+Version: git-17.233.32017-dc12a34-1
+Depends: libc, librt, libpthread
+Source: realtek/luci/protocols/luci-proto-ipv6
+Section: luci
+Architecture: all
+Installed-Size: 4403
+Description:  Support for DHCPv6/6in4/6to4/6rd/DS-Lite/aiccu

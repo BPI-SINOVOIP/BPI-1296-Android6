@@ -1,0 +1,12 @@
+Package: libacl
+Version: 20160519-1
+Depends: libc, librt, libpthread, libattr
+Source: realtek/packages/utils/acl
+License: LGPL-2.1 GPL-2.0
+LicenseFiles: doc/COPYING doc/COPYING.LGPL
+Section: libs
+Maintainer: Maxim Storchak <m.storchak@gmail.com>
+Architecture: rtd1295
+Installed-Size: 10950
+Description:  Access control list support
+ This package provides libacl

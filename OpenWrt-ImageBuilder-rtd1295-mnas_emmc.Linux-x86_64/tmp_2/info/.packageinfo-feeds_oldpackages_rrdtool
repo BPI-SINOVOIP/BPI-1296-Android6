@@ -1,0 +1,117 @@
+Source-Makefile: package/feeds/oldpackages/rrdtool/Makefile
+Package: librrd
+Version: 1.5.5-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +host-pkgconf +libglib2 +libxml2 +cairo +pango +liberation-fonts-ttf +dejavu-fonts-ttf
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: python !BUILD_NLS:libiconv !BUILD_NLS:libintl
+Section: libs
+Category: Libraries
+Title: Round Robin Database (RRD) library (v1.5.x)
+Maintainer: 
+Source: rrdtool-1.5.5.tar.gz
+Type: ipkg
+Feed: oldpackages
+Description: Round Robin Database (RRD) library (v1.5.x)
+http://oss.oetiker.ch/rrdtool/
+
+@@
+
+Package: rrdcgi
+Version: 1.5.5-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +librrd +cgilib
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: python !BUILD_NLS:libiconv !BUILD_NLS:libintl
+Section: utils
+Category: Utilities
+Title: Round Robin Database (RRD) CGI graphing tool (v1.5.x)
+Maintainer: 
+Source: rrdtool-1.5.5.tar.gz
+Type: ipkg
+Feed: oldpackages
+Description: Round Robin Database (RRD) CGI graphing tool (v1.5.x)
+http://oss.oetiker.ch/rrdtool/
+
+@@
+
+Package: rrdtool
+Version: 1.5.5-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +librrd
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: python !BUILD_NLS:libiconv !BUILD_NLS:libintl
+Section: utils
+Category: Utilities
+Title: Round Robin Database (RRD) management tools (v1.5.x)
+Maintainer: 
+Source: rrdtool-1.5.5.tar.gz
+Type: ipkg
+Feed: oldpackages
+Description: Round Robin Database (RRD) management tools (v1.5.x)
+http://oss.oetiker.ch/rrdtool/
+
+@@
+
+Package: librrd-lite
+Version: 1.5.5-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libxml2
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: python !BUILD_NLS:libiconv !BUILD_NLS:libintl
+Section: libs
+Category: Libraries
+Title: Round Robin Database (RRD) library (v1.5.x, no graph)
+Maintainer: 
+Source: rrdtool-1.5.5.tar.gz
+Type: ipkg
+Feed: oldpackages
+Description: Round Robin Database (RRD) library (v1.5.x, no graph)
+http://oss.oetiker.ch/rrdtool/
+
+@@
+
+Package: rrdtool-lite
+Version: 1.5.5-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread librrd-lite
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: python !BUILD_NLS:libiconv !BUILD_NLS:libintl
+Section: utils
+Category: Utilities
+Title: Round Robin Database (RRD) tools (v1.5.x, no graph)
+Maintainer: 
+Source: rrdtool-1.5.5.tar.gz
+Type: ipkg
+Feed: oldpackages
+Description: Round Robin Database (RRD) tools (v1.5.x, no graph)
+http://oss.oetiker.ch/rrdtool/
+
+@@
+
+Package: python-rrd
+Submenu: Python
+Version: 1.5.5-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +python-mini +librrd
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: python !BUILD_NLS:libiconv !BUILD_NLS:libintl
+Section: lang
+Category: Languages
+Title: Round Robin Database (RRD) python bindings (v1.5.x)
+Maintainer: 
+Source: rrdtool-1.5.5.tar.gz
+Type: ipkg
+Feed: oldpackages
+Description: Round Robin Database (RRD) python bindings (v1.5.x)
+http://oss.oetiker.ch/rrdtool/
+
+@@
+
+

@@ -1,0 +1,21 @@
+Source-Makefile: package/feeds/packages/netatalk/Makefile
+Package: netatalk
+Submenu: Filesystem
+Version: 3.1.7-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libattr +libdb47 +libgcrypt +libopenssl +librpc +libpam +libevent2
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Title: netatalk
+Maintainer: W. Michael Petullo <mike@flyn.org>
+Source: netatalk-3.1.7.tar.bz2
+Type: ipkg
+Feed: packages
+Description: netatalk
+http://netatalk.sourceforge.net
+W. Michael Petullo <mike@flyn.org>
+@@
+
+

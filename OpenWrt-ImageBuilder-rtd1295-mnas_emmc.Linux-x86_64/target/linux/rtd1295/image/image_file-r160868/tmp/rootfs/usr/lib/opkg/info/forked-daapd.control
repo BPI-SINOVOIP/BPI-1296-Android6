@@ -1,0 +1,14 @@
+Package: forked-daapd
+Version: 23.4-20160101
+Depends: libc, librt, libpthread, libgpg-error, libgcrypt, libgdbm, zlib, libexpat, libunistring, libevent2.1, libdaemon, libantlr3c, confuse, alsa-lib, libffmpeg-full, mxml, libavahi-client, sqlite3-cli, libplist, libcurl
+Source: realtek/packages/sound/forked-daapd
+License: GPL-2.0
+LicenseFiles: COPYING
+Section: sound
+Maintainer: Espen Jürgensen <espenjurgensen+openwrt@gmail.com>
+Architecture: rtd1295
+Installed-Size: 187905
+Description:  forked-daapd is a Linux/FreeBSD DAAP (iTunes), MPD (Music Player Daemon) and
+ RSP (Roku) media server. It has support for AirPlay devices/speakers, Apple
+ Remote (and compatibles), MPD clients, internet radio and LastFM. It does not
+ support AirPlay video.

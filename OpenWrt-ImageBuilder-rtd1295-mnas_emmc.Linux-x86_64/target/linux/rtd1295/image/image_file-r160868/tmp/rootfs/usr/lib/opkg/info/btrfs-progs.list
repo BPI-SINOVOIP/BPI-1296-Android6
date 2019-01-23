@@ -1,0 +1,15 @@
+/usr/lib/libbtrfs.so.0.1
+/usr/bin/btrfs-image
+/usr/bin/btrfs-zero-log
+/usr/bin/btrfs-map-logical
+/usr/bin/fsck.btrfs
+/usr/bin/btrfs-show-super
+/usr/bin/btrfsck
+/usr/bin/mkfs.btrfs
+/usr/lib/libbtrfs.so
+/usr/bin/btrfs-debug-tree
+/usr/bin/btrfstune
+/etc/init.d/btrfs-scan
+/usr/bin/btrfs-find-root
+/usr/lib/libbtrfs.so.0
+/usr/bin/btrfs

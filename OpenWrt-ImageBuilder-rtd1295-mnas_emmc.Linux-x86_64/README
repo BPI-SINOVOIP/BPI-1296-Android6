@@ -1,0 +1,53 @@
+Available Commands:
+	help:	This help text
+	info:	Show a list of available target profiles
+	clean:	Remove images and temporary build files
+	kernel:	Build kernel binaries
+	image:	Build an image (see below for more information).
+
+Building images:
+	By default 'make image' will create an image with the default
+	target profile and package set. You can use the following parameters
+	to change that:
+
+	make image PROFILE="<profilename>" # override the default target profile
+	make image PACKAGES="<pkg1> [<pkg2> [<pkg3> ...]]" # include extra packages
+	make image PACKAGES=ALL # include all packages
+	make image FILES="<path>" # include extra files from <path>
+	make image BIN_DIR="<path>" # alternative output directory for the images
+
+Examples:
+
+0. Configurations
+i. Change default pacakges
+make menuconfig
+
+ii. Switch network settings
+Router: ./netconfig.sh router
+OTT: ./netconfig.sh ott
+
+1. Build kernel and builtin kernel modules:
+make modules V=99 -j4
+
+2. Rebuild all packages:
+make -j4
+
+3. Build new packages(optional):
+Please refer to README.SDK
+Ex: make package/samba4/{clean,compile,install} V=99 -j5
+
+4. Generate image:
+make image OPTIONS
+Please use 'make info' to see available profiles.
+Passed PROFILE value will override the one selected in make menuconfig.
+Ex: make image PACKAGES=ALL PROFILE=giraffe-1GB
+
+5. Build image with new kernel modules (Ex: Wifi)
+ a. make clean V=99 -j4
+ b. make modules V=99 -j4
+ c. make image PACKAGES=ALL
+
+
+6. make distclean 
+-This would clean all downloaded sources, except Wifi drivers, mail driver
+

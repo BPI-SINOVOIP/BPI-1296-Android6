@@ -1,0 +1,11 @@
+Package: ldd
+Version: 2.19-1
+Source: package/libs/toolchain
+License: GPL-3.0-with-GCC-exception
+Section: utils
+Status: unknown hold not-installed
+Essential: yes
+Maintainer: Felix Fietkau <nbd@openwrt.org>
+Architecture: rtd1295
+Installed-Size: 2610
+Description:  LDD trace utility

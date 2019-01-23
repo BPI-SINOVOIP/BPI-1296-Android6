@@ -1,0 +1,44 @@
+Source-Makefile: feeds/packages/libs/faac/Makefile
+Package: faac
+Version: 1.28-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libfaac
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: libtool libintl libiconv
+Section: sound
+Category: Sound
+Title: Freeware Advanced Audio Coder player
+Maintainer: 
+Source: faac-1.28.tar.bz2
+Type: ipkg
+Description: 	FAAC is an Advanced Audio Coder (MPEG2-AAC, MPEG4-AAC).
+  This package contains a binary to encode to AAC or MP4 files.
+http://www.audiocoding.com/faac.html
+
+@@
+
+Package: libfaac
+Menu: 1
+Version: 1.28-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @BUILD_PATENTED
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: libtool libintl libiconv
+Section: libs
+Category: Libraries
+Title: Freeware Advanced Audio Coder library
+Maintainer: 
+Source: faac-1.28.tar.bz2
+Type: ipkg
+Description: 	FAAC is an Advanced Audio Coder (MPEG2-AAC, MPEG4-AAC).
+  This package contains the library.
+http://www.audiocoding.com/faac.html
+
+@@
+Config:
+	source "realtek/packages/libs/faac/Config.in"
+@@
+
+

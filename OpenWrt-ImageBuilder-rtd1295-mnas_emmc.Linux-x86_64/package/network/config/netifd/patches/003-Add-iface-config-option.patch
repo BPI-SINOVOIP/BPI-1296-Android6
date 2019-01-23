@@ -1,0 +1,10 @@
+--- a/scripts/netifd-wireless.sh
++++ b/scripts/netifd-wireless.sh
+@@ -296,6 +296,7 @@ _wdev_common_device_config() {
+ 
+ _wdev_common_iface_config() {
+ 	config_add_string mode ssid encryption 'key:wpakey'
++	config_add_boolean tdls_prohibited tdls_cs_prohibited ieee80211k
+ }
+ 
+ init_wireless_driver() {

@@ -1,0 +1,12 @@
+Package: transmission-daemon
+Version: 2.84-3
+Depends: libc, librt, libpthread, libcurl, libopenssl, libpthread, libevent2, librt
+Source: realtek/packages/net/transmission
+Section: net
+Maintainer: Cezary Jackiewicz <cezary@eko.one.pl>
+Architecture: rtd1295
+Installed-Size: 186843
+Description:  Transmission is a simple BitTorrent client.
+ It features a very simple, intuitive interface
+ on top on an efficient, cross-platform back-end.
+ This package contains the daemon itself.

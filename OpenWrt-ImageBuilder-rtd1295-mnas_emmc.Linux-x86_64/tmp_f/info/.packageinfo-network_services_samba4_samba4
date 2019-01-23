@@ -1,0 +1,31 @@
+Source-Makefile: package/network/services/samba4/samba4/Makefile
+Package: samba4-server
+Version: 4.4.13-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +zlib +libpthread +libpopt +libbsd +libattr +libiconv +libacl +libtirpc +libcap
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: python-light heimdal
+Section: net
+Category: Network
+Title: Samba 4.4.13 SMB/CIFS server
+Maintainer: 
+Source: samba-4.4.13.tar.gz
+License: GPLv3
+LicenseFiles: COPYING
+Type: ipkg
+Description:  The Samba software suite is a collection of programs that implements the
+ SMB protocol for UNIX systems, allowing you to serve files and printers to
+ Windows, NT, OS/2 and DOS clients. This protocol is sometimes also referred
+ to as the LanManager or Netbios protocol.
+http://www.samba.org/
+
+@@
+Config:
+config PACKAGE_SAMBA4_MAX_DEBUG_LEVEL
+	int "Maximum level of compiled-in debug messages"
+	depends on PACKAGE_samba4-server || PACKAGE_samba4-client
+	default -1
+@@
+
+

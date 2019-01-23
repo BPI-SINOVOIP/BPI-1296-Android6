@@ -1,0 +1,8 @@
+Package: easycwmp
+Version: 1.3.4-1
+Depends: libc, librt, libpthread, libubus, libuci, libubox, libmicroxml, libjson-c, libcurl
+Source: realtek/management/easycwmp
+Section: utils
+Architecture: rtd1295
+Installed-Size: 40622
+Description:  An open source implementation of the client CWMP (TR-069) protocol

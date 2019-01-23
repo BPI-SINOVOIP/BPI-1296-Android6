@@ -1,0 +1,674 @@
+choice
+	prompt "Target System"
+	default TARGET_ar71xx
+	reset if !DEVEL
+	
+config TARGET_rtd1295
+	bool "Realtek RTD1295"
+	select HAS_SUBTARGETS
+
+
+endchoice
+
+choice
+	prompt "Subtarget" if HAS_SUBTARGETS
+
+config TARGET_rtd1295_nas_emmc
+	bool "RTD1295 NAS with eMMC"
+	select LINUX_4_1
+	depends on TARGET_rtd1295
+	select DISPLAY_SUPPORT
+	select USES_DEVICETREE
+	select GPIO_SUPPORT
+	select PCI_SUPPORT
+	select USES_SQUASHFS
+	select USB_SUPPORT
+	select aarch64
+	help
+	  Build pure NAS firmware image for Realtek RTD1295 SoC devices.
+	  Currently produces eMMC image for Giraffe board.
+
+
+config TARGET_rtd1295_mnas_emmc
+	bool "RTD1295 media NAS with eMMC"
+	select LINUX_4_1
+	depends on TARGET_rtd1295
+	select DISPLAY_SUPPORT
+	select USES_DEVICETREE
+	select GPIO_SUPPORT
+	select PCI_SUPPORT
+	select USES_SQUASHFS
+	select USB_SUPPORT
+	select aarch64
+	help
+	  Build media NAS firmware image for Realtek RTD1295 SoC devices.
+	  Currently produces eMMC image for Giraffe board.
+
+
+config TARGET_rtd1295_gmnas_emmc
+	bool "RTD1295 generic media NAS with eMMC"
+	select LINUX_4_1
+	depends on TARGET_rtd1295
+	select DISPLAY_SUPPORT
+	select USES_DEVICETREE
+	select GPIO_SUPPORT
+	select PCI_SUPPORT
+	select USES_SQUASHFS
+	select USB_SUPPORT
+	select aarch64
+	help
+	  Build NAS firmware image with transcode for Realtek RTD1295 SoC devices.
+	  Currently produces eMMC image for Giraffe board.
+
+
+endchoice
+
+choice
+	prompt "Target Profile"
+
+config TARGET_rtd1295_nas_emmc_giraffe-1GB
+	bool "Giraffe 1GB board"
+	depends on TARGET_rtd1295_nas_emmc
+	
+
+	select DEFAULT_base-files
+	select DEFAULT_busybox
+	select DEFAULT_dnsmasq
+	select DEFAULT_dropbear
+	select DEFAULT_firewall
+	select DEFAULT_fstools
+	select DEFAULT_ip6tables
+	select DEFAULT_iptables
+	select DEFAULT_kmod-nf-nathelper
+	select DEFAULT_libc
+	select DEFAULT_libgcc
+	select DEFAULT_logd
+	select DEFAULT_mtd
+	select DEFAULT_netifd
+	select DEFAULT_odhcp6c
+	select DEFAULT_odhcpd
+	select DEFAULT_opkg
+	select DEFAULT_ppp
+	select DEFAULT_ppp-mod-pppoe
+	select DEFAULT_uci
+	help
+	  Giraffe board V0.1 1GB
+
+config TARGET_rtd1295_nas_emmc_giraffe-2GB
+	bool "Giraffe 2GB board"
+	depends on TARGET_rtd1295_nas_emmc
+	
+
+	select DEFAULT_base-files
+	select DEFAULT_busybox
+	select DEFAULT_dnsmasq
+	select DEFAULT_dropbear
+	select DEFAULT_firewall
+	select DEFAULT_fstools
+	select DEFAULT_ip6tables
+	select DEFAULT_iptables
+	select DEFAULT_kmod-nf-nathelper
+	select DEFAULT_libc
+	select DEFAULT_libgcc
+	select DEFAULT_logd
+	select DEFAULT_mtd
+	select DEFAULT_netifd
+	select DEFAULT_odhcp6c
+	select DEFAULT_odhcpd
+	select DEFAULT_opkg
+	select DEFAULT_ppp
+	select DEFAULT_ppp-mod-pppoe
+	select DEFAULT_uci
+	help
+	  Giraffe board V0.1 2GB
+
+config TARGET_rtd1295_nas_emmc_giraffe-2GB-B00
+	bool "Giraffe V5.0 2GB board"
+	depends on TARGET_rtd1295_nas_emmc
+	
+
+	select DEFAULT_base-files
+	select DEFAULT_busybox
+	select DEFAULT_dnsmasq
+	select DEFAULT_dropbear
+	select DEFAULT_firewall
+	select DEFAULT_fstools
+	select DEFAULT_ip6tables
+	select DEFAULT_iptables
+	select DEFAULT_kmod-nf-nathelper
+	select DEFAULT_libc
+	select DEFAULT_libgcc
+	select DEFAULT_logd
+	select DEFAULT_mtd
+	select DEFAULT_netifd
+	select DEFAULT_odhcp6c
+	select DEFAULT_odhcpd
+	select DEFAULT_opkg
+	select DEFAULT_ppp
+	select DEFAULT_ppp-mod-pppoe
+	select DEFAULT_uci
+	help
+	  Giraffe board V5.0 2GB with B00 chip
+
+config TARGET_rtd1295_nas_emmc_saola-1GB
+	bool "Saola 1GB board"
+	depends on TARGET_rtd1295_nas_emmc
+	
+
+	select DEFAULT_base-files
+	select DEFAULT_busybox
+	select DEFAULT_dnsmasq
+	select DEFAULT_dropbear
+	select DEFAULT_firewall
+	select DEFAULT_fstools
+	select DEFAULT_ip6tables
+	select DEFAULT_iptables
+	select DEFAULT_kmod-nf-nathelper
+	select DEFAULT_libc
+	select DEFAULT_libgcc
+	select DEFAULT_logd
+	select DEFAULT_mtd
+	select DEFAULT_netifd
+	select DEFAULT_odhcp6c
+	select DEFAULT_odhcpd
+	select DEFAULT_opkg
+	select DEFAULT_ppp
+	select DEFAULT_ppp-mod-pppoe
+	select DEFAULT_uci
+	help
+	  Saola board V1.0 1GB
+
+config TARGET_rtd1295_nas_emmc_saola-2GB
+	bool "Saola 2GB board"
+	depends on TARGET_rtd1295_nas_emmc
+	
+
+	select DEFAULT_base-files
+	select DEFAULT_busybox
+	select DEFAULT_dnsmasq
+	select DEFAULT_dropbear
+	select DEFAULT_firewall
+	select DEFAULT_fstools
+	select DEFAULT_ip6tables
+	select DEFAULT_iptables
+	select DEFAULT_kmod-nf-nathelper
+	select DEFAULT_libc
+	select DEFAULT_libgcc
+	select DEFAULT_logd
+	select DEFAULT_mtd
+	select DEFAULT_netifd
+	select DEFAULT_odhcp6c
+	select DEFAULT_odhcpd
+	select DEFAULT_opkg
+	select DEFAULT_ppp
+	select DEFAULT_ppp-mod-pppoe
+	select DEFAULT_uci
+	help
+	  Saola board V0.1 2GB
+
+config TARGET_rtd1295_nas_emmc_saola-3GB
+	bool "Saola 3GB board"
+	depends on TARGET_rtd1295_nas_emmc
+	
+
+	select DEFAULT_base-files
+	select DEFAULT_busybox
+	select DEFAULT_dnsmasq
+	select DEFAULT_dropbear
+	select DEFAULT_firewall
+	select DEFAULT_fstools
+	select DEFAULT_ip6tables
+	select DEFAULT_iptables
+	select DEFAULT_kmod-nf-nathelper
+	select DEFAULT_libc
+	select DEFAULT_libgcc
+	select DEFAULT_logd
+	select DEFAULT_mtd
+	select DEFAULT_netifd
+	select DEFAULT_odhcp6c
+	select DEFAULT_odhcpd
+	select DEFAULT_opkg
+	select DEFAULT_ppp
+	select DEFAULT_ppp-mod-pppoe
+	select DEFAULT_uci
+	help
+	  Saola board V1.0 3GB
+
+config TARGET_rtd1295_mnas_emmc_giraffe-1GB
+	bool "Giraffe 1GB board"
+	depends on TARGET_rtd1295_mnas_emmc
+	
+
+	select DEFAULT_base-files
+	select DEFAULT_busybox
+	select DEFAULT_dnsmasq
+	select DEFAULT_dropbear
+	select DEFAULT_firewall
+	select DEFAULT_fstools
+	select DEFAULT_ip6tables
+	select DEFAULT_iptables
+	select DEFAULT_kmod-mali
+	select DEFAULT_kmod-nf-nathelper
+	select DEFAULT_libc
+	select DEFAULT_libgcc
+	select DEFAULT_logd
+	select DEFAULT_mtd
+	select DEFAULT_netifd
+	select DEFAULT_odhcp6c
+	select DEFAULT_odhcpd
+	select DEFAULT_opkg
+	select DEFAULT_ppp
+	select DEFAULT_ppp-mod-pppoe
+	select DEFAULT_uci
+	help
+	  Giraffe board V0.1 1GB
+
+config TARGET_rtd1295_mnas_emmc_giraffe-2GB
+	bool "Giraffe 2GB board"
+	depends on TARGET_rtd1295_mnas_emmc
+	
+
+	select DEFAULT_base-files
+	select DEFAULT_busybox
+	select DEFAULT_dnsmasq
+	select DEFAULT_dropbear
+	select DEFAULT_firewall
+	select DEFAULT_fstools
+	select DEFAULT_ip6tables
+	select DEFAULT_iptables
+	select DEFAULT_kmod-mali
+	select DEFAULT_kmod-nf-nathelper
+	select DEFAULT_libc
+	select DEFAULT_libgcc
+	select DEFAULT_logd
+	select DEFAULT_mtd
+	select DEFAULT_netifd
+	select DEFAULT_odhcp6c
+	select DEFAULT_odhcpd
+	select DEFAULT_opkg
+	select DEFAULT_ppp
+	select DEFAULT_ppp-mod-pppoe
+	select DEFAULT_uci
+	help
+	  Giraffe board V0.1 2GB
+
+config TARGET_rtd1295_mnas_emmc_giraffe-2GB-B00
+	bool "Giraffe V5.0 2GB board"
+	depends on TARGET_rtd1295_mnas_emmc
+	
+
+	select DEFAULT_base-files
+	select DEFAULT_busybox
+	select DEFAULT_dnsmasq
+	select DEFAULT_dropbear
+	select DEFAULT_firewall
+	select DEFAULT_fstools
+	select DEFAULT_ip6tables
+	select DEFAULT_iptables
+	select DEFAULT_kmod-mali
+	select DEFAULT_kmod-nf-nathelper
+	select DEFAULT_libc
+	select DEFAULT_libgcc
+	select DEFAULT_logd
+	select DEFAULT_mtd
+	select DEFAULT_netifd
+	select DEFAULT_odhcp6c
+	select DEFAULT_odhcpd
+	select DEFAULT_opkg
+	select DEFAULT_ppp
+	select DEFAULT_ppp-mod-pppoe
+	select DEFAULT_uci
+	help
+	  Giraffe board V5.0 2GB with B00 chip
+
+config TARGET_rtd1295_mnas_emmc_saola-1GB
+	bool "Saola 1GB board"
+	depends on TARGET_rtd1295_mnas_emmc
+	
+
+	select DEFAULT_base-files
+	select DEFAULT_busybox
+	select DEFAULT_dnsmasq
+	select DEFAULT_dropbear
+	select DEFAULT_firewall
+	select DEFAULT_fstools
+	select DEFAULT_ip6tables
+	select DEFAULT_iptables
+	select DEFAULT_kmod-mali
+	select DEFAULT_kmod-nf-nathelper
+	select DEFAULT_libc
+	select DEFAULT_libgcc
+	select DEFAULT_logd
+	select DEFAULT_mtd
+	select DEFAULT_netifd
+	select DEFAULT_odhcp6c
+	select DEFAULT_odhcpd
+	select DEFAULT_opkg
+	select DEFAULT_ppp
+	select DEFAULT_ppp-mod-pppoe
+	select DEFAULT_uci
+	help
+	  Saola board V1.0 1GB
+
+config TARGET_rtd1295_mnas_emmc_saola-2GB
+	bool "Saola 2GB board"
+	depends on TARGET_rtd1295_mnas_emmc
+	
+
+	select DEFAULT_base-files
+	select DEFAULT_busybox
+	select DEFAULT_dnsmasq
+	select DEFAULT_dropbear
+	select DEFAULT_firewall
+	select DEFAULT_fstools
+	select DEFAULT_ip6tables
+	select DEFAULT_iptables
+	select DEFAULT_kmod-mali
+	select DEFAULT_kmod-nf-nathelper
+	select DEFAULT_libc
+	select DEFAULT_libgcc
+	select DEFAULT_logd
+	select DEFAULT_mtd
+	select DEFAULT_netifd
+	select DEFAULT_odhcp6c
+	select DEFAULT_odhcpd
+	select DEFAULT_opkg
+	select DEFAULT_ppp
+	select DEFAULT_ppp-mod-pppoe
+	select DEFAULT_uci
+	help
+	  Saola board V0.1 2GB
+
+config TARGET_rtd1295_mnas_emmc_saola-3GB
+	bool "Saola 3GB board"
+	depends on TARGET_rtd1295_mnas_emmc
+	
+
+	select DEFAULT_base-files
+	select DEFAULT_busybox
+	select DEFAULT_dnsmasq
+	select DEFAULT_dropbear
+	select DEFAULT_firewall
+	select DEFAULT_fstools
+	select DEFAULT_ip6tables
+	select DEFAULT_iptables
+	select DEFAULT_kmod-mali
+	select DEFAULT_kmod-nf-nathelper
+	select DEFAULT_libc
+	select DEFAULT_libgcc
+	select DEFAULT_logd
+	select DEFAULT_mtd
+	select DEFAULT_netifd
+	select DEFAULT_odhcp6c
+	select DEFAULT_odhcpd
+	select DEFAULT_opkg
+	select DEFAULT_ppp
+	select DEFAULT_ppp-mod-pppoe
+	select DEFAULT_uci
+	help
+	  Saola board V1.0 3GB
+
+config TARGET_rtd1295_gmnas_emmc_giraffe-1GB
+	bool "Giraffe 1GB board"
+	depends on TARGET_rtd1295_gmnas_emmc
+	
+
+	select DEFAULT_base-files
+	select DEFAULT_busybox
+	select DEFAULT_dnsmasq
+	select DEFAULT_dropbear
+	select DEFAULT_firewall
+	select DEFAULT_fstools
+	select DEFAULT_ip6tables
+	select DEFAULT_iptables
+	select DEFAULT_kmod-nf-nathelper
+	select DEFAULT_libc
+	select DEFAULT_libgcc
+	select DEFAULT_logd
+	select DEFAULT_mtd
+	select DEFAULT_netifd
+	select DEFAULT_odhcp6c
+	select DEFAULT_odhcpd
+	select DEFAULT_opkg
+	select DEFAULT_ppp
+	select DEFAULT_ppp-mod-pppoe
+	select DEFAULT_uci
+	help
+	  Giraffe board V0.1 1GB
+
+config TARGET_rtd1295_gmnas_emmc_giraffe-2GB
+	bool "Giraffe 2GB board"
+	depends on TARGET_rtd1295_gmnas_emmc
+	
+
+	select DEFAULT_base-files
+	select DEFAULT_busybox
+	select DEFAULT_dnsmasq
+	select DEFAULT_dropbear
+	select DEFAULT_firewall
+	select DEFAULT_fstools
+	select DEFAULT_ip6tables
+	select DEFAULT_iptables
+	select DEFAULT_kmod-nf-nathelper
+	select DEFAULT_libc
+	select DEFAULT_libgcc
+	select DEFAULT_logd
+	select DEFAULT_mtd
+	select DEFAULT_netifd
+	select DEFAULT_odhcp6c
+	select DEFAULT_odhcpd
+	select DEFAULT_opkg
+	select DEFAULT_ppp
+	select DEFAULT_ppp-mod-pppoe
+	select DEFAULT_uci
+	help
+	  Giraffe board V0.1 2GB
+
+config TARGET_rtd1295_gmnas_emmc_giraffe-2GB-B00
+	bool "Giraffe V5.0 2GB board"
+	depends on TARGET_rtd1295_gmnas_emmc
+	
+
+	select DEFAULT_base-files
+	select DEFAULT_busybox
+	select DEFAULT_dnsmasq
+	select DEFAULT_dropbear
+	select DEFAULT_firewall
+	select DEFAULT_fstools
+	select DEFAULT_ip6tables
+	select DEFAULT_iptables
+	select DEFAULT_kmod-nf-nathelper
+	select DEFAULT_libc
+	select DEFAULT_libgcc
+	select DEFAULT_logd
+	select DEFAULT_mtd
+	select DEFAULT_netifd
+	select DEFAULT_odhcp6c
+	select DEFAULT_odhcpd
+	select DEFAULT_opkg
+	select DEFAULT_ppp
+	select DEFAULT_ppp-mod-pppoe
+	select DEFAULT_uci
+	help
+	  Giraffe board V5.0 2GB with B00 chip
+
+config TARGET_rtd1295_gmnas_emmc_saola-1GB
+	bool "Saola 1GB board"
+	depends on TARGET_rtd1295_gmnas_emmc
+	
+
+	select DEFAULT_base-files
+	select DEFAULT_busybox
+	select DEFAULT_dnsmasq
+	select DEFAULT_dropbear
+	select DEFAULT_firewall
+	select DEFAULT_fstools
+	select DEFAULT_ip6tables
+	select DEFAULT_iptables
+	select DEFAULT_kmod-nf-nathelper
+	select DEFAULT_libc
+	select DEFAULT_libgcc
+	select DEFAULT_logd
+	select DEFAULT_mtd
+	select DEFAULT_netifd
+	select DEFAULT_odhcp6c
+	select DEFAULT_odhcpd
+	select DEFAULT_opkg
+	select DEFAULT_ppp
+	select DEFAULT_ppp-mod-pppoe
+	select DEFAULT_uci
+	help
+	  Saola board V1.0 1GB
+
+config TARGET_rtd1295_gmnas_emmc_saola-2GB
+	bool "Saola 2GB board"
+	depends on TARGET_rtd1295_gmnas_emmc
+	
+
+	select DEFAULT_base-files
+	select DEFAULT_busybox
+	select DEFAULT_dnsmasq
+	select DEFAULT_dropbear
+	select DEFAULT_firewall
+	select DEFAULT_fstools
+	select DEFAULT_ip6tables
+	select DEFAULT_iptables
+	select DEFAULT_kmod-nf-nathelper
+	select DEFAULT_libc
+	select DEFAULT_libgcc
+	select DEFAULT_logd
+	select DEFAULT_mtd
+	select DEFAULT_netifd
+	select DEFAULT_odhcp6c
+	select DEFAULT_odhcpd
+	select DEFAULT_opkg
+	select DEFAULT_ppp
+	select DEFAULT_ppp-mod-pppoe
+	select DEFAULT_uci
+	help
+	  Saola board V0.1 2GB
+
+config TARGET_rtd1295_gmnas_emmc_saola-3GB
+	bool "Saola 3GB board"
+	depends on TARGET_rtd1295_gmnas_emmc
+	
+
+	select DEFAULT_base-files
+	select DEFAULT_busybox
+	select DEFAULT_dnsmasq
+	select DEFAULT_dropbear
+	select DEFAULT_firewall
+	select DEFAULT_fstools
+	select DEFAULT_ip6tables
+	select DEFAULT_iptables
+	select DEFAULT_kmod-nf-nathelper
+	select DEFAULT_libc
+	select DEFAULT_libgcc
+	select DEFAULT_logd
+	select DEFAULT_mtd
+	select DEFAULT_netifd
+	select DEFAULT_odhcp6c
+	select DEFAULT_odhcpd
+	select DEFAULT_opkg
+	select DEFAULT_ppp
+	select DEFAULT_ppp-mod-pppoe
+	select DEFAULT_uci
+	help
+	  Saola board V1.0 3GB
+
+endchoice
+
+config HAS_SUBTARGETS
+	bool
+
+config TARGET_BOARD
+	string
+
+		default "rtd1295" if TARGET_rtd1295
+config TARGET_ARCH_PACKAGES
+	string
+	
+		default "rtd1295" if TARGET_rtd1295_nas_emmc
+		default "rtd1295" if TARGET_rtd1295_mnas_emmc
+		default "rtd1295" if TARGET_rtd1295_gmnas_emmc
+
+config DEFAULT_TARGET_OPTIMIZATION
+	string
+	default "-Os -pipe -fno-caller-saves" if TARGET_rtd1295_nas_emmc
+	default "-Os -pipe -fno-caller-saves" if TARGET_rtd1295_mnas_emmc
+	default "-Os -pipe -fno-caller-saves" if TARGET_rtd1295_gmnas_emmc
+	default "-Os -pipe -funit-at-a-time"
+
+config CPU_TYPE
+	string
+	default "cortex-a53+neon" if TARGET_rtd1295_nas_emmc
+	default "cortex-a53+neon" if TARGET_rtd1295_mnas_emmc
+	default "cortex-a53+neon" if TARGET_rtd1295_gmnas_emmc
+	default ""
+
+config LINUX_4_1
+	bool
+
+	config DEFAULT_base-files
+		bool
+
+	config DEFAULT_busybox
+		bool
+
+	config DEFAULT_dnsmasq
+		bool
+
+	config DEFAULT_dropbear
+		bool
+
+	config DEFAULT_firewall
+		bool
+
+	config DEFAULT_fstools
+		bool
+
+	config DEFAULT_ip6tables
+		bool
+
+	config DEFAULT_iptables
+		bool
+
+	config DEFAULT_kmod-mali
+		bool
+
+	config DEFAULT_kmod-nf-nathelper
+		bool
+
+	config DEFAULT_libc
+		bool
+
+	config DEFAULT_libgcc
+		bool
+
+	config DEFAULT_logd
+		bool
+
+	config DEFAULT_mtd
+		bool
+
+	config DEFAULT_netifd
+		bool
+
+	config DEFAULT_odhcp6c
+		bool
+
+	config DEFAULT_odhcpd
+		bool
+
+	config DEFAULT_opkg
+		bool
+
+	config DEFAULT_ppp
+		bool
+
+	config DEFAULT_ppp-mod-pppoe
+		bool
+
+	config DEFAULT_uci
+		bool
+

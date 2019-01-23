@@ -1,0 +1,19 @@
+Source-Makefile: feeds/realtek/libc-bin/Makefile
+Package: libc-bin
+Version: 1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: util
+Category: Utilities
+Title: Binaries for GNU C libraries
+Maintainer: 
+Source: 
+Type: ipkg
+Description: Binaries for GNU C libraries
+http://www.eglibc.org
+
+@@
+
+

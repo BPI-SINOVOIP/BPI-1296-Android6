@@ -1,0 +1,21 @@
+Source-Makefile: feeds/management/easycwmp/Makefile
+Package: easycwmp
+Version: 1.3.4-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libubus +libuci +libubox +libmicroxml +libjson-c +libcurl
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Title: CWMP client (using libcurl)
+Maintainer: 
+Source: easycwmp-1.3.4.tar.gz
+Type: ipkg
+Description:  An open source implementation of the client CWMP (TR-069) protocol
+
+@@
+Config:
+	source "realtek/management/easycwmp/Config.in"
+@@
+
+

@@ -1,0 +1,39 @@
+Source-Makefile: feeds/realtek/ecryptfs-utils/Makefile
+Package: ecryptfs-utils
+Submenu: Filesystem
+Version: 106-2
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +keyutils +openssl +libecryptfs +libc-bin +gettext-tools
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: intltool/host
+Section: utils
+Category: Utilities
+Title: eCryptfs utilities
+Maintainer: 
+Source: ecryptfs-utils_106.orig.tar.gz
+Type: ipkg
+Description: 	eCryptfs utilities
+http://ecryptfs-utils.sourceforge.net/
+
+@@
+
+Package: libecryptfs
+Submenu: Filesystem
+Version: 106-2
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libgcrypt +libkeyutils +libopenssl
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Depends: intltool/host
+Section: libs
+Category: Libraries
+Title: eCryptfs Library
+Maintainer: 
+Source: ecryptfs-utils_106.orig.tar.gz
+Type: ipkg
+Description: 	eCryptfs library
+
+@@
+
+

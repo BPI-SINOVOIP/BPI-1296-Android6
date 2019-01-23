@@ -1,0 +1,8 @@
+Package: libtirpc
+Version: 0.2.3-1
+Depends: libc, librt, libpthread, libpthread, libgssglue
+Source: realtek/realtek/libtirpc
+Section: libs
+Architecture: rtd1295
+Installed-Size: 51944
+Description:  Library TI RPC for RPC bindings

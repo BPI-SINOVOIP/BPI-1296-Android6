@@ -1,0 +1,10 @@
+Package: vsftpd
+Version: 3.0.3-1
+Depends: libc, librt, libpthread
+Source: realtek/packages/net/vsftpd
+License: GPLv2
+Section: net
+Maintainer: Cezary Jackiewicz <cezary@eko.one.pl>
+Architecture: rtd1295
+Installed-Size: 45132
+Description:  A fast and secure FTP server (no TLS)
