@@ -1,0 +1,96 @@
+ANDROID_SRC_PATH=../../../../../..
+GENERIC_LINUX_PATH=$(ANDROID_SRC_PATH)/genericLinux
+include $(GENERIC_LINUX_PATH)/MakeConfig
+
+MYDEFS=-DHAVE_SYS_UIO_H
+rm=/bin/rm -f
+cp=/bin/cp -f
+CC= $(MYCC)
+CXX = $(MYCXX)
+AR= $(MYAR) cq
+RANLIB= $(MYRANLIB)
+LIBNAME= $(GENERIC_LINUX_PATH)/lib/libOMX.realtek.video.dec.so
+
+TOP=$(ANDROID_SRC_PATH)
+LOCAL_PATH=.
+
+USE_ION = yes
+
+RTK_TOP := $(TOP)/hardware/realtek/realtek_omx
+RTK_INC := $(RTK_TOP)/include
+RTK_RPC := $(TOP)/device/realtek/proprietary/libs/rtk_libs/common
+RTK_PLI := $(TOP)/device/realtek/proprietary/libs/rtk_libs/OSAL
+RTK_RTKV:= $(RTK_TOP)/component/video/rtk_video_api
+RTK_RTKJ:= $(RTK_TOP)/component/video/rtk_image_api
+
+LOCAL_SRC_FILES := \
+	decoder.c \
+	codec_vdec.c \
+	codec_jdec.c
+
+LOCAL_CFLAGS := -D__GENERIC_LINUX__
+
+ifeq ($(USE_ION), yes)
+LOCAL_CFLAGS += -DENABLE_ION
+endif
+
+LOCAL_CFLAGS += -DOMX_DECODER_VIDEO_DOMAIN -DUSE_OUTPUT_CROP
+LOCAL_CFLAGS += -DUSE_RT_ION
+
+LOCAL_C_INCLUDES := \
+	. \
+	$(RTK_INC)/khronos \
+	$(RTK_INC)/imagination \
+	$(TOP)/system/core/include \
+	$(TOP)/system/core/include/cutils \
+	$(TOP)/bionic/libc/kernel/common \
+	$(TOP)/hardware/libhardware/include \
+	$(RTK_RPC)/IPC/include \
+	$(RTK_TOP)/osal \
+	$(RTK_TOP)/core \
+	$(RTK_RTKV)/include \
+	$(RTK_RTKV)/vpuapi \
+	$(RTK_RTKJ)/include \
+	$(RTK_RTKJ)/jpuapi \
+	$(RTK_RTKJ) \
+	$(TOP)/hardware/realtek/StreamingEngine2 \
+	$(GENERIC_LINUX_PATH)/include
+
+LOCAL_C_INCLUDES += $(TOP)/device/realtek/proprietary/libs/Include
+
+LIBS += -lpthread
+
+OBJ_FILES = $(addsuffix .o, $(basename $(LOCAL_SRC_FILES)))
+
+INCLUDES = $(addprefix -I, $(LOCAL_C_INCLUDES))
+
+CFLAGS = $(INCLUDES) $(DEFINES) $(LOCAL_CFLAGS) -DSYS_UNIX=1 $(MYDEFS) -fPIC
+
+LOCAL_SHARED_LIBRARIES = \
+	-Wl,--whole-archive \
+	$(GENERIC_LINUX_PATH)/src/libMisc/generic_misc.o \
+	$(GENERIC_LINUX_PATH)/lib/libhwse_$(TARGET_BOARD_PLATFORM).a \
+	$(GENERIC_LINUX_PATH)/lib/libRtkIpc.a \
+	-Wl,--no-whole-archive
+
+all: $(LIBNAME)
+
+$(LIBNAME) : $(OBJ_FILES) 
+	$(SHOW_COMMAND)$(rm) $@
+	$(SHOW_COMMAND)$(AR) $@ $(OBJ_FILES)
+	$(CC) -shared $(LOCAL_SHARED_LIBRARIES) -o $@ $(OBJ_FILES)
+
+clean:
+	$(SHOW_COMMAND)$(rm) $(OBJ_FILES) $(LIBNAME) core *~
+
+miniclean: clean
+
+.cpp.o:
+	$(rm) -f $@
+	$(SHOW_COMMAND)echo -=--=--=- [$*.cpp] -=--=--=--=--=--=--=--=--=-
+	$(SHOW_COMMAND)$(CXX) $(CFLAGS) $(WARNING) $(DEBUGFLAG) $(LIBS) -c $*.cpp -o $@
+
+.c.o:
+	$(rm) -f $@
+	$(SHOW_COMMAND)echo --------- [$*.c] ---------------------------
+	$(SHOW_COMMAND)$(CC) $(CFLAGS) $(WARNING) $(DEBUGFLAG) $(LIBS) -c $*.c -o $@

@@ -1,0 +1,77 @@
+From a324d65d45e3d0558709f8f659f387e49cf255e1 Mon Sep 17 00:00:00 2001
+From: stan_liu <stan_liu@realtek.com>
+Date: Thu, 1 Nov 2018 15:01:51 +0800
+Subject: [PATCH] patch 2
+
+Change-Id: I4a411aceb3f63d48e17c95aa2e5777b15765d65f
+---
+ media/libmediaplayerservice/nuplayer/GenericSource.cpp |  5 +++--
+ media/libmediaplayerservice/nuplayer/NuPlayer.cpp      |  2 +-
+ media/libstagefright/mpeg2ts/AnotherPacketSource.cpp   | 12 ++++++++++++
+ 3 files changed, 16 insertions(+), 3 deletions(-)
+
+diff --git a/media/libmediaplayerservice/nuplayer/GenericSource.cpp b/media/libmediaplayerservice/nuplayer/GenericSource.cpp
+index 43d161e..46850d2 100755
+--- a/media/libmediaplayerservice/nuplayer/GenericSource.cpp
++++ b/media/libmediaplayerservice/nuplayer/GenericSource.cpp
+@@ -865,7 +865,7 @@ void NuPlayer::GenericSource::onMessageReceived(const sp<AMessage> &msg) {
+           track->mSource->start();
+           track->mIndex = trackIndex;
+ 
+-#ifndef RTK_PLATFORM
++#if 0 //ndef RTK_PLATFORM
+           int64_t timeUs, actualTimeUs;
+           const bool formatChange = true;
+           if (trackType == MEDIA_TRACK_TYPE_AUDIO) {
+@@ -876,10 +876,11 @@ void NuPlayer::GenericSource::onMessageReceived(const sp<AMessage> &msg) {
+           readBuffer(trackType, timeUs, &actualTimeUs, formatChange);
+           readBuffer(counterpartType, -1, NULL, formatChange);
+           ALOGV("timeUs %lld actualTimeUs %lld", (long long)timeUs, (long long)actualTimeUs);
+-#endif
++
+ #ifdef RTK_PLATFORM
+           doSeek(mVideoLastDequeueTimeUs);//Manually seek to avoid track play from beginning
+ #endif
++#endif
+           break;
+       }
+ 
+diff --git a/media/libmediaplayerservice/nuplayer/NuPlayer.cpp b/media/libmediaplayerservice/nuplayer/NuPlayer.cpp
+index fb24077..b35dc15 100755
+--- a/media/libmediaplayerservice/nuplayer/NuPlayer.cpp
++++ b/media/libmediaplayerservice/nuplayer/NuPlayer.cpp
+@@ -945,7 +945,7 @@ void NuPlayer::onMessageReceived(const sp<AMessage> &msg) {
+                         ++mTimedTextGeneration;
+                     }
+                 }
+-#ifdef RTK_PLATFORM
++#if 0 //def RTK_PLATFORM
+                 ALOGI("[%s][%d] setSelectTrackFlg.\n",__FUNCTION__,__LINE__);
+                 mRenderer->setSelectTrackFlg(1);
+ 
+diff --git a/media/libstagefright/mpeg2ts/AnotherPacketSource.cpp b/media/libstagefright/mpeg2ts/AnotherPacketSource.cpp
+index 51a731c..ecbf713 100644
+--- a/media/libstagefright/mpeg2ts/AnotherPacketSource.cpp
++++ b/media/libstagefright/mpeg2ts/AnotherPacketSource.cpp
+@@ -87,6 +87,18 @@ AnotherPacketSource::~AnotherPacketSource() {
+ }
+ 
+ status_t AnotherPacketSource::start(MetaData * /* params */) {
++    sp<ABuffer> buffer;
++    int64_t timeUs = 0;
++    Mutex::Autolock autoLock(mLock);
++    while (mEOSResult == OK && mBuffers.empty()) {
++        mCondition.wait(mLock);
++    }
++
++    while(!mBuffers.empty() && ((mLastQueuedTimeUs - timeUs) > 10000000)) {
++        buffer = *mBuffers.begin();
++        mBuffers.erase(mBuffers.begin());
++        CHECK((buffer)->meta()->dup()->findInt64("timeUs", &timeUs));
++    }
+     return OK;
+ }
+ 
+-- 
+1.9.1
+

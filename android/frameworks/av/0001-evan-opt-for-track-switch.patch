@@ -1,0 +1,64 @@
+From 6a66ddcbf28687c47378f8a28f50fcdc32d8c5a3 Mon Sep 17 00:00:00 2001
+From: stan_liu <stan_liu@realtek.com>
+Date: Mon, 29 Oct 2018 15:58:37 +0800
+Subject: [PATCH 1/2] evan opt for track switch
+
+Change-Id: I0e9c61f5dd041ee751121dbd2496bceecda1349f
+---
+ media/libstagefright/mpeg2ts/MPEG2PSExtractor.cpp | 8 ++++----
+ media/libstagefright/mpeg2ts/MPEG2TSExtractor.cpp | 4 ++--
+ 2 files changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/media/libstagefright/mpeg2ts/MPEG2PSExtractor.cpp b/media/libstagefright/mpeg2ts/MPEG2PSExtractor.cpp
+index 3578218..ced077b 100644
+--- a/media/libstagefright/mpeg2ts/MPEG2PSExtractor.cpp
++++ b/media/libstagefright/mpeg2ts/MPEG2PSExtractor.cpp
+@@ -1328,9 +1328,9 @@ status_t MPEG2PSExtractor::Track::read(
+         else {
+             mExtractor->mLastSeekTimeUs = seekTimeUs;
+             mExtractor->seekTo(seekTimeUs);
+-            int seekWaitTimeout = 5;
++            int seekWaitTimeout = 50;
+             while(mExtractor->mSeeking == true && seekWaitTimeout > 0) {
+-                sleep(1);
++                usleep(20000);
+                 seekWaitTimeout--;
+             }
+ 
+@@ -1437,7 +1437,7 @@ void MPEG2PSExtractor::Track::setESSeeking() {
+     if(mQueue == NULL)
+         return;
+ 
+-    mQueue->setSeeking();
++    //mQueue->setSeeking();
+     return;
+ }
+ 
+@@ -1450,7 +1450,7 @@ void MPEG2PSExtractor::Track::setSeekStatusOver() {
+     if(mQueue == NULL)
+         return;
+ 
+-    mQueue->setSeekStatusOver();
++    //mQueue->setSeekStatusOver();
+     return;
+ }
+ #endif
+diff --git a/media/libstagefright/mpeg2ts/MPEG2TSExtractor.cpp b/media/libstagefright/mpeg2ts/MPEG2TSExtractor.cpp
+index 5e1dddc..7d19e82 100644
+--- a/media/libstagefright/mpeg2ts/MPEG2TSExtractor.cpp
++++ b/media/libstagefright/mpeg2ts/MPEG2TSExtractor.cpp
+@@ -123,9 +123,9 @@ status_t MPEG2TSSource::read(
+         if(mExtractor->mStopAutoFeed == true)
+             mExtractor->mStopAutoFeed = false;
+         mExtractor->seekTo(seekTimeUs);
+-        int seekWaitTimeout = 10;
++        int seekWaitTimeout = 50;
+         while(mExtractor->mSeeking == true && seekWaitTimeout > 0) {
+-            sleep(1);
++            usleep(20000);
+             seekWaitTimeout--;
+         }
+ 
+-- 
+1.9.1
+
