@@ -1,3 +1,0 @@
-The Eclipse deltapack is used to build the monitor application (the RCP version of DDMS).
-Deltapack provides the ability to build executables for different platforms on a single
-host platform.

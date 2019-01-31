@@ -1,2 +1,0 @@
-prereq: test -e fxtract
-prog: fxtract

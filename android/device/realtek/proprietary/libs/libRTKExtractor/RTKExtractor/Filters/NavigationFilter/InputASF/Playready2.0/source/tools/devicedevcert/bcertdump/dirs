@@ -1,4 +1,0 @@
-DIRS = \
-    lib \
-    exe{!_WINCEROOT} \
-

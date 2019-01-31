@@ -1,8 +1,0 @@
-!include ..\..\..\drmbuild.cmn
-
-TARGETNAME=oem_trace_win32
-TARGETTYPE=LIBRARY
-
-SOURCES = 		            \
-    oemtrace.c
-

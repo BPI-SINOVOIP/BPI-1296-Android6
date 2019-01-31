@@ -1,3 +1,0 @@
-allow vold user_device:blk_file create_file_perms;
-allow vold install_data_file:file rw_file_perms;
-allow vold unlabeled:filesystem { mount unmount };

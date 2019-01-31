@@ -1,8 +1,0 @@
-!include ..\..\..\drmbuild.cmn
-
-TARGETNAME=drmprofilingstub
-TARGETTYPE=LIBRARY
-
-SOURCES =                         \
-    drmprofilingimplstub.c        \
-

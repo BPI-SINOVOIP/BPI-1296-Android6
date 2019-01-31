@@ -1,1 +1,0 @@
-/* Integrated in Android.mk. Do NOT delete as it is still referenced. */

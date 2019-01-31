@@ -1,1 +1,0 @@
-dist/config.h.generic

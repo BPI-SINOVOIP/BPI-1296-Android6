@@ -1,5 +1,0 @@
-  lge)
-    TO_EXTRACT="\
-            IMAGES/vendor.img \
-            "
-    ;;

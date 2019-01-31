@@ -1,7 +1,0 @@
-!include ..\drmbuild.cmn
-
-TARGETNAME=cmdlnpars
-TARGETTYPE=LIBRARY
-
-SOURCES =       \
-    cmdlnpars.c \

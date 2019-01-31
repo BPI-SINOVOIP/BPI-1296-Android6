@@ -1,8 +1,0 @@
-!include ..\..\..\drmbuild.cmn
-
-TARGETNAME=drmperformancereal
-TARGETTYPE=LIBRARY
-
-SOURCES =                \
-    drmperformancereal.c
-

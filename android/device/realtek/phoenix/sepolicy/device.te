@@ -1,3 +1,0 @@
-# Realtek used
-type user_device, dev_type;
-type null_read_device, dev_type;

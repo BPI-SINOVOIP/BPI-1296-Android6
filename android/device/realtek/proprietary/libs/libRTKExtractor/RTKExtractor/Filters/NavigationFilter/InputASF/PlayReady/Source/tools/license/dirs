@@ -1,8 +1,0 @@
-DIRS = \
-    licensecleanstore        \
-    licensegeneratechallenge \
-    licenseprocessresponse   \
-    licenseviewstore         \
-    licensedeviceexclusion   \
-    syncgeneratelicensechallenges \
-    licenseprocessdeviceexclusion \

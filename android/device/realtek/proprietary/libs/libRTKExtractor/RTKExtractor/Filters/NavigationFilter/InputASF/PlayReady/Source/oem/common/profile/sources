@@ -1,8 +1,0 @@
-!include ..\..\..\drmbuild.cmn
-
-TARGETNAME=oem_profilecommon
-TARGETTYPE=LIBRARY
-
-SOURCES = 	               \
-	..\oemprofile_common.c \
-

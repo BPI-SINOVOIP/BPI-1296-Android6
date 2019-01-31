@@ -1,4 +1,0 @@
-<mixer>
-  <!-- These are the initial mixer settings -->
-  <ctl name="Master Volume" value="31" />
-</mixer>

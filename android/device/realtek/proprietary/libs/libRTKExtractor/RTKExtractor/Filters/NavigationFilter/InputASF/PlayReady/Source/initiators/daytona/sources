@@ -1,7 +1,0 @@
-!include ..\..\drmbuild.cmn
-
-TARGETNAME=drminitiators
-TARGETTYPE=LIBRARY
-
-SOURCES =                   \
-    ..\drminitparser.c    \

@@ -1,9 +1,0 @@
-DIRS = \
-       daytona     \
-       profile     \
-       AES         \
-       DevStore    \
-       RSA         \
-       msdb
-
-    

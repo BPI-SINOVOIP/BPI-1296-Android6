@@ -1,8 +1,0 @@
-!include ..\..\..\drmbuild.cmn
-
-TARGETNAME=drmnoncestorereal
-TARGETTYPE=LIBRARY
-
-SOURCES =           \
-    drmnoncestore.c
-

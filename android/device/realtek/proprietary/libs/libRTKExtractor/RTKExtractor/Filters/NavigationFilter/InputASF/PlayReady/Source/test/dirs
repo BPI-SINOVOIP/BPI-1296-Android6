@@ -1,5 +1,0 @@
-DIRS = \
-    cipher \
-    crypto
-
-

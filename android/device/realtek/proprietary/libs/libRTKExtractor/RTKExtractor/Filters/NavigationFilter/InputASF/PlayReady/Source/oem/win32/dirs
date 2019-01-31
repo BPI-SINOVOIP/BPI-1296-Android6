@@ -1,7 +1,0 @@
-DIRS = \
-    daytona \
-    main \
-    trace \
-    securetrace
-    
-

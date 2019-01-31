@@ -1,3 +1,0 @@
-allow servicemanager init:dir search;
-allow servicemanager init:file rw_file_perms;
-allow servicemanager init:process getattr;

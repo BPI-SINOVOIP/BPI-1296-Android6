@@ -1,2 +1,0 @@
-#allow kernel ufsd:filesystem mount;
-fs_use_xattr ubifs u:object_r:labeledfs:s0;

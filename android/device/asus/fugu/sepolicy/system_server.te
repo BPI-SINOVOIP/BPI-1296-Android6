@@ -1,3 +1,0 @@
-# Allow system server factory file access
-allow system_server efs_file:dir search;
-allow system_server efs_file:file r_file_perms;

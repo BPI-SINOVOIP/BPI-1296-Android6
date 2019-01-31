@@ -1,6 +1,0 @@
-!include ..\..\drmbuild.cmn
-
-TARGETNAME=drmdevicedevcert
-TARGETTYPE=LIBRARY
-
-SOURCES = ..\devicedevcert.c

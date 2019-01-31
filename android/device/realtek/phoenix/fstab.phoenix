@@ -1,4 +1,0 @@
-/devices/18013000.ehci/usb*	auto		auto	defaults voldmanaged=usb:auto,encryptable=userdata
-/devices/18013400.ohci/usb*     auto            auto    defaults voldmanaged=usb:auto,encryptable=userdata
-/devices/18013200.rtk_dwc3/18020000.dwc3/xhci-hcd.2.auto/usb*     auto            auto    defaults voldmanaged=usb:auto,encryptable=userdata
-/devices/18000000.crsd/mmc_host* auto            auto    defaults voldmanaged=sdcard0:auto,encryptable=userdata

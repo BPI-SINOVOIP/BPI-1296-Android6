@@ -1,4 +1,0 @@
-About to null reference and request GC.
-Finalizer started and spinning...
-Finalizer done spinning.
-Finalizer sleeping forever now.
