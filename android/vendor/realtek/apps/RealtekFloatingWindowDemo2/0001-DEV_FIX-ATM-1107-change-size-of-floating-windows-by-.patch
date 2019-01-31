@@ -1,0 +1,98 @@
+From 969f30b0ad0d4cbe2da22b2070b2ffb6270eb854 Mon Sep 17 00:00:00 2001
+From: jiangyong_tong <jiangyong_tong@realsil.com.cn>
+Date: Fri, 19 May 2017 06:51:57 -0400
+Subject: [PATCH] [DEV_FIX]: ATM-1107 change size of floating windows by mouse
+
+[REVIEWER]: CharlesLin
+
+Change-Id: Iae89c8f2f97290e408be03c74ea1be3a0d5c66f7
+---
+ .../realtek/floatingwindow/FloatingWindowView.java | 53 +++++++++++++++++++++-
+ 1 file changed, 52 insertions(+), 1 deletion(-)
+
+diff --git a/src/com/realtek/floatingwindow/FloatingWindowView.java b/src/com/realtek/floatingwindow/FloatingWindowView.java
+index 9f25736..598dd43 100644
+--- a/src/com/realtek/floatingwindow/FloatingWindowView.java
++++ b/src/com/realtek/floatingwindow/FloatingWindowView.java
+@@ -6,6 +6,7 @@ import android.util.AttributeSet;
+ import android.view.ViewGroup;
+ import android.view.View;
+ import android.view.ViewParent;
++import android.view.InputDevice;
+ import android.view.WindowManager;
+ import android.widget.RelativeLayout;
+ import android.widget.FrameLayout;
+@@ -24,6 +25,11 @@ public class FloatingWindowView extends FrameLayout {
+     private int mYPos;
+     private int mWidth;
+     private int mHeight;
++    private int mNewWidth;
++    private int mNewHeight;
++    private double zoomRadio = 1;
++    private static double rollZoomRadioInterval = 0.1;
++
+ 
+     private Context mContext;
+ 
+@@ -147,7 +153,6 @@ public class FloatingWindowView extends FrameLayout {
+                     mYPos = lParams.y;
+                     mWidth = lParams.width;
+                     mHeight = lParams.height;
+-
+                     mDragStartX = x;
+                     mDragStartY = y;
+                     Log.d(TAG, "view pos "+mXPos+" "+mYPos+" - "+mDragStartX+" "+mDragStartY);
+@@ -201,4 +206,50 @@ public class FloatingWindowView extends FrameLayout {
+         return true;
+     }
+ 
++    public boolean onGenericMotionEvent(MotionEvent event) {
++        //The input source is a pointing device associated with a display.
++        if (0 != (event.getSource() & InputDevice.SOURCE_CLASS_POINTER)) {
++          switch (event.getAction()) {
++            // process the scroll wheel movement..
++            case MotionEvent.ACTION_SCROLL:
++                //Log.i(TAG,"action fortest::onGenericMotionEvent:"+event.getAxisValue(MotionEvent.AXIS_VSCROLL));
++                if( event.getAxisValue(MotionEvent.AXIS_VSCROLL) < 0.0f){
++                    //Log.i("action fortest::onGenericMotionEvent", "down" );
++                    zoomRadio = zoomRadio-rollZoomRadioInterval;
++                }
++                else{
++                    //Log.i("action fortest::onGenericMotionEvent", "up" );
++                    zoomRadio = zoomRadio+rollZoomRadioInterval;
++                }
++                WindowManager.LayoutParams lParams = (WindowManager.LayoutParams) getLayoutParams();
++                mXPos = lParams.x;
++                mYPos = lParams.y;
++                mWidth = lParams.width;
++                mHeight = lParams.height;
++                mNewWidth = (int)(mWidth *zoomRadio);
++                mNewHeight = (int)(mHeight * zoomRadio);
++                int flag = WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN|
++                //WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE|
++                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
++                // update layout
++                WindowManager.LayoutParams wmParams = new WindowManager.LayoutParams(
++                                mNewWidth,//WindowManager.LayoutParams.MATCH_PARENT,
++                                mNewHeight,//WindowManager.LayoutParams.MATCH_PARENT,
++                                FloatingWindowService2.FLOATING_WINDOW_TYPE, //WindowManager.LayoutParams    .TYPE_TOAST,
++                                flag,
++                                PixelFormat.TRANSLUCENT);
++
++                wmParams.x = mXPos;
++                wmParams.y = mYPos;
++                wmParams.gravity = Gravity.TOP|Gravity.LEFT;
++                WindowManager wm = (WindowManager)mContext.getSystemService(Context.WINDOW_SERVICE);
++                wm.updateViewLayout(this, wmParams);
++                zoomRadio = 1;
++                return true;
++            }
++        }
++            return super.onGenericMotionEvent(event);
++    }
++    //countZoomRatio(mDragStartX,mDragStartY,x,y,lParams.x,lParams.y,lParams.width,lParams.height)
++
+ }
+-- 
+2.15.1
+

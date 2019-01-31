@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Option>
+	<Item Name = "White" />
+	<Item Name = "Black" />
+	<Item Name = "Red" />
+	<Item Name = "Green" />
+	<Item Name = "Blue" />
+	<Item Name = "Yellow" />
+	<Item Name = "Color(#C2E0EC)" />
+	<Item Name = "Color(#9C9C9C)" />
+	<Item Name = "Color(#B5B5B5)" />
+	<Item Name = "Color(#CFCFCF)" />
+</Option>

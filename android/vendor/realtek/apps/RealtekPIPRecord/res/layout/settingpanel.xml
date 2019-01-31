@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/setting"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="@drawable/transparent">
+
+    
+    <LinearLayout
+        android:layout_width="@dimen/size_dialog_width"
+        android:layout_height="wrap_content"
+        
+        android:orientation="horizontal"
+        android:background="@drawable/transparent" >
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+           
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView android:id="@+id/txtGeneral"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:textColor="#FF00FF"
+                    android:gravity="left"
+                    android:text="@string/general"
+                    android:textSize="15sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView android:id="@+id/txtTrack"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center_horizontal"
+                    android:text="@string/Track"
+                    android:textSize="15sp" />
+                <Spinner android:id="@+id/spnTrack"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:drawSelectorOnTop="true"
+                    android:prompt="@string/spnTrack"
+                    android:layout_weight="2"
+                    android:gravity="center_horizontal" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView android:id="@+id/txtSourceTypr"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center_horizontal"
+                    android:text="@string/SourceType"
+                    android:textSize="15sp" />
+                <Spinner android:id="@+id/spnSourceType"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:drawSelectorOnTop="true"
+                    android:prompt="@string/spnSourceType"
+                    android:layout_weight="2"
+                    android:gravity="center_horizontal" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView android:id="@+id/txtFormat"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center_horizontal"
+                    android:text="@string/Format"
+                    android:textSize="15sp" />
+                <Spinner android:id="@+id/spnFormat"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:drawSelectorOnTop="true"
+                    android:prompt="@string/spnFormat"
+                    android:layout_weight="2"
+                    android:gravity="center_horizontal" />
+            </LinearLayout> 
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView android:id="@+id/txtStoragePath"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center_horizontal"
+                    android:text="@string/StoragePath"
+                    android:textSize="15sp" />
+                <Spinner android:id="@+id/spnStoragePath"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:drawSelectorOnTop="true"
+                    android:prompt="@string/spnStoragePath"
+                    android:layout_weight="2"
+                    android:gravity="center_horizontal" />
+            </LinearLayout>  
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView android:id="@+id/txtVideo"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:textColor="#FF00FF"
+                    android:gravity="left"
+                    android:text="@string/video"
+                    android:textSize="15sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView android:id="@+id/txtResolution"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center_horizontal"
+                    android:text="@string/Resol"
+                    android:textSize="15sp" />
+                <Spinner android:id="@+id/spnResolution"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:drawSelectorOnTop="true"
+                    android:prompt="@string/spnResolution"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <EditText android:id="@+id/widthText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1.5"
+                    android:inputType="text"
+                    android:textColor="#FFFF00"
+                    android:text="@string/widthText"
+                    android:gravity="center_vertical|right"
+                    android:textSize="15sp"
+                    android:textCursorDrawable="@drawable/cursor" />
+                <TextView android:id="@+id/txtx"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center_horizontal"
+                    android:text="@string/x"
+                    android:textSize="15sp" />
+                <EditText android:id="@+id/heightText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1.5"
+                    android:inputType="text"
+                    android:textColor="#FFFF00"
+                    android:text="@string/heightText"
+                    android:gravity="center_vertical|left"
+                    android:textSize="15sp"
+                    android:textCursorDrawable="@drawable/cursor" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView android:id="@+id/txtFrameRate"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center_horizontal"
+                    android:text="@string/FR"
+                    android:textSize="15sp" />
+                <Spinner android:id="@+id/spnFrameRate"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:drawSelectorOnTop="true"
+                    android:prompt="@string/spnFrameRate"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView android:id="@+id/txtBR"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center_horizontal"
+                    android:text="@string/BR"
+                    android:textSize="15sp" />
+                <Spinner android:id="@+id/spnBR"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:drawSelectorOnTop="true"
+                    android:prompt="@string/spnBRprompt"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView android:id="@+id/txtFI"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center_horizontal"
+                    android:text="@string/FI"
+                    android:textSize="15sp" />
+                <Spinner android:id="@+id/spnFI"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:drawSelectorOnTop="true"
+                    android:prompt="@string/spnFIprompt"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView android:id="@+id/txtEmpty"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:textColor="#000000"
+                    android:gravity="left"
+                    android:text="@string/empty"
+                    android:textSize="8sp" />
+            </LinearLayout>             
+        </LinearLayout>            
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView android:id="@+id/txtAudio"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:textColor="#FF00FF"
+                    android:gravity="left"
+                    android:text="@string/audio"
+                    android:textSize="15sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView android:id="@+id/txtSampleRate"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center_horizontal"
+                    android:text="@string/SampleRate"
+                    android:textSize="15sp" />
+                <Spinner android:id="@+id/spnSampleRate"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:drawSelectorOnTop="true"
+                    android:prompt="@string/spnSampleRate"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView android:id="@+id/txtChannel"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center_horizontal"
+                    android:text="@string/Channel"
+                    android:textSize="15sp" />
+                <Spinner android:id="@+id/spnChannel"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:drawSelectorOnTop="true"
+                    android:prompt="@string/spnChannel"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal" />
+            </LinearLayout>            
+            
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView android:id="@+id/txtStream"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:textColor="#FF00FF"
+                    android:gravity="left"
+                    android:text="@string/stream"
+                    android:textSize="15sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView android:id="@+id/txtStreamIP"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center_horizontal"
+                    android:text="@string/streamIP"
+                    android:textSize="15sp" />
+                <EditText android:id="@+id/ipText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:inputType="text"
+                    android:textColor="#FFFF00"
+                    android:text="@string/ipText"
+                    android:gravity="center_horizontal"
+                    android:textSize="15sp"
+                    android:textCursorDrawable="@drawable/cursor" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView android:id="@+id/txtStreamPort"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center_horizontal"
+                    android:text="@string/streamPort"
+                    android:textSize="15sp" />
+                <EditText android:id="@+id/portText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:inputType="text"
+                    android:textColor="#FFFF00"
+                    android:text="@string/portText"
+                    android:gravity="center_horizontal"
+                    android:textSize="15sp"
+                    android:textCursorDrawable="@drawable/cursor" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <Button android:id="@+id/pip_record_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:textColor="#FFFFFF" />
+
+        <TextView android:id="@+id/txtEmpty"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="5"
+            android:textColor="#000000"
+            android:gravity="left"
+            android:text="@string/empty"
+            android:textSize="15sp" />
+
+    </LinearLayout>    
+    
+</LinearLayout>

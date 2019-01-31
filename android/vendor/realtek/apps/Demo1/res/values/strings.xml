@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="string_demo1">"字符串UI显示测试"</string>
+    <string name="app_name">Demo</string>
+    <string name="string_btn1">左</string>
+    <string name="string_btn2">右</string>
+</resources>

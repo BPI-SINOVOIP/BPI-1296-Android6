@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="size_icon">48.0px</dimen>
+    <dimen name="height_button_normal">48.0px</dimen>
+    <dimen name="height_navigation">48.0px</dimen>
+    <dimen name="text_size_item_title">28.0sp</dimen>
+    <dimen name="text_size_toast">18.0sp</dimen>
+    <dimen name="text_size_setting_title">28.0sp</dimen>
+    <dimen name="text_size_setting_content">20.0sp</dimen>
+    <dimen name="size_btn_delete_line">48.0px</dimen>
+    <dimen name="size_indeterminate_progress">66.0px</dimen>
+    <dimen name="size_icon_app">52.0px</dimen>
+    <dimen name="size_dialog">290.0px</dimen>
+    <dimen name="size_float_button">48.0px</dimen>
+    <dimen name="height_list_item">48.0px</dimen>
+</resources>

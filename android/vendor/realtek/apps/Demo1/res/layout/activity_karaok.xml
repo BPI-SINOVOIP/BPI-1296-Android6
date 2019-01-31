@@ -1,0 +1,43 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <com.player.boxplayer.karaok.RtVideoView
+        android:id="@+id/preview_video"
+        android:layout_gravity="left|top"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"/>
+    
+    <TextView
+           android:id="@+id/app_addr_info"
+           android:layout_width="100dp"
+           android:layout_height="wrap_content"
+           android:layout_alignParentTop="true"
+           android:layout_alignParentLeft="true"
+           android:layout_marginTop="125dp"
+           android:layout_marginLeft="20dp"
+           android:textColor="#ffffff"
+           android:text="@string/string_demo1"
+           android:textSize="18dp" />
+    <Button
+        android:id="@+id/id1"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="150dp"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="@string/string_btn1"
+        />
+    
+    <Button
+        android:id="@+id/id2"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="100dp"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="@string/string_btn2"
+        />
+</FrameLayout>

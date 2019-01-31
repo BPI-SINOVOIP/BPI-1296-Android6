@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">PIP Record</string>
+    
+    <string name="SourceType">Source</string>
+    <string name="StoragePath">Path</string>
+    <string name="spnSourceType">SourceType</string>
+    <string name="spnStoragePath">StoragePath</string>
+    <string name="target_title">Target</string>
+    <string name="target_path">file path</string>    
+    
+   
+    <string name="general">GeneralSetting </string>
+    <string name="audio">AudioSetting </string>
+    <string name="video">VideoSetting </string>
+    <string name="empty"> </string>
+    <string name="FR">FrameRate</string>
+    <string name="BR">BitRate</string>
+    <string name="FI">I-FrameInterval</string>
+    <string name="Format">Format</string>
+    
+    <string name="Track">Track</string>
+    <string name="Pass">AudioOutput</string>
+    <string name="Resol">Resolution</string>
+    <string name="x">x</string>
+    <string name="SampleRate">SampleRate</string>
+    <string name="Channel">ChannelCount</string>
+    <string name="stream">StreamSetting </string>
+
+    <string name="streamIP">StreamIP </string>
+    <string name="streamPort">StreamPort </string>
+
+    <string name="ipText">239.0.0.1</string>
+    <string name="portText">7890</string>
+    <string name="repeatText">0</string>
+    <string name="widthText">640</string>
+    <string name="heightText">480</string>
+
+    <string name="spnFrameRate">FrameRate</string>
+    <string name="spnBRprompt">BitRate</string>
+    <string name="spnFIprompt">I-FrameInterval</string>
+    <string name="spnFormat">OutputFormat</string>
+    <string name="spnTrack">Track</string>
+    <string name="spnResolution">Resolution</string>
+    <string name="spnSampleRate">Resolution</string>
+    <string name="spnChannel">Resolution</string>    
+    
+    
+</resources>

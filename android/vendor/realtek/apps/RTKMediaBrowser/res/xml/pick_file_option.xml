@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Option>
+    <Group GroupName="ViewSelect">
+        <Item
+                text="select"
+                Name="mb_select"
+                Focus="false"/>
+    </Group>
+</Option>

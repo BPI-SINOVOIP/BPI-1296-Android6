@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="height_navigation">80.0px</dimen>
+    <dimen name="size_icon_app">128.0px</dimen>
+    <dimen name="size_dialog">600.0px</dimen>
+    <dimen name="size_float_button">120.0px</dimen>
+    <dimen name="height_list_item">80.0px</dimen>
+</resources>
