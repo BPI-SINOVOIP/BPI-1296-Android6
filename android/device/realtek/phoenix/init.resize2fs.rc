@@ -1,0 +1,14 @@
+on init
+    start ext4resize
+
+on early-fs
+    wait /ext4resize.done 5
+
+service ext4resize /sbin/ext4resize.sh
+    class core
+    user root
+    group root
+    disabled
+    oneshot
+    seclabel u:r:init:s0
+

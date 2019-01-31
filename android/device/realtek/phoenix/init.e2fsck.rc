@@ -1,0 +1,11 @@
+on init
+    start e2fsck
+
+on early-fs
+    wait /e2fsck.done 60
+
+service e2fsck /sbin/e2fsck.sh
+    class core
+    oneshot
+    disabled
+

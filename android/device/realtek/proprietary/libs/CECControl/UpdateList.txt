@@ -1,0 +1,47 @@
+/*----------------------------------------------------------------------------
+  File     : UpdateList.txt
+ 
+  Desc     : Update List of CEC Control Driver
+ 
+  Author   : Kevin Wang (kevin_wang@realtek.com.tw) 
+    
+  Update List :
+ ----------------------------------------------------------------------------
+     2.0     |   20081002    |   Kevin Wang  | 
+ ----------------------------------------------------------------------------  
+    
+    Add CEC_API.cpp / CEC_API.h to Supports a Common Interface for All CEC 
+    Controller. AP should use OpenCECController / CloseCECController to create 
+    and destroy CEC Controller.        
+    
+ ----------------------------------------------------------------------------
+     2.0a    |   20081006    |   Kevin Wang  | 
+ ----------------------------------------------------------------------------  
+    
+    Add member function - CEC_MODULE::LogicalAddressAllocation()
+    This function is used to ask the CEC Controller to do Logical Address 
+    Allocation and return the address which it allocated.
+    
+ ----------------------------------------------------------------------------
+     2.0b    |   20081006    |   Kevin Wang  | 
+ ----------------------------------------------------------------------------  
+    
+    iosolate HW level APIs - All Hardware Level Congiguration should be implemented
+    via API - SetHW()
+    
+    Any Physical CEC Controller should implement this function instead of override  
+    Enable / SetPowerStatus / SetLogicalAddress / SetPhysicalAddress of CEC_MODULE 
+    class
+        
+ ----------------------------------------------------------------------------
+     2.0c    |   20081218    |   Kevin Wang  | 
+ ----------------------------------------------------------------------------          
+    Auto Response to following messages
+    CEC_GET_CEC_VERSION
+    CEC_GIVE_PHYSICAL_ADDRESS
+    CEC_GIVE_DEIVE_VENDOR_ID
+    CEC_GIVE_OSD_NAME
+    CEC_GIVE_DEVICE_POWER_STATUS
+    CEC_ACTIVE_SOURCE
+    CEC_REQUEST_ACTIVE_SOURCE
+ ----------------------------------------------------------------------------*/

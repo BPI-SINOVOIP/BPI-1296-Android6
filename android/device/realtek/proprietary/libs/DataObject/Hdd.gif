@@ -1,0 +1,794 @@
+# sqlite3 765.png
+
+# version 6 - New;
+
+CREATE TABLE tParameter (id INTEGER PRIMARY KEY, fKey TEXT, fValue BLOB);
+INSERT INTO tParameter(fKey, fValue) VALUES('DB_VERSION', '6');
+INSERT INTO tParameter(fKey, fValue) VALUES('DB_DEVELOP_VERSION', '5');
+CREATE UNIQUE INDEX iParameter_1 ON tParameter(fKey ASC);
+
+# Hdd Files;
+
+CREATE TABLE HddCollection(
+    id INTEGER PRIMARY KEY,
+    CreateDate NUMERIC,
+    MediaType NUMERIC,
+    CollectionName TEXT,
+    Selected NUMERIC DEFAULT 0
+);
+CREATE INDEX iHddCollection_1 ON HddCollection(Selected);
+CREATE INDEX iHddCollection_2 ON HddCollection(MediaType,CollectionName);
+CREATE INDEX iHddCollection_3 ON HddCollection(MediaType,CreateDate);
+CREATE INDEX iHddCollection_4 ON HddCollection(MediaType,CollectionName,CreateDate);
+    
+CREATE TABLE HddFile(
+    id INTEGER PRIMARY KEY,
+    LastCopyDate NUMERIC,
+    LastPlayDate NUMERIC,
+    TransactionStatus NUMERIC,
+    MediaType NUMERIC,
+    CollectionId NUMERIC,
+    FileName TEXT,
+    FileSize NUMERIC DEFAULT 0,
+    PhysicalFilePath TEXT,
+    ResumePoint NUMERIC DEFAULT 0,
+    Artist TEXT,
+    Album TEXT,
+    Title TEXT,
+    FComment TEXT,
+    FYear NUMERIC,
+    Track NUMERIC,
+    ExtendFilePath1 TEXT
+);
+
+CREATE INDEX iHddFile_1 ON HddFile(CollectionId);
+CREATE INDEX iHddFile_2 ON HddFile(TransactionStatus);
+CREATE INDEX iHddFile_3 ON HddFile(MediaType,TransactionStatus,Artist,Album,FileName ASC);
+CREATE INDEX iHddFile_4 ON HddFile(MediaType,TransactionStatus,Album,FileName ASC);
+CREATE INDEX iHddFile_5 ON HddFile(MediaType,TransactionStatus,FileName ASC);
+CREATE INDEX iHddFile_6 ON HddFile(MediaType,TransactionStatus,Artist,FileName ASC);
+CREATE INDEX iHddFile_7 ON HddFile(MediaType,TransactionStatus,LastCopyDate);
+CREATE INDEX iHddFile_8 ON HddFile(MediaType,TransactionStatus,LastPlayDate);
+CREATE INDEX iHddFile_9 ON HddFile(MediaType,TransactionStatus,CollectionId,FileName ASC);
+
+CREATE TABLE HddFileSelected(
+    id NUMBER
+);
+
+CREATE TABLE HddFileArtistUsed(
+    MediaType NUMERIC,
+    Artist TEXT,
+    Primary Key(MediaType,Artist)
+);
+CREATE TABLE HddFileAlbumUsed(
+    MediaType NUMERIC,
+    Album TEXT,
+    Primary Key(MediaType,Album)
+);
+
+CREATE TABLE HddPlayList(
+    id INTEGER PRIMARY KEY,
+    EditDate NUMERIC,
+    MediaType NUMERIC,
+    PlaylistName TEXT,
+    Selected NUMERIC DEFAULT 0
+);
+CREATE INDEX iHddPlayList_1 ON HddPlayList(Selected);
+CREATE INDEX iHddPlayList_2 ON HddPlayList(MediaType,PlaylistName ASC);
+CREATE INDEX iHddPlayList_3 ON HddPlayList(MediaType,EditDate DESC);
+
+CREATE TABLE HddPlayList2File(
+    PlayListId NUMERIC not null,
+    FileId NUMERIC not null,
+    TransactionStatus NUMERIC,
+    MediaType NUMERIC,
+    FileName TEXT,    
+    Primary Key(PlayListId,FileId)  
+);
+CREATE INDEX iHddPlayList2File_1 ON HddPlayList2File(FileId);
+CREATE INDEX iHddPlayList2File_2 ON HddPlayList2File(MediaType,TransactionStatus,PlayListId,FileId,FileName);
+
+CREATE TABLE HddGenre(
+    MajorId NUMERIC not null,
+    MinorId NUMERIC not null,
+    MajorName TEXT,
+    MinorName TEXT,
+    GOrder NUMERIC,
+    Used NUMERIC DEFAULT 0,
+    Primary Key(MajorId,MinorId)  
+);
+CREATE INDEX iHddGenre_1 ON HddGenre(MajorId,Used,MinorName);
+
+CREATE TABLE HddGenre2File(
+    GenreMajorId NUMERIC not null,
+    GenreMinorId NUMERIC not null,
+    FileId NUMERIC not null,
+    TransactionStatus NUMERIC,
+    MediaType NUMERIC,
+    Artist TEXT,
+    Album TEXT,
+    FileName TEXT,    
+    Primary Key(GenreMajorId,GenreMinorId,FileId)
+);
+CREATE INDEX iHddGenre2File_1 ON HddGenre2File(FileId);
+CREATE INDEX iHddGenre2File_2 ON HddGenre2File(GenreMajorId,GenreMinorId,MediaType,TransactionStatus,Artist,Album,FileId,FileName);
+CREATE INDEX iHddGenre2File_3 ON HddGenre2File(GenreMajorId,GenreMinorId,MediaType,TransactionStatus,FileId);
+CREATE INDEX iHddGenre2File_4 ON HddGenre2File(GenreMajorId,GenreMinorId,MediaType,TransactionStatus,Artist,FileId,FileName);
+
+CREATE TRIGGER fkd_HddCollection_1
+BEFORE DELETE ON HddCollection
+FOR EACH ROW BEGIN
+  DELETE from HddFile WHERE CollectionId=OLD.id;
+END;
+
+CREATE TRIGGER fkd_HddFile_1
+BEFORE INSERT ON HddFile
+BEGIN
+  SELECT CASE
+    WHEN (SELECT id FROM HddCollection WHERE id = NEW.CollectionId) IS NULL
+    THEN RAISE ( ABORT, 'Foreign Key Violation: HddFile.CollectionId is not in HddCollection.id')
+  END;
+END;
+
+CREATE TRIGGER fkd_HddFile_2
+BEFORE DELETE ON HddFile
+FOR EACH ROW BEGIN
+  DELETE from HddPlayList2File WHERE FileId=OLD.id;
+  DELETE from HddGenre2File WHERE FileId=OLD.id;
+END;
+
+CREATE TRIGGER fkd_HddPlayList_1
+BEFORE DELETE ON HddPlayList
+FOR EACH ROW BEGIN
+  DELETE from HddPlayList2File WHERE PlayListId=OLD.id;
+END;
+
+CREATE TRIGGER fkd_HddGenre_1
+BEFORE DELETE ON HddGenre
+FOR EACH ROW BEGIN
+  DELETE from HddGenre2File WHERE GenreMajorId=OLD.MajorId and GenreMinorId=OLD.MinorId;
+END;
+
+CREATE TRIGGER fkd_HddPlayList2File_1
+BEFORE INSERT ON HddPlayList2File
+BEGIN
+  SELECT CASE
+    WHEN (SELECT id FROM HddPlayList WHERE id = NEW.PlayListId) IS NULL
+    THEN RAISE ( ABORT, 'Foreign Key Violation: HddPlayList2File.PlayListId is not in HddPlayList.id')
+    WHEN (SELECT id FROM HddFile WHERE id = NEW.FileId) IS NULL
+    THEN RAISE ( ABORT, 'Foreign Key Violation: HddPlayList2File.FileId is not in HddFile.id')
+  END;
+END;
+
+CREATE TRIGGER fkd_HddGenre2File_1
+BEFORE INSERT ON HddGenre2File
+BEGIN
+  SELECT CASE
+    WHEN (SELECT MajorId FROM HddGenre WHERE MajorId = NEW.GenreMajorId and MinorId = NEW.GenreMinorId) IS NULL
+    THEN RAISE ( ABORT, 'Foreign Key Violation: HddGenre2File.GenreMajorId and GenreMinorId are not in HddGenre')
+    WHEN (SELECT id FROM HddFile WHERE id = NEW.FileId) IS NULL
+    THEN RAISE ( ABORT, 'Foreign Key Violation: HddGenre2File.FileId is not in HddFile.id')
+  END;
+END;
+
+#Collection;
+INSERT INTO HddCollection(id,CreateDate,MediaType,CollectionName) VALUES(1,0,1,'unknown');
+INSERT INTO HddCollection(id,CreateDate,MediaType,CollectionName) VALUES(2,0,2,'unknown');
+INSERT INTO HddCollection(id,CreateDate,MediaType,CollectionName) VALUES(3,0,3,'unknown');
+#Genre;
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1,  0,'Audio',  'Blues',  0);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1,  1,'Audio',  'Classic Rock',  1);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1,  2,'Audio',  'Country',  2);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1,  3,'Audio',  'Dance',  3);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1,  4,'Audio',  'Disco',  4);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1,  5,'Audio',  'Funk',  5);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1,  6,'Audio',  'Grunge',  6);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1,  7,'Audio',  'Hip-Hop',  7);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1,  8,'Audio',  'Jazz',  8);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1,  9,'Audio',  'Metal',  9);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 10,'Audio',  'New Age', 10);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 11,'Audio',  'Oldies', 11);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 12,'Audio',  'Other', 12);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 13,'Audio',  'Pop', 13);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 14,'Audio',  'R&B', 14);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 15,'Audio',  'Rap', 15);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 16,'Audio',  'Reggae', 16);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 17,'Audio',  'Rock', 17);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 18,'Audio',  'Techno', 18);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 19,'Audio',  'Industrial', 19);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 20,'Audio',  'Alternative', 20);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 21,'Audio',  'Ska', 21);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 22,'Audio',  'Death Metal', 22);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 23,'Audio',  'Pranks', 23);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 24,'Audio',  'Soundtrack', 24);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 25,'Audio',  'Euro-Techno', 25);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 26,'Audio',  'Ambient', 26);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 27,'Audio',  'Trip-Hop', 27);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 28,'Audio',  'Vocal', 28);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 29,'Audio',  'Jazz+Funk', 29);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 30,'Audio',  'Fusion', 30);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 31,'Audio',  'Trance', 31);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 32,'Audio',  'Classical', 32);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 33,'Audio',  'Instrumental', 33);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 34,'Audio',  'Acid', 34);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 35,'Audio',  'House', 35);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 36,'Audio',  'Game', 36);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 37,'Audio',  'Sound Clip', 37);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 38,'Audio',  'Gospel', 38);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 39,'Audio',  'Noise', 39);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 40,'Audio',  'AlternRock', 40);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 41,'Audio',  'Bass', 41);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 42,'Audio',  'Soul', 42);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 43,'Audio',  'Punk', 43);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 44,'Audio',  'Space', 44);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 45,'Audio',  'Meditative', 45);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 46,'Audio',  'Instrumental Pop', 46);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 47,'Audio',  'Instrumental Rock', 47);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 48,'Audio',  'Ethnic', 48);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 49,'Audio',  'Gothic', 49);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 50,'Audio',  'Darkwave', 50);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 51,'Audio',  'Techno-Industrial', 51);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 52,'Audio',  'Electronic', 52);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 53,'Audio',  'Pop-Folk', 53);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 54,'Audio',  'Eurodance', 54);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 55,'Audio',  'Dream', 55);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 56,'Audio',  'Southern Rock', 56);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 57,'Audio',  'Comedy', 57);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 58,'Audio',  'Cult', 58);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 59,'Audio',  'Gangsta', 59);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 60,'Audio',  'Top 40', 60);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 61,'Audio',  'Christian Rap', 61);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 62,'Audio',  'Pop/Funk', 62);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 63,'Audio',  'Jungle', 63);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 64,'Audio',  'Native American', 64);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 65,'Audio',  'Cabaret', 65);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 66,'Audio',  'New Wave', 66);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 67,'Audio',  'Psychadelic', 67);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 68,'Audio',  'Rave', 68);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 69,'Audio',  'Showtunes', 69);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 70,'Audio',  'Trailer', 70);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 71,'Audio',  'Lo-Fi', 71);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 72,'Audio',  'Tribal', 72);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 73,'Audio',  'Acid Punk', 73);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 74,'Audio',  'Acid Jazz', 74);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 75,'Audio',  'Polka', 75);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 76,'Audio',  'Retro', 76);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 77,'Audio',  'Musical', 77);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 78,'Audio',  'Rock & Roll', 78);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 79,'Audio',  'Hard Rock', 79);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 80,'Audio',  'Folk', 80);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 81,'Audio',  'Folk-Rock', 81);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 82,'Audio',  'National Folk', 82);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 83,'Audio',  'Swing', 83);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 84,'Audio',  'Fast Fusion', 84);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 85,'Audio',  'Bebob', 85);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 86,'Audio',  'Latin', 86);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 87,'Audio',  'Revival', 87);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 88,'Audio',  'Celtic', 88);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 89,'Audio',  'Bluegrass', 89);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 90,'Audio',  'Avantgarde', 90);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 91,'Audio',  'Gothic Rock', 91);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 92,'Audio',  'Progressive Rock', 92);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 93,'Audio',  'Psychedelic Rock', 93);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 94,'Audio',  'Symphonic Rock', 94);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 95,'Audio',  'Slow Rock', 95);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 96,'Audio',  'Big Band', 96);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 97,'Audio',  'Chorus', 97);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 98,'Audio',  'Easy Listening', 98);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1, 99,'Audio',  'Acoustic', 99);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1,100,'Audio',  'Humour',100);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1,101,'Audio',  'Speech',101);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1,102,'Audio',  'Chanson',102);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1,103,'Audio',  'Opera',103);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1,104,'Audio',  'Chamber Music',104);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1,105,'Audio',  'Sonata',105);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1,106,'Audio',  'Symphony',106);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1,107,'Audio',  'Booty Bass',107);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1,108,'Audio',  'Primus',108);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1,109,'Audio',  'Porn Groove',109);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1,110,'Audio',  'Satire',110);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1,111,'Audio',  'Slow Jam',111);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1,112,'Audio',  'Club',112);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1,113,'Audio',  'Tango',113);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1,114,'Audio',  'Samba',114);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1,115,'Audio',  'Folklore',115);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1,116,'Audio',  'Ballad',116);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1,117,'Audio',  'Power Ballad',117);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1,118,'Audio',  'Rhythmic Soul',118);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1,119,'Audio',  'Freestyle',119);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1,120,'Audio',  'Duet',120);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1,121,'Audio',  'Punk Rock',121);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1,122,'Audio',  'Drum Solo',122);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1,123,'Audio',  'A capella',123);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1,124,'Audio',  'Euro-House',124);
+INSERT INTO HddGenre(MajorId,MinorId,MajorName,MinorName,GOrder) VALUES(1,125,'Audio',  'Dance Hall',125);
+
+#My Recording;
+
+CREATE TABLE RecFile(
+    id INTEGER PRIMARY KEY,
+    TransactionStatus NUMERIC,
+    CreateDate NUMERIC,
+    MajorProgId NUMERIC,
+    MajorProgName TEXT,    
+    RecPrefix TEXT,
+    PhysicalFilePath TEXT,
+    FileSize NUMERIC,
+    FileType NUMERIC,
+    RecSource NUMERIC,
+    RecQuality NUMERIC,
+    ResumePoint NUMERIC DEFAULT 0,
+    LastPlayTime NUMERIC DEFAULT 0,
+    F_ChildLock NUMERIC DEFAULT 0,
+    F_Protected NUMERIC DEFAULT 0,
+    F_ShowHide NUMERIC DEFAULT 0,
+    F_Edited NUMERIC DEFAULT 0,
+    F_IsEditing NUMERIC DEFAULT 0,
+    ExtendFilePath1 TEXT,
+    Selected NUMERIC DEFAULT 0,
+    UNIQUE(PhysicalFilePath)
+);
+CREATE INDEX iRecFile_1 ON RecFile(F_IsEditing);
+CREATE INDEX iRecFile_2 ON RecFile(TransactionStatus,F_ShowHide,CreateDate,MajorProgId);
+CREATE INDEX iRecFile_3 ON RecFile(TransactionStatus,F_Protected,LastPlayTime);
+CREATE INDEX iRecFile_4 ON RecFile(TransactionStatus,F_ShowHide,LastPlayTime);
+CREATE INDEX iRecFile_5 ON RecFile(MajorProgId);
+CREATE INDEX iRecFile_6 ON RecFile(TransactionStatus,F_ShowHide,MajorProgName,MajorProgId);
+CREATE INDEX iRecFile_7 ON RecFile(TransactionStatus,F_ShowHide,F_Protected);
+
+CREATE TABLE RecProg(
+    id INTEGER PRIMARY KEY,
+    FileId NUMERIC,
+    ProgName TEXT,
+    ProgDesc TEXT,
+    ChannelMajor NUMERIC,
+    ChannelMinor NUMERIC,
+    Frequency NUMERIC,
+    Series NUMERIC,
+    TVSystem NUMERIC,
+    RecStartTime NUMERIC,
+    Offset NUMERIC,
+    ProgLength NUMERIC
+);
+CREATE INDEX iRecProg_1 ON RecProg(FileId,Offset);
+
+CREATE TABLE RecGenre2Prog(
+    GenreMajorId NUMERIC not null,
+    GenreMinorId NUMERIC not null,
+    ProgId NUMERIC not null,
+    Primary Key(GenreMajorId,GenreMinorId,ProgId)
+);
+
+CREATE INDEX iRecGenre2Prog_1 ON RecGenre2Prog(GenreMajorId,ProgId);
+CREATE INDEX iRecGenre2Prog_2 ON RecGenre2Prog(ProgId,GenreMajorId,GenreMinorId);
+
+CREATE TABLE RecGenre(
+    MajorId NUMERIC not null,
+    MinorId NUMERIC not null,
+    MajorName TEXT,
+    MinorName TEXT,
+    MapStr TEXT,
+    GOrder NUMERIC,
+    TotalCnt NUMERIC DEFAULT 0,
+    Primary Key(MajorId,MinorId)  
+);
+CREATE INDEX iRecGenre_1 ON RecGenre(MinorId,GOrder);
+
+CREATE TABLE RecBasicGenre(
+    System NUMERIC not null,
+    MajorId NUMERIC not null,
+    MinorId NUMERIC not null,
+    MajorName TEXT,
+    MinorName TEXT,
+    MapStr TEXT,
+    GOrder NUMERIC,
+    Primary Key(System,MajorId,MinorId)  
+);
+
+CREATE TRIGGER fkd_RecFile_1
+BEFORE DELETE ON RecFile
+FOR EACH ROW BEGIN
+  DELETE from RecProg WHERE FileId=OLD.id;
+END;
+
+CREATE TRIGGER fkd_RecProg_1
+BEFORE INSERT ON RecProg
+BEGIN
+  SELECT CASE
+    WHEN (SELECT id FROM RecFile WHERE id = NEW.FileId) IS NULL 
+    THEN RAISE ( ABORT, 'Foreign Key Violation: RecProg.FileId is not in RecFile.id')
+  END; 
+END;
+
+CREATE TRIGGER fkd_RecProg_2
+BEFORE DELETE ON RecProg
+FOR EACH ROW BEGIN
+  DELETE from RecGenre2Prog WHERE ProgId=OLD.id;
+END;
+
+CREATE TRIGGER fkd_RecGenre_1
+BEFORE DELETE ON RecGenre
+FOR EACH ROW BEGIN
+  DELETE from RecGenre2Prog WHERE GenreMajorId=OLD.MajorId and GenreMinorId=OLD.MinorId;
+  DELETE from RecGenre2TVProg WHERE GenreMajorId=OLD.MajorId and GenreMinorId=OLD.MinorId;
+END;
+
+CREATE TRIGGER fkd_RecGenre2Prog_1
+BEFORE INSERT ON RecGenre2Prog
+BEGIN
+  SELECT CASE
+    WHEN (SELECT MajorId FROM RecGenre WHERE MajorId = NEW.GenreMajorId and MinorId = NEW.GenreMinorId) IS NULL
+    THEN RAISE ( ABORT, 'Foreign Key Violation: RecGenre2Prog.GenreMajorId and GenreMinorId are not in RecGenre')
+    WHEN (SELECT id FROM RecProg WHERE id = NEW.ProgId) IS NULL
+    THEN RAISE ( ABORT, 'Foreign Key Violation: RecGenre2Prog.ProgId is not in RecProg.id')
+  END;
+END;
+
+#ATSC;
+
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,79,'Hobby');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,128,'Art');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,80,'Hockey');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,129,'Auto Racing');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,32,'Education');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,81,'Home');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,130,'Aviation');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,33,'Entertainment');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,82,'Horror');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,131,'Biography');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,34,'Movie');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,83,'Information');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,132,'Boating');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,35,'News');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,84,'Instruction');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,133,'Bowling');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,36,'Religious');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,85,'International');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,134,'Boxing');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,37,'Sports');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,86,'Interview');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,135,'Cartoon');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,38,'Other');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,87,'Language');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,136,'Children');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,39,'Action');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,88,'Legal');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,137,'Classic Film');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,40,'Advertisement');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,89,'Live');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,138,'Community');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,41,'Animated');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,90,'Local');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,139,'Computers');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,42,'Anthology');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,91,'Math');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,140,'Country Music');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,43,'Automobile');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,92,'Medical');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,141,'Court');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,44,'Awards');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,93,'Meeting');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,142,'Extreme Sports');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,45,'Baseball');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,94,'Military');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,143,'Family');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,46,'Basketball');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,95,'Miniseries');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,144,'Financial');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,47,'Bulletin');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,96,'Music');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,145,'Gymnastics');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,48,'Business');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,97,'Mystery');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,146,'Headlines');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,49,'Classical');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,98,'National');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,147,'Horse Racing');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,50,'College');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,99,'Nature');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,148,'Hunting/Fishing/Outdoors');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,51,'Combat');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,100,'Police');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,149,'Independent');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,52,'Comedy');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,101,'Politics');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,150,'Jazz');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,53,'Commentary');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,102,'Premier');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,151,'Magazine');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,54,'Concert');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,103,'Prerecorded');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,152,'Motorcycle Racing');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,55,'Consumer');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,104,'Product');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,153,'Music/Film/Books');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,56,'Contemporary');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,105,'Professional');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,154,'News-International');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,57,'Crime');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,106,'Public');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,155,'News-Local');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,58,'Dance');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,107,'Racing');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,156,'News-National');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,59,'Documentary');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,108,'Reading');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,157,'News-Regional');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,60,'Drama');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,109,'Repair');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,158,'Olympics');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,61,'Elementary');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,110,'Repeat');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,159,'Original');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,62,'Erotica');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,111,'Review');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,160,'Performing Arts');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,63,'Exercise');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,112,'Romance');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,161,'Pets/Animals');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,64,'Fantasy');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,113,'Science');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,162,'Pop');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,65,'Farm');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,114,'Series');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,163,'Rock & Roll');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,66,'Fashion');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,115,'Service');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,164,'Sci-Fi');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,67,'Fiction');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,116,'Shopping');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,165,'Self Improvement');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,68,'Food');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,117,'Soap Opera');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,166,'Sitcom');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,69,'Football');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,118,'Special');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,167,'Skating');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,70,'Foreign');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,119,'Suspense');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,168,'Skiing');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,71,'Fund Raiser');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,120,'Talk');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,169,'Soccer');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,72,'Game/Quiz');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,121,'Technical');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,170,'Track/Field');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,73,'Garden');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,122,'Tennis');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,171,'True');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,74,'Golf');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,123,'Travel');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,172,'Volleyball');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,75,'Government');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,124,'Variety');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,173,'Wrestling');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,76,'Health');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,125,'Video');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,77,'High School');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,126,'Weather');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,78,'History');
+INSERT INTO RecBasicGenre (System,MinorId,MajorId,MajorName) VALUES(0,0,127,'Western');
+
+Update RecBasicGenre set MinorName=MajorName,MapStr=lower(MajorName),GOrder=MajorId where System=0;
+
+#DVBT;
+
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,1,0,"movie/drama (general)");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,1,1,"detective/thriller");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,1,2,"adventure/western/war");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,1,3,"science fiction/fantasy/horror");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,1,4,"comedy");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,1,5,"soap/melodrama/folkloric");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,1,6,"romance");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,1,7,"serious/classical/religious/historical movie/drama");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,1,8,"adult movie/drama");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,2,0,"news/current affairs (general)");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,2,1,"news/weather report");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,2,2,"news magazine");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,2,3,"documentary");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,2,4,"discussion/interview/debate");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,3,0,"show/game show (general)");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,3,1,"game show/quiz/contest");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,3,2,"variety show");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,3,3,"talk show");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,4,0,"sports (general)");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,4,1,"special events (Olympic Games, World Cup, etc.)");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,4,2,"sports magazines");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,4,3,"football/soccer");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,4,4,"tennis/squash");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,4,5,"team sports (excluding football)");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,4,6,"athletics");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,4,7,"motor sport");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,4,8,"water sport");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,4,9,"winter sports");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,4,10,"equestrian");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,4,11,"martial sports");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,5,0,"children's/youth programmes (general)");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,5,1,"pre-school children's programmes");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,5,2,"entertainment programmes for 6 to14");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,5,3,"entertainment programmes for 10 to 16");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,5,4,"informational/educational/school programmes");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,5,5,"cartoons/puppets");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,6,0,"music/ballet/dance (general)");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,6,1,"rock/pop");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,6,2,"serious music/classical music");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,6,3,"folk/traditional music");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,6,4,"jazz");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,6,5,"musical/opera");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,6,6,"ballet");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,7,0,"arts/culture (without music, general)");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,7,1,"performing arts");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,7,2,"fine arts");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,7,3,"religion");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,7,4,"popular culture/traditional arts");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,7,5,"literature");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,7,6,"film/cinema");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,7,7,"experimental film/video");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,7,8,"broadcasting/press");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,7,9,"new media");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,7,10,"arts/culture magazines");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,7,11,"fashion");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,8,0,"social/political issues/economics (general)");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,8,1,"magazines/reports/documentary");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,8,2,"economics/social advisory");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,8,3,"remarkable people");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,9,0,"education/science/factual topics (general)");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,9,1,"nature/animals/environment");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,9,2,"technology/natural sciences");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,9,3,"medicine/physiology/psychology");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,9,4,"foreign countries/expeditions");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,9,5,"social/spiritual sciences");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,9,6,"further education");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,9,7,"languages");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,10,0,"leisure hobbies (general)");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,10,1,"tourism/travel");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,10,2,"handicraft");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,10,3,"motoring");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,10,4,"fitness and health");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,10,5,"cooking");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,10,6,"advertisement/shopping");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,10,7,"gardening");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,11,0,"original language");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,11,1,"black and white");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,11,2,"unpublished");
+INSERT INTO RecBasicGenre (System,MajorId,MinorId,MinorName) VALUES(1,11,3,"live broadcast");
+
+Update RecBasicGenre set MajorName="Movies",MapStr=lower(MinorName),GOrder=MajorId*16+MinorId where System=1 and MajorId=1;
+Update RecBasicGenre set MajorName="News",MapStr=lower(MinorName),GOrder=MajorId*16+MinorId where System=1 and MajorId=2;
+Update RecBasicGenre set MajorName="Show",MapStr=lower(MinorName),GOrder=MajorId*16+MinorId where System=1 and MajorId=3;
+Update RecBasicGenre set MajorName="Sports",MapStr=lower(MinorName),GOrder=MajorId*16+MinorId where System=1 and MajorId=4;
+Update RecBasicGenre set MajorName="Children",MapStr=lower(MinorName),GOrder=MajorId*16+MinorId where System=1 and MajorId=5;
+Update RecBasicGenre set MajorName="Music",MapStr=lower(MinorName),GOrder=MajorId*16+MinorId where System=1 and MajorId=6;
+Update RecBasicGenre set MajorName="Arts/Culture",MapStr=lower(MinorName),GOrder=MajorId*16+MinorId where System=1 and MajorId=7;
+Update RecBasicGenre set MajorName="Social",MapStr=lower(MinorName),GOrder=MajorId*16+MinorId where System=1 and MajorId=8;
+Update RecBasicGenre set MajorName="Education",MapStr=lower(MinorName),GOrder=MajorId*16+MinorId where System=1 and MajorId=9;
+Update RecBasicGenre set MajorName="Hobbies",MapStr=lower(MinorName),GOrder=MajorId*16+MinorId where System=1 and MajorId=10;
+Update RecBasicGenre set MajorName="Special",MapStr=lower(MinorName),GOrder=MajorId*16+MinorId where System=1 and MajorId=11;
+
+Update RecBasicGenre set MapStr=lower(MajorName) where System=1 and MinorId=0;
+
+# for GemStar;
+
+INSERT INTO RecBasicGenre(System,MajorId,MinorId,MajorName,MinorName,MapStr,GOrder) VALUES
+                         (1,256,0,"Others","GemStar Others","others",256*16+0);
+INSERT INTO RecBasicGenre(System,MajorId,MinorId,MajorName,MinorName,MapStr,GOrder) VALUES
+                         (1,256,1,"Others","GemStar Miscellaneous","miscellaneous",256*16+1);
+INSERT INTO RecBasicGenre(System,MajorId,MinorId,MajorName,MinorName,MapStr,GOrder) VALUES
+                         (1,3,15,"Show","GemStar Entertainment","entertainment",3*16+15);
+INSERT INTO RecBasicGenre(System,MajorId,MinorId,MajorName,MinorName,MapStr,GOrder) VALUES
+                         (1,4,15,"Sports","GemStar Sport","sport",4*16+15);
+
+# TV data;
+# ChannelIdx for auto gen sorting order;
+
+CREATE TABLE TVChannel (
+    id INTEGER PRIMARY KEY,
+    ChannelIdx NUMERIC,
+    TVType NUMERIC,
+    Enable NUMERIC DEFAULT 0,
+    TVSystem NUMERIC,
+    Freq NUMERIC,
+    LCNMajor NUMERIC,
+    LCNMinor NUMERIC DEFAULT 0,
+    ChannelProvider TEXT, 
+    ChannelName TEXT
+);
+
+CREATE TABLE TVProg (
+    id INTEGER PRIMARY KEY,
+    ChannelId NUMERIC,
+    EventId NUMERIC,
+    StartTime NUMERIC,
+    StartZone NUMERIC,
+    EndTime NUMERIC,
+    EndZone NUMERIC,
+    ISO639LangCode TEXT,
+    ProgName TEXT, 
+    ProgDesc TEXT,
+    ParentalCtrlRating NUMERIC
+);
+
+CREATE TABLE RecGenre2TVProg(
+    GenreMajorId NUMERIC not null,
+    GenreMinorId NUMERIC not null,
+    ProgId NUMERIC not null,
+    Primary Key(GenreMajorId,GenreMinorId,ProgId)
+);
+
+CREATE TRIGGER fkd_TVChannel_1
+BEFORE DELETE ON TVChannel
+FOR EACH ROW BEGIN
+  DELETE from TVProg WHERE ChannelId=OLD.id;
+END;
+
+CREATE TRIGGER fkd_TVProg_1
+BEFORE INSERT ON TVProg
+BEGIN
+  SELECT CASE
+    WHEN (SELECT id FROM TVChannel WHERE id = NEW.ChannelId) IS NULL 
+    THEN RAISE ( ABORT, 'Foreign Key Violation: TVProg.ChannelId is not in TVChannel.id')
+  END; 
+END;
+
+CREATE TRIGGER fkd_TVProg_2
+BEFORE DELETE ON TVProg
+FOR EACH ROW BEGIN
+  DELETE from RecGenre2TVProg WHERE ProgId=OLD.id;
+END;
+
+CREATE TRIGGER fkd_RecGenre2TVProg_1
+BEFORE INSERT ON RecGenre2TVProg
+BEGIN
+  SELECT CASE
+    WHEN (SELECT MajorId FROM RecGenre WHERE MajorId = NEW.GenreMajorId and MinorId = NEW.GenreMinorId) IS NULL
+    THEN RAISE ( ABORT, 'Foreign Key Violation: RecGenre2TVProg.GenreMajorId and GenreMinorId are not in RecGenre')
+    WHEN (SELECT id FROM TVProg WHERE id = NEW.ProgId) IS NULL
+    THEN RAISE ( ABORT, 'Foreign Key Violation: RecGenre2TVProg.ProgId is not in TVProg.id')
+  END;
+END;
+
+#Authentication;
+CREATE TABLE AccountPassword(
+    System NUMERIC,
+    Account TEXT,
+    Password TEXT,
+    Primary Key(System,Account)
+);
+
+CREATE TABLE NetBrowserData(
+    id INTEGER PRIMARY KEY,
+    Type NUMBER,
+    Label TEXT,
+    Account TEXT,
+    Password TEXT,
+    Domain TEXT,
+    HostName TEXT,
+    IPAddr NUMERIC
+);
+
+#version control;
+
+CREATE TABLE DB_VERSION_CONTROL(
+    id INTEGER PRIMARY KEY,
+    Version NUMERIC,
+    CmdOrder NUMERIC,
+    CmdSQL TEXT
+);
+
+INSERT INTO DB_VERSION_CONTROL(Version,CmdOrder,CmdSQL) VALUES(6,1,"BUILDNEW");
+
+#End of SQL Schema;
+VACUUM;
+
+.quit
+
+cp -f 765.png ../../../Projects/Scorpio/Resource/
+cp -f 765.png ../../../../Unit_test/GrandMa_DG_StateMachine/Resource/
+cp -f 765.png ../../UnitTest/AccountData/Resource/
+cp -f 765.png ../../UnitTest/NetBrowserData/Resource/
+cp -f 765.png ../../UnitTest/TVData/Resource/
+cp -f 765.png ../../UnitTest/HddFileData/Resource/
+cp -f 765.png ../../UnitTest/RecFileData/Resource/
+cp -f 765.png ../../UnitTest/RecFileOperate/Resource/
+cp -f 765.png ../../../../../Test/Unit_test/SqliteTest/Resource/
+cp -f 765.png ../../../../Application/Win32/RSSClient/RealtekDB/UnitTest/Resource/765.png

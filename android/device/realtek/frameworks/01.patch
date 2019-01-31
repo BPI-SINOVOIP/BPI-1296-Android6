@@ -1,0 +1,612 @@
+From 2eaed2993ec7f4e3a7381ca07d6b4bdb798de179 Mon Sep 17 00:00:00 2001
+From: roger_yu <roger_yu@realsil.com.cn>
+Date: Thu, 11 May 2017 13:17:41 +0800
+Subject: [PATCH 1/2] [NEW FEATURE] release java API used to PIP record
+
+Change-Id: If0511f5edad5d662d36713104269e88a20f39ef8
+---
+ .../com/realtek/hardware/RtkPIPRecordManager.java  | 183 +++++++++++
+ services/jni/Android.mk                            |   3 +
+ .../com_realtek_hardware_RtkPIPRecordManager.cpp   | 359 +++++++++++++++++++++
+ services/jni/onload.cpp                            |   8 +-
+ 4 files changed, 552 insertions(+), 1 deletion(-)
+ create mode 100755 core/java/com/realtek/hardware/RtkPIPRecordManager.java
+ create mode 100755 services/jni/com_realtek_hardware_RtkPIPRecordManager.cpp
+
+diff --git a/core/java/com/realtek/hardware/RtkPIPRecordManager.java b/core/java/com/realtek/hardware/RtkPIPRecordManager.java
+new file mode 100755
+index 0000000..9f3a9c1
+--- /dev/null
++++ b/core/java/com/realtek/hardware/RtkPIPRecordManager.java
+@@ -0,0 +1,183 @@
++/*
++ * Copyright (c) 2017 Realtek Semi. co. All Rights Reserved.
++ * Comment: This class lets you access Realtek Transcode Service functions.
++ */
++
++package com.realtek.hardware;
++
++import java.util.StringTokenizer;
++import java.io.IOException;
++
++import android.app.ActivityThread;
++import android.os.RemoteException;
++import android.os.ServiceManager;
++import android.os.ParcelFileDescriptor;
++import android.os.SystemProperties;
++import android.util.Log;
++import android.view.Surface;
++import android.view.SurfaceHolder;
++import android.view.TextureView;
++import android.graphics.SurfaceTexture;
++
++public class RtkPIPRecordManager {
++	static {
++        System.loadLibrary("realtek_runtime");
++	}
++
++	private static final String TAG = "RtkPIPRecordManager";
++
++    public static final int TRACK_VIDEO_AND_AUDIO = 0;
++    public static final int TRACK_AUDIO_ONLY = 1;
++    public static final int TRACK_VIDEO_ONLY = 2;
++      
++    public static final int OUTPUT_FILE_FORMAT_TS  = 0;
++    public static final int OUTPUT_FILE_FORMAT_MP4 = 1;
++
++    public static final int TRANSCODED_TYPE_MIXER1 = 4;
++    public static final int TRANSCODED_TYPE_V1 = 5;
++    
++    
++    /**
++     * A simple event listener to listen events that are from native
++     */
++    public interface RtkPIPRecordManagerListener {
++
++        /**
++         * Event: Camera error, could be connected by another client
++         */
++        public static final int EVENT_CAMERA_ERROR = 1;
++
++        public abstract void onEvent(int eventId);
++    }
++
++    public RtkPIPRecordManagerListener mListener = null;
++
++	public RtkPIPRecordManager() {
++        Log.d(TAG, "construct RtkPIPRecordManager instance");
++        native_initiate();
++	}
++
++    public void setListener(RtkPIPRecordManagerListener listener) {
++        mListener = listener;
++    }
++
++    private void handleEventFromNative(int event) {
++        Log.d(TAG, "native event "+event);
++        if(mListener != null) {
++            mListener.onEvent(event);
++        }
++    }
++
++    public int prepare(int type) {
++        String packageName = ActivityThread.currentPackageName();
++		Log.d(TAG, "prepare, package name:" + packageName);
++		return native_prepare(packageName, type);
++    }
++
++    public void configureTargetFormat(RtkPIPRecordManager.VideoConfig vConfig,
++                                      RtkPIPRecordManager.AudioConfig aConfig) {
++        Log.d(TAG, "configureTargetFormat");
++        native_configureTargetFormat(vConfig.width, vConfig.height, vConfig.fps,
++                                     vConfig.bitrate, vConfig.iframeInterval, vConfig.rateControl, 
++                                     vConfig.aspectRatio, vConfig.interlace, vConfig.shareWBbuf,
++                                     aConfig.channelCount, aConfig.channelMode,
++                                     aConfig.sampleRate, aConfig.bitrate);
++    }
++    
++    public void setTargetFd(ParcelFileDescriptor fd, int fileFormat) {
++        Log.d(TAG, "setTargetFd fd:"+fd);
++        native_setTargetFd(fd.getFd(), fileFormat);
++    }
++    
++    public int start() {
++		Log.d(TAG, "start");
++		int result = native_startTranscode();
++		return result;
++    }
++    
++    public int stop() {
++		Log.d(TAG, "stop");
++		int result = native_stopTranscode();
++		return result;
++    }
++    
++    public void release() {
++		Log.d(TAG, "release");
++		native_release();
++    }
++
++    //------------------------------------------------------------------- 
++    private native void native_initiate();
++    private native int native_prepare(String packageName, int type);
++    private native void native_configureTargetFormat(// video setting
++                                                     int w, int h, int fps,
++                                                     int vbitrate, int iframeInterval,
++                                                     int rateControl, int aspectRatio,
++                                                     int interlace, int shareWBbuf,
++                                                     // audio setting
++                                                     int channelCount, int channelMode, int sampleRate, int abitrate);    
++    private native void native_setTargetFd(int fd, int format);
++    private native int native_startTranscode();
++    private native int native_stopTranscode();
++    private native void native_release();
++    
++    /**
++     * A simple class to put all video config parameters
++     */
++    public static class VideoConfig {
++
++        public int width;
++        public int height;
++        public int fps;
++        public int bitrate;
++        public int iframeInterval;
++        public int rateControl;
++        public int aspectRatio;
++        public int interlace;
++        public int shareWBbuf;
++
++        public VideoConfig(
++                int w,
++                int h,
++                int fps,
++                int bitrate,
++                int iframeInterval,
++                int rateControl,
++                int aspectRatio,
++                int interlace,
++                int shareWBbuf) {
++
++            this.width = w;
++            this.height = h;
++            this.fps = fps;
++            this.bitrate = bitrate;
++            this.iframeInterval = iframeInterval;
++            this.rateControl = rateControl;
++            this.aspectRatio = aspectRatio;
++            this.interlace = interlace;
++            this.shareWBbuf = shareWBbuf;
++        }
++    }
++
++    /**
++     * A simple class to put all audio config parameters
++     */
++    public static class AudioConfig {
++
++        public int channelCount;
++        public int channelMode;
++        public int sampleRate;
++        public int bitrate;
++
++        public AudioConfig(
++                int channelCount,
++                int channelMode,
++                int sampleRate,
++                int bitrate) {
++            this.channelCount = channelCount;
++            this.channelMode = channelMode;
++            this.sampleRate = sampleRate;
++            this.bitrate = bitrate;
++        }
++    }
++}
+diff --git a/services/jni/Android.mk b/services/jni/Android.mk
+index efbd397..7e77016 100644
+--- a/services/jni/Android.mk
++++ b/services/jni/Android.mk
+@@ -159,6 +159,9 @@ LOCAL_CFLAGS += -DENABLE_RTK_HDMIRX_SERVICE
+ 
+ endif #ENABLE_RTK_HDMIRX_SERVICE
+ 
++LOCAL_SRC_FILES += \
++    com_realtek_hardware_RtkPIPRecordManager.cpp
++
+ ifeq ($(ENABLE_RT_WIFIDISPLAY),true)
+ LOCAL_SRC_FILES += com_realtek_server_RtkMiracastSinkJNI.cpp
+ 
+diff --git a/services/jni/com_realtek_hardware_RtkPIPRecordManager.cpp b/services/jni/com_realtek_hardware_RtkPIPRecordManager.cpp
+new file mode 100755
+index 0000000..d9a1f37
+--- /dev/null
++++ b/services/jni/com_realtek_hardware_RtkPIPRecordManager.cpp
+@@ -0,0 +1,359 @@
++/*
++ * Copyright (c) 2017 Realtek Semi. co. All Rights Reserved.
++ * Comment: JNI used to call Realtek Transcode Service functions.
++ */
++
++#define LOG_NDEBUG 0
++#define LOG_TAG "RtkPIPRecordManager-JNI"
++#include <utils/Log.h>
++
++#include "jni.h"
++#include "JNIHelp.h"
++#include "android_runtime/AndroidRuntime.h"
++#include <android_runtime/android_graphics_SurfaceTexture.h>
++#include <android_runtime/android_view_Surface.h>
++
++#include <cutils/properties.h>
++#include <utils/Vector.h>
++
++#include <binder/IServiceManager.h>
++#include <binder/ProcessState.h>
++#include <binder/IPCThreadState.h>
++#include <binder/MemoryBase.h>
++#include <binder/MemoryHeapBase.h>
++#include <binder/IMemory.h>
++#include <gui/GLConsumer.h>
++#include <gui/Surface.h>
++#include "RtkTranscodeCommon.h"
++#include "RtkTranscodePlayer.h"
++// added for binder service mode.
++#include "RtkIpc/TranscodeService.h"
++#include "RtkIpc/IRtkTranscodePlayerServiceClient.h"
++
++// use binder service
++#define USE_RTK_TRANSCODEPLAYER_SERVICE
++
++#define JAVA_CALLBACK_FUN_NAME  "handleEventFromNative"
++
++#define LOG_ERROR_LINE()    ALOGE("[%s][%d] TranscodePlayer instance in NULL",__FUNCTION__,__LINE__)
++
++namespace android {
++
++enum {
++    EVENT_CAMERA_ERROR = 1,
++};
++
++static JavaVM *g_jvm;
++
++#ifdef USE_RTK_TRANSCODEPLAYER_SERVICE
++
++/**
++ * Basic definiation of the RtkTranscodeHandler
++ */
++class RtkTranscodeHandler : public AHandler
++{
++public:
++    RtkTranscodeHandler(JNIEnv *env, jobject thiz){
++        mEnv = env;
++        mThiz = mEnv->NewGlobalRef(thiz);;
++    }
++
++protected:
++    virtual ~RtkTranscodeHandler();
++    virtual void onMessageReceived(const sp<AMessage> &msg);
++
++    jobject mThiz;
++    JNIEnv *mEnv;
++};
++
++RtkTranscodeHandler::~RtkTranscodeHandler()
++{
++    ALOGD("~RtkTranscodeHandler() remove jobject");
++    mEnv->DeleteGlobalRef(mThiz);
++}
++
++void RtkTranscodeHandler::onMessageReceived(const sp<AMessage> &msg)
++{
++    //ALOGV("RtkTranscodeHandler::onMessageReceived %d",msg->what());
++    switch (msg->what()) {
++        case kWhatCameraError:
++        {
++            JNIEnv *env;
++            if(g_jvm->AttachCurrentThread(&env, NULL) != JNI_OK)
++            {
++                ALOGE("RtkTranscodeHandler::onMessageReceived get JNIEnv failed");
++                return;
++            }
++
++            const char * fnName = JAVA_CALLBACK_FUN_NAME;
++            jint event = EVENT_CAMERA_ERROR;
++            jclass cls = env->GetObjectClass(mThiz);
++            jmethodID messageMe = env->GetMethodID(cls, fnName, "(I)V");
++            env->CallVoidMethod(mThiz, messageMe, event);
++            g_jvm->DetachCurrentThread();
++            break;
++        }
++        default:
++            break;
++    }
++}
++
++// single instance should be okay since they are exist in different process.
++static sp<IRtkTranscodePlayerServiceClient> sTranscodePlayer;
++static sp<Camera> mCamera;
++static sp<ALooper> sLooper;
++static sp<RtkTranscodeHandler> sHandler;
++
++#else
++static sp<RtkTranscodePlayer> sTranscodePlayer;
++#endif
++
++
++static AV_FORMAT_CONFIG TargetFormat = {
++    {
++            640,     // width
++            480,     // height
++            30,      // fps;
++            9000000, // bitrate
++            1,       // iframeInterval
++            1,       // rateControl , default is variable
++            0,       // aspectRatio
++            0,       // interlace
++            0,       // shareWBbuf
++    },
++    {
++            2,      // channelCount;
++            0,      // channelMode
++            48000,  // sampleRate
++            192000, // bitrate
++    }
++};
++
++static RtkTranscodeConf config;
++
++
++static void realtek_hardware_RtkPIPRecordManager_native_initiate(JNIEnv *env, jobject thiz)
++{
++    ALOGV("RtkPIPRecordManager_native_initiate");
++#ifdef USE_RTK_TRANSCODEPLAYER_SERVICE
++    ProcessState::self()->startThreadPool();
++    sp<IRtkTranscodePlayerService> sm(TranscodeService::getTranscodeService());
++
++    int clientCount = sm->getClientsCount();
++    ALOGD("RtkTranscodePlayer instance count: %d",clientCount);
++
++    sTranscodePlayer = sm->create(0); // onlyTrack : default 0
++
++    if(sLooper != NULL) {
++        sLooper->stop();
++        sLooper.clear();
++        sLooper = NULL;
++    }
++
++    if(sHandler != NULL) {
++        sHandler.clear();
++        sHandler = NULL;
++    }
++
++    // support callback message
++    sLooper = new ALooper();
++    sLooper->setName("RtkPIPRecordManager");
++    sHandler = new RtkTranscodeHandler(env,thiz);
++    sLooper->registerHandler(sHandler);
++    sLooper->start();
++    sTranscodePlayer->registerStatusHandler(static_cast<AHandler *>(sHandler.get()));
++
++#else
++    sTranscodePlayer = new RtkTranscodePlayer(true, 0);
++#endif 
++    
++}
++
++static jint realtek_hardware_RtkPIPRecordManager_native_prepare(JNIEnv *env, jobject thiz, jstring clientPackageName, jint type)
++{
++    ALOGV("RtkPIPRecordManager_native_prepare");
++    // Convert jstring to String16
++    /*
++    const jchar *rawClientName = env->GetStringChars(clientPackageName, NULL);
++    jsize rawClientNameLen = env->GetStringLength(clientPackageName);
++    String16 clientName((const char16_t *)rawClientName, rawClientNameLen);
++    env->ReleaseStringChars(clientPackageName, rawClientName);
++    */
++    
++    jint rst = 0;
++    if(type == TranscodeTypeMixer1) {
++        ALOGV("Record Mixer1");
++        rst = sTranscodePlayer->initiate(TranscodeTypeMixer1);
++    }
++    else if(type = TranscodeTypeV1) {
++        ALOGV("Record V1");
++        rst = sTranscodePlayer->initiate(TranscodeTypeV1);
++    }
++    else {
++        ALOGV("default record Mixer1");
++        rst = sTranscodePlayer->initiate(TranscodeTypeMixer1);
++    }
++
++    return rst;
++}
++
++static void realtek_hardware_RtkPIPRecordManager_native_configureTargetFormat
++  (JNIEnv *env, jobject thiz, jint w, jint h, jint fps, jint vbitrate,
++    jint iframeInterval, jint rateControl, jint aspectRatio,
++    jint interlace, jint shareWBbuf,
++    jint channelCount, jint channelMode, jint sampleRate, jint abitrate)
++{
++    ALOGD("RtkPIPRecordManager_native_configureTargetFormat");
++    // video parameters
++    TargetFormat.videoFmt.width = w;
++    TargetFormat.videoFmt.height = h;
++    TargetFormat.videoFmt.fps = fps;
++    TargetFormat.videoFmt.bitrate = vbitrate;
++    TargetFormat.videoFmt.iframeInterval = iframeInterval;
++    TargetFormat.videoFmt.rateControl = rateControl;
++    TargetFormat.videoFmt.aspectRatio = aspectRatio;
++    TargetFormat.videoFmt.interlace = interlace;
++    TargetFormat.videoFmt.shareWBbuf = shareWBbuf;
++    // audio parameters
++    TargetFormat.audioFmt.channelCount = channelCount;
++    TargetFormat.audioFmt.channelMode = channelMode;
++    TargetFormat.audioFmt.sampleRate = sampleRate;
++    TargetFormat.audioFmt.bitrate = abitrate;
++
++    if(sTranscodePlayer.get() == NULL) {
++        LOG_ERROR_LINE();
++        return;
++    }
++    //sTranscodePlayer->configureTargetFormat(TargetFormat);
++}
++
++static void realtek_hardware_RtkPIPRecordManager_native_setTargetFd
++                    (JNIEnv *env, jobject thiz, jint fd, jint format)
++{
++    ALOGD("RtkPIPRecordManager_native_setTargetFd fd:%d format:%d",fd,format);
++
++    config.outputType = OUTPUT_FD;
++    config.outputFormat = format;
++    config.fileDesc = fd;
++    config.fileName = "";
++    config.ashmemData = NULL;
++    config.ashmemInfo = NULL;
++    config.udpIp = "";
++    config.udpPort = 0;
++    config.rtpHeader = false;
++
++    if(sTranscodePlayer.get() == NULL) {
++        LOG_ERROR_LINE();
++        return;
++    }
++
++    sTranscodePlayer->setOutputFormat(config);
++}
++
++static jint realtek_hardware_RtkPIPRecordManager_startTranscode(JNIEnv *env, jobject thiz)
++{
++    ALOGV("RtkPIPRecordManager_startTranscode");
++
++    if(sTranscodePlayer.get() == NULL) {
++        LOG_ERROR_LINE();
++        return -1;
++    }
++    jint rst = sTranscodePlayer->configureTargetFormat(TargetFormat);
++    if(rst != 0) {
++        LOG_ERROR_LINE();
++        return -1;
++    }
++    rst = sTranscodePlayer->setTranscode(true);
++    return rst;
++}
++
++static jint realtek_hardware_RtkPIPRecordManager_stopTranscode(JNIEnv *env, jobject thiz)
++{
++    ALOGV("RtkPIPRecordManager_stopPreview");
++
++    if(sTranscodePlayer.get() == NULL){
++        LOG_ERROR_LINE();
++        return -1;
++    }
++
++    jint rst = sTranscodePlayer->stop();
++
++    return rst;
++}
++
++static void realtek_hardware_RtkPIPRecordManager_release(JNIEnv *env, jobject thiz)
++{
++    ALOGV("RtkPIPRecordManager_release");
++#ifdef USE_RTK_TRANSCODEPLAYER_SERVICE
++    //IPCThreadState::self()->stopProcess();
++    if(sLooper != NULL){
++        sLooper->stop();
++        sLooper.clear();
++        sLooper = NULL;
++    }
++
++    if(sHandler != NULL){
++        sHandler.clear();
++        sHandler = NULL;
++    }
++
++    // only call release in binder mode
++    if(sTranscodePlayer != NULL)
++    {
++        sTranscodePlayer->release();
++    }
++
++#endif
++    if (sTranscodePlayer!=NULL)
++    {
++        sTranscodePlayer = NULL;
++    }
++}
++
++//------------------------------------------------------------------------------------------------------------------
++
++/*
++ * Array of methods.
++ *
++ * Each entry has three fields: the name of the method,
++ * the method signature, and a pointer to the native implementation.
++ */
++static const JNINativeMethod RtkPIPRecordManagerMethods[] = {
++    {"native_initiate", "()V", (void*) realtek_hardware_RtkPIPRecordManager_native_initiate },
++    {"native_prepare", "(Ljava/lang/String;I)I", (void*) realtek_hardware_RtkPIPRecordManager_native_prepare },
++    {"native_configureTargetFormat", "(IIIIIIIIIIIII)V", (void*) realtek_hardware_RtkPIPRecordManager_native_configureTargetFormat },
++    {"native_setTargetFd", "(II)V", (void*) realtek_hardware_RtkPIPRecordManager_native_setTargetFd },
++    {"native_startTranscode", "()I", (void*) realtek_hardware_RtkPIPRecordManager_startTranscode },
++    {"native_stopTranscode", "()I", (void*) realtek_hardware_RtkPIPRecordManager_stopTranscode },
++    {"native_release", "()V", (void*) realtek_hardware_RtkPIPRecordManager_release },
++};
++
++void set_realtek_hardware_RtkPIPRecordManager_JavaVMInstance(JavaVM *vm)
++{
++    g_jvm = vm;
++}
++
++/*
++* This is called by the VM when the shared library is first loaded.
++*/
++int register_realtek_hardware_RtkPIPRecordManager(JNIEnv *env) {
++
++    jclass clazz = env->FindClass("com/realtek/hardware/RtkPIPRecordManager");
++
++    if (clazz == NULL)
++    {
++        ALOGE("Can't find com/realtek/hardware/RtkPIPRecordManager");
++        return -1;
++    }
++
++    if(jniRegisterNativeMethods(env, "com/realtek/hardware/RtkPIPRecordManager",
++        RtkPIPRecordManagerMethods, NELEM(RtkPIPRecordManagerMethods)) != 0) {
++        ALOGD("Register method to com/realtek/hardware/RtkPIPRecordManager failed!");
++        return -1;
++    }
++
++    return 0;
++}
++
++
++} /* namespace android */
+diff --git a/services/jni/onload.cpp b/services/jni/onload.cpp
+index 09cdb28..ab8a504 100644
+--- a/services/jni/onload.cpp
++++ b/services/jni/onload.cpp
+@@ -10,6 +10,7 @@ int register_android_server_RtkHDMIService(JNIEnv* env);
+ #ifdef ENABLE_RTK_HDMIRX_SERVICE
+ int register_realtek_server_RtkHDMIRxService(JNIEnv* env);
+ int register_realtek_hardware_RtkHDMIRxManager(JNIEnv* env);
++int register_realtek_hardware_RtkPIPRecordManager(JNIEnv* env);
+ void set_realtek_hardware_RtkHDMIRxManager_JavaVMInstance(JavaVM *vm);
+ #endif
+ #ifdef ENABLE_RTK_DPTX_SERVICE
+@@ -64,7 +65,12 @@ extern "C" jint JNI_OnLoad(JavaVM* vm, void* reserved)
+         ALOGE("ERROR: RtkHDMIRxManager native registration failed\n");
+         goto bail;
+     }
+-
++    
++    if (register_realtek_hardware_RtkPIPRecordManager(env) < 0) {
++        ALOGE("ERROR: RtkPIPRecordManager native registration failed\n");
++        goto bail;
++    }
++    
+     set_realtek_hardware_RtkHDMIRxManager_JavaVMInstance(vm);
+ 
+ #endif
+-- 
+2.14.2
+

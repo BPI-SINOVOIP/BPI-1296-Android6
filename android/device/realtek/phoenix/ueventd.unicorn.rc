@@ -1,0 +1,24 @@
+# disp driver
+/dev/ump             0777   system     graphics
+/dev/mali            0777   system     graphics
+
+#####################################################
+# Note: all char dev should not be accessible except
+# owner and group owner, otherwise cts will be failed
+#####################################################
+
+/dev/hdmitx          0660   system     system
+/dev/mhltx           0660   system     system
+/dev/vpu             0660   media      root
+/dev/jpu             0660   media      root
+/dev/rtk-se          0660   root       root
+/dev/rtk-md          0660   root       root
+/dev/rtk_btusb       0660   bluetooth  net_bt_stack
+/dev/sw_sync         0660   system     system
+/dev/rpc*            0660   media      graphics
+/dev/video*          0660   media      system
+/dev/uio*            0660   media      root
+/dev/cec-*           0660   system     system
+/dev/i2c-*           0660   system     system
+/dev/snd/*           0660   system     audio
+/dev/graphics/*      0660   media      graphics

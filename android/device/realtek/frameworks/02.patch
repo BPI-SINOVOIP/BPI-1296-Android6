@@ -1,0 +1,203 @@
+From 2eeed500dec46c81448e224983d426d5c29c6ae4 Mon Sep 17 00:00:00 2001
+From: roger_yu <roger_yu@realsil.com.cn>
+Date: Thu, 18 May 2017 20:12:32 +0800
+Subject: [PATCH 2/2] DEV_FIX: delete status handler in RtkPIPRecordManager
+
+Change-Id: I9e2fc7c5d84e67b30ffa18b1bc7b67121b6d28de
+---
+ .../com/realtek/hardware/RtkPIPRecordManager.java  | 31 --------
+ .../com_realtek_hardware_RtkPIPRecordManager.cpp   | 91 ----------------------
+ 2 files changed, 122 deletions(-)
+
+diff --git a/core/java/com/realtek/hardware/RtkPIPRecordManager.java b/core/java/com/realtek/hardware/RtkPIPRecordManager.java
+index 9f3a9c1..8370215 100755
+--- a/core/java/com/realtek/hardware/RtkPIPRecordManager.java
++++ b/core/java/com/realtek/hardware/RtkPIPRecordManager.java
+@@ -14,10 +14,6 @@ import android.os.ServiceManager;
+ import android.os.ParcelFileDescriptor;
+ import android.os.SystemProperties;
+ import android.util.Log;
+-import android.view.Surface;
+-import android.view.SurfaceHolder;
+-import android.view.TextureView;
+-import android.graphics.SurfaceTexture;
+ 
+ public class RtkPIPRecordManager {
+ 	static {
+@@ -35,39 +31,12 @@ public class RtkPIPRecordManager {
+ 
+     public static final int TRANSCODED_TYPE_MIXER1 = 4;
+     public static final int TRANSCODED_TYPE_V1 = 5;
+-    
+-    
+-    /**
+-     * A simple event listener to listen events that are from native
+-     */
+-    public interface RtkPIPRecordManagerListener {
+-
+-        /**
+-         * Event: Camera error, could be connected by another client
+-         */
+-        public static final int EVENT_CAMERA_ERROR = 1;
+-
+-        public abstract void onEvent(int eventId);
+-    }
+-
+-    public RtkPIPRecordManagerListener mListener = null;
+ 
+ 	public RtkPIPRecordManager() {
+         Log.d(TAG, "construct RtkPIPRecordManager instance");
+         native_initiate();
+ 	}
+ 
+-    public void setListener(RtkPIPRecordManagerListener listener) {
+-        mListener = listener;
+-    }
+-
+-    private void handleEventFromNative(int event) {
+-        Log.d(TAG, "native event "+event);
+-        if(mListener != null) {
+-            mListener.onEvent(event);
+-        }
+-    }
+-
+     public int prepare(int type) {
+         String packageName = ActivityThread.currentPackageName();
+ 		Log.d(TAG, "prepare, package name:" + packageName);
+diff --git a/services/jni/com_realtek_hardware_RtkPIPRecordManager.cpp b/services/jni/com_realtek_hardware_RtkPIPRecordManager.cpp
+index d9a1f37..6fc87b2 100755
+--- a/services/jni/com_realtek_hardware_RtkPIPRecordManager.cpp
++++ b/services/jni/com_realtek_hardware_RtkPIPRecordManager.cpp
+@@ -10,8 +10,6 @@
+ #include "jni.h"
+ #include "JNIHelp.h"
+ #include "android_runtime/AndroidRuntime.h"
+-#include <android_runtime/android_graphics_SurfaceTexture.h>
+-#include <android_runtime/android_view_Surface.h>
+ 
+ #include <cutils/properties.h>
+ #include <utils/Vector.h>
+@@ -33,76 +31,17 @@
+ // use binder service
+ #define USE_RTK_TRANSCODEPLAYER_SERVICE
+ 
+-#define JAVA_CALLBACK_FUN_NAME  "handleEventFromNative"
+-
+ #define LOG_ERROR_LINE()    ALOGE("[%s][%d] TranscodePlayer instance in NULL",__FUNCTION__,__LINE__)
+ 
+ namespace android {
+ 
+-enum {
+-    EVENT_CAMERA_ERROR = 1,
+-};
+-
+ static JavaVM *g_jvm;
+ 
+ #ifdef USE_RTK_TRANSCODEPLAYER_SERVICE
+ 
+-/**
+- * Basic definiation of the RtkTranscodeHandler
+- */
+-class RtkTranscodeHandler : public AHandler
+-{
+-public:
+-    RtkTranscodeHandler(JNIEnv *env, jobject thiz){
+-        mEnv = env;
+-        mThiz = mEnv->NewGlobalRef(thiz);;
+-    }
+-
+-protected:
+-    virtual ~RtkTranscodeHandler();
+-    virtual void onMessageReceived(const sp<AMessage> &msg);
+-
+-    jobject mThiz;
+-    JNIEnv *mEnv;
+-};
+-
+-RtkTranscodeHandler::~RtkTranscodeHandler()
+-{
+-    ALOGD("~RtkTranscodeHandler() remove jobject");
+-    mEnv->DeleteGlobalRef(mThiz);
+-}
+-
+-void RtkTranscodeHandler::onMessageReceived(const sp<AMessage> &msg)
+-{
+-    //ALOGV("RtkTranscodeHandler::onMessageReceived %d",msg->what());
+-    switch (msg->what()) {
+-        case kWhatCameraError:
+-        {
+-            JNIEnv *env;
+-            if(g_jvm->AttachCurrentThread(&env, NULL) != JNI_OK)
+-            {
+-                ALOGE("RtkTranscodeHandler::onMessageReceived get JNIEnv failed");
+-                return;
+-            }
+-
+-            const char * fnName = JAVA_CALLBACK_FUN_NAME;
+-            jint event = EVENT_CAMERA_ERROR;
+-            jclass cls = env->GetObjectClass(mThiz);
+-            jmethodID messageMe = env->GetMethodID(cls, fnName, "(I)V");
+-            env->CallVoidMethod(mThiz, messageMe, event);
+-            g_jvm->DetachCurrentThread();
+-            break;
+-        }
+-        default:
+-            break;
+-    }
+-}
+-
+ // single instance should be okay since they are exist in different process.
+ static sp<IRtkTranscodePlayerServiceClient> sTranscodePlayer;
+ static sp<Camera> mCamera;
+-static sp<ALooper> sLooper;
+-static sp<RtkTranscodeHandler> sHandler;
+ 
+ #else
+ static sp<RtkTranscodePlayer> sTranscodePlayer;
+@@ -144,25 +83,6 @@ static void realtek_hardware_RtkPIPRecordManager_native_initiate(JNIEnv *env, jo
+ 
+     sTranscodePlayer = sm->create(0); // onlyTrack : default 0
+ 
+-    if(sLooper != NULL) {
+-        sLooper->stop();
+-        sLooper.clear();
+-        sLooper = NULL;
+-    }
+-
+-    if(sHandler != NULL) {
+-        sHandler.clear();
+-        sHandler = NULL;
+-    }
+-
+-    // support callback message
+-    sLooper = new ALooper();
+-    sLooper->setName("RtkPIPRecordManager");
+-    sHandler = new RtkTranscodeHandler(env,thiz);
+-    sLooper->registerHandler(sHandler);
+-    sLooper->start();
+-    sTranscodePlayer->registerStatusHandler(static_cast<AHandler *>(sHandler.get()));
+-
+ #else
+     sTranscodePlayer = new RtkTranscodePlayer(true, 0);
+ #endif 
+@@ -285,17 +205,6 @@ static void realtek_hardware_RtkPIPRecordManager_release(JNIEnv *env, jobject th
+ {
+     ALOGV("RtkPIPRecordManager_release");
+ #ifdef USE_RTK_TRANSCODEPLAYER_SERVICE
+-    //IPCThreadState::self()->stopProcess();
+-    if(sLooper != NULL){
+-        sLooper->stop();
+-        sLooper.clear();
+-        sLooper = NULL;
+-    }
+-
+-    if(sHandler != NULL){
+-        sHandler.clear();
+-        sHandler = NULL;
+-    }
+ 
+     // only call release in binder mode
+     if(sTranscodePlayer != NULL)
+-- 
+2.14.2
+
