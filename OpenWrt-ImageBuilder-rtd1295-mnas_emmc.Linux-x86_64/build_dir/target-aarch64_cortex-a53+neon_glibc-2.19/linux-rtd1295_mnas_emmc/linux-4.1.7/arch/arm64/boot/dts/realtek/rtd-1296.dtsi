@@ -350,7 +350,7 @@
         bus-range = <0x00 0xff>;
         linux,pci-domain = <0>;
         device_type = "pci";
-        gpios = <&rtk_iso_gpio 29 1 1 >;
+        gpios = <&rtk_misc_gpio 16 1 0 >;
         #size-cells = <2>;
         #address-cells = <3>;
         num-lanes = <1>;
@@ -381,7 +381,7 @@
         bus-range = <0x00 0xff>;
         linux,pci-domain = <1>;
         device_type = "pci";
-        gpios = <&rtk_misc_gpio 20 1 1>;
+        gpios = <&rtk_misc_gpio 19 1 0>;
         #size-cells = <2>;
         #address-cells = <3>;
         num-lanes = <1>;
@@ -396,6 +396,8 @@
 			<0x000c0601>, /* #modify CMU ICP(TX jitter) */
 			<0xa6530a01>, /* #modify CMU RS(tx jitter) */
 			<0xC4662001>, /* #modify AMP */
+			<0x8EA01B01>,
+	                <0x8EA05B01>,
 			<0xa84a0101>, /* #modify Rx parameter */
 			<0xb8032b01>, /* #clk driving */
 			<0x27e94301>, /* #EQ */
