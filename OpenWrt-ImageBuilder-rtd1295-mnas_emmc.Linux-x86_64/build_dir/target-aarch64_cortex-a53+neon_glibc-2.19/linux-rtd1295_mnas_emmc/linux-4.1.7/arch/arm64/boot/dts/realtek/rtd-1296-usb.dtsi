@@ -4,8 +4,8 @@
 
 	rtk_usb_power_manager {
 		compatible = "Realtek,rtd129x-usb-power-manager";
-		realtek,u2host-power-gpio = <&rtk_iso_gpio 31 1 0>; /*ehci and u2host power, output, default low */
-		realtek,u3host-power-gpio = <&rtk_iso_gpio 32 1 0>; /*1296 u3host power, output, default low */
+		realtek,u2host-power-gpio = <&rtk_misc_gpio 5 1 0>; /*ehci and u2host power, output, default low */ //Justin  20190201 Porting for BPI-W2 USB
+		realtek,u3host-power-gpio = <&rtk_misc_gpio 20 1 0>; /*1296 u3host power, output, default low */    //Justin  20190201 Porting for BPI-W2 USB
 
 		status = "okay";
 	};
