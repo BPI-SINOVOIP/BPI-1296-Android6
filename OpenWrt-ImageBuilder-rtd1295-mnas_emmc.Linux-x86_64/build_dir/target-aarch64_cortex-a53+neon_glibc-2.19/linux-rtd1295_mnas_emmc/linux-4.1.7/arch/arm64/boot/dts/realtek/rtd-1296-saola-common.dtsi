@@ -88,8 +88,40 @@
 			<&rtk_misc_gpio 100 1 1>;		/* audio dac unmute , output, default high */
 	};
 
+
     rfkill: rfkilligpio@0{
         gpios = <&rtk_iso_gpio 24 1 0>;                         /*bt power , output, default low */
         status = "okay";
     };
+
+   
+
+    gpio-keys {
+        compatible = "gpio-keys";
+            power-button {
+                label = "Power Button";
+                gpios = <&rtk_iso_gpio 30 0 1>;
+                linux,code = <116>; /* KEY_POWER */
+            };
+    };	
+	
+
+    power-management{
+        compatible = "Realtek,power-management";
+
+	/* GPIO Wakeup */
+	wakeup-gpio-enable = /* (0) disable (1) enable */
+		<1>, /* Wakeup from power key  : enable */
+		<0>, /* Wakeup from BT : disable */
+		<1>; /* Wakeup from WiFi : disable */
+	wakeup-gpio-list = /* <&rtk_iso_gpio {num} {force input (0) } {default N/A (0)] }> */
+		<&rtk_iso_gpio 30 0 0>, /* power-key wakeup host pin */
+		<&rtk_iso_gpio 32 0 0>, /* BT wakeup host pin */  //Justin  20181029 Porting for BPI-W2 BT
+		<&rtk_iso_gpio 33 0 0>; /* WiFi wakeup host pin */
+	wakeup-gpio-activity = /* (0) active low (1) active high*/
+		<0>, /* power-key : high activity */
+		<1>, /* BT : high activity */
+		<0>; /* Wifi : high activity */
+  };	
+
 };
