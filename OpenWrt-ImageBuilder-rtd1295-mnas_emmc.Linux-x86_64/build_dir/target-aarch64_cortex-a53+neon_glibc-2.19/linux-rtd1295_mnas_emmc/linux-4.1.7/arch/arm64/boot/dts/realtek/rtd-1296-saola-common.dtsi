@@ -89,10 +89,17 @@
 	};
 
 
-    rfkill: rfkilligpio@0{
-        gpios = <&rtk_iso_gpio 24 1 0>;                         /*bt power , output, default low */
-        status = "okay";
-    };
+
+    rtk_iso_gpio: rtk_iso_gpio@98007100 {
+ 		gpios =
+			<&rtk_iso_gpio 24 1 1>;         /* igpio24, output, default high for bt */
+ 	};
+
+
+   // rfkill: rfkilligpio@0{
+   //     gpios = <&rtk_iso_gpio 24 1 0>;               /*bt power , output, default low */
+   //     status = "okay";
+   // };
 
    
 
