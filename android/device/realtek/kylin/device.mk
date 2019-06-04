@@ -491,8 +491,10 @@ endif
 #  PRODUCT_PROPERTY_OVERRIDES += dalvik.vm.heapgrowthlimit=128m
 #endif
 
-#gms
+#BPI-W2 Google GMS
 $(call inherit-product-if-exists, vendor/google/products/gms.mk)
+
+
 PRODUCT_PROPERTY_OVERRIDES += ro.com.google.clientidbase=android-acme
 PRODUCT_PROPERTY_OVERRIDES += ro.product.first_api_level=23
 
