@@ -436,7 +436,7 @@ PRODUCT_PACKAGES += dhcpcd.conf
 PRODUCT_PACKAGES += RtkLauncher2
 PRODUCT_PACKAGES += TvProvider
 PRODUCT_PACKAGES += RTKSourceIn
-PRODUCT_PACKAGES += DMR
+#PRODUCT_PACKAGES += DMR
 PRODUCT_PACKAGES += RealtekGallery2
 #PRODUCT_PACKAGES += RealtekInitialSettings
 PRODUCT_PACKAGES += RealtekSoftwareUpdater
@@ -453,11 +453,11 @@ PRODUCT_PACKAGES += RTKMiracastSink
 PRODUCT_PACKAGES += RealtekSystemUI
 #PRODUCT_PACKAGES += SystemUI
 PRODUCT_PACKAGES += RealtekSuspendHandler
-PRODUCT_PACKAGES += RealtekPIP
-PRODUCT_PACKAGES += RealtekPIPRecord
+#PRODUCT_PACKAGES += RealtekPIP
+#PRODUCT_PACKAGES += RealtekPIPRecord
 PRODUCT_PACKAGES += RealtekMediaRecoderDemo
-PRODUCT_PACKAGES += RealtekFloatingWindowDemo
-PRODUCT_PACKAGES += RealtekEncoder
+#PRODUCT_PACKAGES += RealtekFloatingWindowDemo
+#PRODUCT_PACKAGES += RealtekEncoder
 
 #ifeq ($(TARGET_BUILD_VARIANT), eng)
 PRODUCT_LOCALES := en_US zh_TW zh_CN
