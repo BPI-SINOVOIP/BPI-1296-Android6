@@ -32,9 +32,9 @@ PRODUCT_CHARACTERISTICS := tablet
 
 PRODUCT_DEVICE := kylin32
 PRODUCT_NAME   := rtk_kylin32
-PRODUCT_MODEL  := Realtek Kylin 32-bit OTT
-PRODUCT_BRAND  := realtek
-PRODUCT_MANUFACTURER := realtek
+PRODUCT_MODEL  := Bananapi W2
+PRODUCT_BRAND  := Sinovoip
+PRODUCT_MANUFACTURER := Sinovoip
 
 PRODUCT_COPY_FILES += frameworks/native/data/etc/tablet_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml
 
