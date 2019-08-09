@@ -458,6 +458,9 @@ PRODUCT_PACKAGES += RealtekSuspendHandler
 PRODUCT_PACKAGES += RealtekMediaRecoderDemo
 #PRODUCT_PACKAGES += RealtekFloatingWindowDemo
 #PRODUCT_PACKAGES += RealtekEncoder
+PRODUCT_PACKAGES += HDMIRxDemo
+
+
 
 #ifeq ($(TARGET_BUILD_VARIANT), eng)
 PRODUCT_LOCALES := en_US zh_TW zh_CN
